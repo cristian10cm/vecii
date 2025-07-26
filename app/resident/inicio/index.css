@@ -1,0 +1,14 @@
+.grid_options_homeVecii {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    align-content:space-around;
+    height: fit-content;
+    min-height: 40dvh;
+    padding: 20px 10px;
+    row-gap:12px;
+    border-top-right-radius: 30px;
+    border-top-left-radius: 30px;
+    position: relative;
+    overflow: hidden;
+}

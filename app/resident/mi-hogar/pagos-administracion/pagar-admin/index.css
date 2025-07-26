@@ -1,0 +1,49 @@
+.container_payAdmin{
+
+    width: 100%;
+    margin: 0 auto 0;
+    display: flex;
+    flex-direction: column;
+}
+.container_payAdmin_month{
+    color: var(--blueVecii);
+    font-size: 2em;
+    font-weight: bolder;
+    margin: .6em auto;
+    font-weight: bolder;
+}
+.container_payAdmin_invoice{
+    border-radius: 40px 40px 0 0;
+    height: 50dvh;
+    max-height: 60dvh;
+    display:grid;
+    grid-template-rows: 40% 60%;
+    padding: 20px 0;
+}
+.container_payAdmin_info{
+    display: grid;
+  grid-row: 35% 35% 30%;
+  margin: 20px 0;
+  gap: 10px;
+  align-items: center;
+  justify-items: center;
+  width: 90%;
+  justify-self: center;
+  font-size: 1.1em;
+}
+
+.container_payAdmin_info-date,.container_payAdmin_info-precie,.container_payAdmin_info-state{
+        color: #fff;
+    display: grid;
+    grid-template-columns: 60% 40%;
+    width: 90%;
+}
+.container_payAdmin_info-apto{
+    font-weight: 800;
+}
+.container_payAdmin_info-dateTrue,.container_payAdmin_info-precieTrue{
+    color: #9bf0a0;
+}
+.container_payAdmin_info-precieFalse,.container_payAdmin_info-dateFalse{
+    color:#f13;
+}

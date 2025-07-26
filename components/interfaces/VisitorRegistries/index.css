@@ -1,0 +1,80 @@
+.container_visitorRegistry {
+    width: 90%;
+    display: grid;
+    grid-template-columns: 20% 40% 40%;
+    margin: 0 auto;
+    background-color:  transparent;
+    height: max-content;
+    padding: 10px 5px;
+    border-radius: 20px;
+    border: 1px solid var(--blueVecii);
+}
+
+.container_visitorRegistry_avatarContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container_visitorRegistry_avatarImg {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    outline: 1px solid var(--blueVecii);
+    outline-offset: 3px;
+}
+
+.container_visitorRegistry_infoVisitor {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    height: 100%;
+    color: white;
+}
+
+.container_visitorRegistry_visitorName {
+    font-weight: 600;
+}
+
+.container_visitorRegistry_complexDetails {
+    color: grey;
+}
+
+.container_visitorRegistry_statusAndDate {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    flex-direction: column;
+    padding: 0px 10px;
+    gap: 10px;
+    color: white;
+}
+
+.container_visitorRegistry_statusInfo {
+    display: flex;
+    border: 1px solid white;
+    width: 100px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 50px;
+    padding: 5px 0px;
+}
+
+.container_visitorRegistry_statusDiv {
+    width: 15px;
+    height: 15px;
+    background-color: blue;
+    border-radius: 50px;
+}
+
+.container_visitorRegistry_date {
+    color: rgb(255, 255, 255);
+    font-weight: 600;
+    margin-right: 5px;
+}

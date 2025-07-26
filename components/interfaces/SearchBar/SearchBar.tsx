@@ -1,0 +1,43 @@
+"use client";
+import React, { useEffect, useRef, useState } from 'react';
+import { useSearchBar } from '@/components/stores/storeSearch';
+import './index.css';
+
+const SearchBar = ({placeholder}:{placeholder:string}) => {
+    const [currentValue , setCurrentValue] = useState<string>('');
+    const {setInformation} = useSearchBar();
+    const information = useSearchBar();
+    const handlerSearchBar = (e:React.KeyboardEvent) =>{
+        if (e.key == 'Enter'){
+            e.preventDefault();
+            console.log(information.information?.inputValue)
+            alert(`buscando coincidencias ${currentValue}`)
+        };
+    };
+
+    return(
+        <div className='container_searchBar'>
+            <div className='container_searchBar_icon'>
+                <img src="/assets/svg/buscarIcono.svg"></img>
+            </div>
+            <div className='container_searchBar_inputContainer'>
+                <input 
+                    onChange={(e)=>setInformation({inputValue:e.target.value})}
+                    onKeyDown={handlerSearchBar}
+                    className='container_searchBar_input' 
+                    type='text' 
+                    placeholder={placeholder}
+                ></input>
+            </div>
+             <div className="container_searchBar_filterContainer" >
+                <img 
+                src="/assets/svg/filtroIcono.svg" 
+                className='container_searchBar_filterIcon'
+                 alt="Filtro de busqueda" />
+             </div>
+        </div>
+    )
+
+}
+
+export default SearchBar;

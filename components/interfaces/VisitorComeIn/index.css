@@ -1,0 +1,25 @@
+.component_comeIn_comeOut{
+    /* width: 90%;
+    max-width: 250px;
+    height: 150px;
+    background-color: var(--background-componets); */
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    border-radius: 20px;
+    max-height: 10dvh;
+}
+
+.component_comeIn_comeOut_icon{
+    height: 10dvb;
+    width: 100%;
+}
+
+.component_comeIn_comeOut_name{
+    color: white;
+    font-weight: 600;
+    font-size: 4vw;
+}

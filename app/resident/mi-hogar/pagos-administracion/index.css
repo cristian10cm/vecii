@@ -1,0 +1,36 @@
+.typePayment {
+    display: flex;
+    width: 80%;
+    justify-content: center;
+    align-items: start;
+    height: 50px;
+    gap: 2.5%;
+    margin-top: 20px;
+}
+
+.typePayment_option {
+    width: 45%;
+    height: 90%;
+    border: solid white 2px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.typePayment_paragraph {
+    color: white;
+}
+
+.grid_admin_payment {
+   
+    margin: 20px auto;
+ 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    /* background-color: var(--background-componets); */
+    background-color: #000;
+    border-radius: 30px;
+}

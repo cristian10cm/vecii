@@ -1,0 +1,30 @@
+.container_vehicles_grid,
+.container_pets_grid {
+    display: flex;
+    flex-direction: column;
+    height: max-content;
+    width: 90%;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 0;
+}
+
+.container_vehicles_grid_separator {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    place-items: center;
+    margin:  30px auto;
+}
+
+.container_vehicles_grid_separator_line {
+    height: 2px;
+    width: 100%;
+    background-color: grey;
+}
+
+.container_vehicles_grid_separator_nameText {
+    color: white;
+    font-weight: 600;
+    font-size: 5vw;
+}

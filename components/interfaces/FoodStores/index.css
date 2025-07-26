@@ -1,0 +1,32 @@
+.container_section_stores{
+    width: 100%;
+    height: fit-content;
+    display: grid;
+    grid-template-columns: 35% 75%;
+    border-radius: 10px;
+    align-items: center;
+    overflow: hidden;
+}
+.container_section_stores_img{
+    width: 100%;
+    
+}
+.container_section_stores_infoStore{
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+
+}
+.container_section_stores_nameStore{
+    font-size: 0.8em;
+    color: #fff;
+    font-weight: bolder;
+}
+.container_section_stores_timeGrade{
+    display: flex;
+    text-wrap: nowrap;
+    font-size: 0.7em;
+    overflow: hidden;
+    color: #aaa;
+}
+

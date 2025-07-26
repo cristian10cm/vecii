@@ -1,0 +1,49 @@
+.container_orders_section {
+    width: 100%;
+    margin: 20px auto 0;
+}
+
+.container_orders_section-meats {
+    width: 100%;
+    padding: 10px 0;
+    background-color: var(--background-componets);
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.container_orders_section-meats:last-child {
+    border-bottom: 1px solid transparent;
+}
+
+.container_orders_section-meats_options {
+    display: grid;
+    grid-template-columns: repeat(3, 200px);
+    grid-template-rows: repeat(2, auto-fit);
+    padding: 20px;
+    position: relative;
+    overflow: auto;
+    gap: 10px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--aquaMarineBackground) var(--blueVecii) ;
+}
+.container_orders_section-meats_info {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    padding: 15px  20px;
+    color: #fff;
+    font-size: 0.8em;
+}
+
+.container_orders_section-meats_title {
+    font-weight: bold;
+}
+
+.container_orders_section-meats_seeAll {
+    background-color: transparent;
+    font-weight: bold;
+    border: none;
+    color: var(--blueVecii);
+    cursor: pointer;
+}

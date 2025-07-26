@@ -1,0 +1,105 @@
+.container_newVisitor {
+  width: 90%;
+  margin: 20px auto;
+  padding: 40px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+    border: 1px solid var(--blueVecii);
+  border-radius: 30px;
+}
+
+.container_newVisitor_title {
+  color: white;
+  font-weight: 700;
+  font-size: 6vw;
+  text-align: center;
+}
+
+.separator_newVisitor {
+  width: 90%;
+  height: 2px;
+  background-color: rgb(198, 198, 198);
+  border-radius: 20px;
+}
+
+.container_newVisitor_inputContainer {
+  width: 90%;
+  height: 45px;
+  background-color: white;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.container_newVisitor_input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 4.5vw;
+  padding-left: 10px;
+  background: transparent;
+}
+
+.container_newVisitor_chooseDate {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.container_newVisitor_dateTitle {
+  color: white;
+  font-size: 4vw;
+  font-weight: 600;
+}
+
+.container_newVisitor_dateInput {
+  width: 160px;
+  height: 40px;
+  font-size: 4vw;
+  padding: 0 10px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  font-weight: 600;
+  color: black;
+  background-color: white;
+}
+
+.container_newVisitor_selectType {
+  width: 160px;
+  height: 40px;
+  font-size: 4vw;
+  padding: 0 10px;
+  border-radius: 20px;
+  font-weight: 600;
+  color: black;
+  border: 1px solid #ccc;
+  background-color: white;
+}
+
+.container_newVisitor_apartments {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.container_newVisitor_btn {
+  font-size: 5vw;
+    width: 60%;
+  height: auto;
+  padding: 20px  10px;
+  background-color: var(--aquaMarineBackground);
+  color: white;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+}
+
+

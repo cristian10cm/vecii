@@ -1,42 +1,69 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --backgrounColor: #13161C;
+  --blueVecii: #3DFFE5;
+  --aquaMarineBackground: #5CC6B2;
+  --background-componets: #1E2229;
+  --shadowBoxBlue: 0px -15px 25px var(--aquaMarineBackground);
 }
 
 * {
-  box-sizing: border-box;
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
+  font-family: mainFont;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+body {
+  width: 100%;
+  height: 100dvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #000;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+/*Layout Inicial*/
+.main_vecii {
+  width: 100%;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/*Layout usuario*/
+.main_vecii_layout {
+  width: 100%;
+  min-height: 90vh;
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  place-content: start;
+}
+
+.main_vecii_menu {
+  width: 100%;
+  height: 10vh;
+  background-color: #000;
+  border-radius: 10px 10px 0 0;
+  /* border-top:1.5px  solid var(--blueVecii); */
+   border-top:2px  solid #fff;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  /* box-shadow: 0px 0px 25px 1px var(--blueVecii); */
+  z-index: 1;
+}
+
+.main_vecii_menu_space {
+  width: 100%;
+  height: 10vh;
+  margin-top: 20px;
 }

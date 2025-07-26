@@ -1,0 +1,26 @@
+[
+    {
+      "nameStore": "Meat Box",
+      "imgFood": "https://myplate-prod.azureedge.us/sites/default/files/styles/large/public/2021-09/HerbBroiledBeef_527x323.jpg?itok=A60SH-ig",
+      "imgStore": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwp2gPeayQn87sg82IDWfNBWN6Nyx-H9HsJw&s",
+      "gradeStore": "5.1",
+      "timeOrder": "20 min o prog.",
+      "pathStore": "/resident/pedidos/ordenPedido/"
+    },
+    {
+      "nameStore": "Hipermash Fish",
+      "imgFood": "https://d2j6dbq0eux0bg.cloudfront.net/images/38699127/1780894625.jpg",
+      "imgStore": "https://images.rappi.com/marketplace/hipermar_fish_1611073131820.jpg",
+      "gradeStore": "5.1",
+      "timeOrder": "20 min o prog.",
+      "pathStore": "/resident/pedidos/ordenPedido/"
+    },
+    {
+      "nameStore": "Pollo y Fiesta",
+      "imgFood": "https://i.pinimg.com/736x/27/3e/cf/273ecfbb3347d4cb66bc5b23e4578e61.jpg",
+      "imgStore": "https://images.rappi.com/marketplace/pollofiesta_express_1609209406779.jpg",
+      "gradeStore": "5.1",
+      "timeOrder": "20 min o prog.",
+      "pathStore": "/resident/pedidos/ordenPedido/"
+    }
+  ]

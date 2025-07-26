@@ -1,0 +1,7 @@
+.container_grid_catalogo{
+    display: grid;
+    width: 90%;
+    grid-template-columns: repeat(2,1fr);
+    gap: 20px;
+    margin: 20px auto 0;
+}

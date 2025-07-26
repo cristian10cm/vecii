@@ -1,0 +1,98 @@
+/*Cotenedor principal del co ponente Login*/
+.login_component{
+    width: 90%;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 20px;
+}
+/* Imagen del logo*/
+.login_component_logo{
+    width: 80%;
+    border-radius: 20px;
+    filter:drop-shadow(0px 0px 15px var(--aquaMarineBackground));
+    animation: animacion 1s  ease-in-out;             
+}   
+@keyframes animacion {
+    0%{
+        opacity: 0;
+    }100%{
+        opacity: 1;
+    }
+}
+/* Contenedor del titulo y los inputs*/
+.login_component_container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    padding-bottom: 30px;
+    border-radius: 50px;
+    gap: 10px;
+}
+
+/* Titulo Bienvenidos */
+.login_component_container_title{
+    color: white;
+    font-size: 7vw;
+    margin: 50px 0px 25px 0px;
+}
+
+/*contenedor del input - div - */
+.login_component_container_input{
+    width: 90%;
+    height: 40px;
+    border: var(--aquaMarineBackground) 1px solid;
+    border-radius: 20px;
+    margin: 10px 0;
+    display: flex;
+   
+    box-shadow: 0px 0px 8px 3px var(--aquaMarineBackground);
+}
+
+/* inputs de vecii*/
+.input_vecii{
+    width: 85%;
+    margin: 0 15px;
+    display: flex;
+    justify-content: center;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-size: 4.5vw;
+    color: white;
+}
+.input_vecii_hiden{
+    background-color: transparent;
+    border: none;
+    color: var(--blueVecii);
+    margin: 0 15px 0 0;
+    font-size: 4vw;
+    
+}
+
+/*Olvidé mi usuario y contraseña*/
+.login_component_container_paragraph{
+    font-size: 3.8vw;
+    color: white;
+    width: 90%;
+    text-align: end;
+    margin: 10px 0px;
+}
+
+/*Btn de ingresar*/
+.login_component_btnSend{
+    background-color: var(--blueVecii);
+    font-size: 5vw;
+    padding: 4% 15%;
+    border: none;
+    outline: none;
+    border-radius: 50px;
+    color: white;
+    text-shadow: 0 0 5px #000;
+    
+}

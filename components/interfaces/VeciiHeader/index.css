@@ -1,0 +1,35 @@
+.veciiHeaderComponent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    /* background-color: var(--background-componets); */
+    height: max-content;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding: 20px 0px 20px 0px;
+    box-shadow: var(--shadowBoxBlue)
+}
+
+.container_identity_component {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+}
+
+.container_identity_componentImg {
+    width:70px;
+    margin: 0 auto;
+    filter: invert(100%);
+}
+
+.container_identity_componentP {
+    text-align: center;
+    width: 100%;
+    color: white;
+    font-weight: 600;
+    font-size: 5vw;
+    margin-top: 10px;
+}

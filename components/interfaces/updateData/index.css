@@ -1,0 +1,36 @@
+.container_infoUser_patch_info {
+    display: grid;
+    grid-template-columns:fit-content(100%)  1fr 10%;
+    background-color: var(--background-componets);
+    width: 100%;
+    border-radius: 10px;
+    height: fit-content;
+    padding: 5px 10px;
+}
+.container_infoUser_patch_info input{
+    width: 100%;
+    font-size:4vw ;
+    padding: 0 7px ;
+    background-color: inherit;
+    color: #fff;
+    border-radius: 10px;
+    margin-left:5px ;
+    border: none;
+}
+.container_infoUser_patch_info input::placeholder{
+    color: #fff;
+}
+.container_infoUser_patch_label{
+    font-weight: bolder;
+}
+.container_infoUser_patch_info input:focus{
+    color: #fff;
+    outline: 1px solid var(--aquaMarineBackground);
+}
+.container_infoUser_patch_edit{
+    font-size:4vw ;
+    justify-self: flex-end;
+    color: var(--aquaMarineBackground);
+    background-color: var(--background-componets);
+    border: none;
+}

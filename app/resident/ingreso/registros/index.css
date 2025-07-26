@@ -1,0 +1,40 @@
+.typeRegistries {
+    display: flex;
+    width: 80%;
+    justify-content: center;
+    align-items: start;
+    height: 50px;
+    gap: 2.5%
+}
+
+.typeRegistries_option {
+    width: 45%;
+    height: 90%;
+    border: solid white 2px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.typeRegistries_paragraph {
+    color: white;
+}
+
+.grid_reservation_options {
+    width: 90%;
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.containerGrid_registries_order {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 20px 0px;
+    width: 100%;
+}

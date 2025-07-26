@@ -1,0 +1,43 @@
+.typeMailbox{
+    display: flex;
+    width: 80%;
+    justify-content: center;
+    align-items: start;
+    height: 40px;
+    gap:2.5%;
+    padding: 10px 20px;
+    font-size: .8em;
+    margin: 5px 0 10px 0;
+    gap: 20px;
+}
+.typeMailbox_option:nth-child(1),
+.typeMailbox_option:last-child {
+    width: 45%;
+    height: 90%;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px 5px;
+    text-align: center;
+    font-weight: 600;
+}
+/* .typeMailbox_optionTrue{
+    background: var(--blueVecii);
+    color: #000;
+}
+.typeMailbox_optionFalse{
+    background: var(--blueVecii);
+    color: #000;
+} */
+.option_true{
+    background: var(--blueVecii);
+    color: #000;
+}
+
+.option_false {
+
+    background-color: #000;
+    color: #fff;
+    box-shadow: 0px 0px 6px 1px var(--blueVecii);
+}

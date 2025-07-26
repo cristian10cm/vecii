@@ -1,0 +1,44 @@
+.container_servicio{
+    width: 95%;
+    height: auto;
+    display: grid;
+    grid-template-columns: 25% 60% 15%;
+    align-items: center;
+    margin: 10px auto;
+    /* background-color: var(--background-componets); */
+    border-radius: 10px;
+    padding-right: 10px;
+}
+
+.container_servicio_img{
+    width: 17vw;
+    height: 17vw;
+    overflow: hidden;
+    border-radius: 10px;
+}
+.container_servicio_img img{
+    width: 100%;
+    object-fit: cover;
+    height: 100%;
+    display: inline-block;
+}
+.container_servicio_btn{
+    scale: .8;
+    filter: invert(100%);
+    justify-self: flex-end;
+}
+.container_servicio_precio{
+    color: #aaa;
+
+    font-size: 3.5vw;
+
+}   
+.container_servicio_info{
+    align-self: flex-start;
+    padding: 5px;
+}
+.container_servicio_paragraphe{
+    color: #fff;
+    font-weight: bold;
+    font-size: 4vw;
+}

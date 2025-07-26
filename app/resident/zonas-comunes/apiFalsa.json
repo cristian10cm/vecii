@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Piscina",
+    "time": "9:00 am a 11:00 am",
+    "state": false,
+    "datePlace": "08/09/2025"
+  },
+  {
+    "name": "Gimnasio",
+    "time": "9:00 am a 11:00 am",
+    "state": true,
+    "datePlace": "08/09/2025"
+  },
+  {
+    "name": "BBQ",
+    "time": "9:00 am a 11:00 am",
+    "state": false,
+    "datePlace": "08/09/2025"
+  },
+  {
+    "name": "Salon comunal",
+    "time": "9:00 am a 11:00 am",
+    "state": true,
+    "datePlace": "08/09/2025"
+  }
+]

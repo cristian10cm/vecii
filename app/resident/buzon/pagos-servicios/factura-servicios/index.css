@@ -1,0 +1,63 @@
+.ContainerInvoicePayment{
+    display: flex;
+    flex-direction: column;
+}
+.InvoiceMonth{
+    color: var(--blueVecii);
+     font-size: 2em;
+    font-weight: bolder;
+    margin: .6em auto;
+    font-weight: bolder;
+    
+}
+/*Container Invoice*/
+.ContainerInvoice{
+    /* background-color: var(--background-componets); */
+    border-radius: 40px 40px 0 0;
+    height: 50dvh;
+    max-height: 60dvh;
+    display:grid;
+    grid-template-rows: 40% 60%;
+    padding: 20px 0;
+}
+
+.ContainerInvoice_items{
+  display: grid;
+  grid-row: 35% 35% 30%;
+  margin: 20px 0;
+  gap: 10px;
+  align-items: center;
+  justify-items: center;
+  width: 90%;
+  justify-self: center;
+  font-size: 1.1em;
+}
+.ContainerInvoice_infoDate,.ContainerInvoice_precie,.ContainerInvoice_Info{
+    color: #fff;
+    display: grid;
+    grid-template-columns: 60% 40%;
+    width: 90%;
+    
+}
+.ContainerInvoice_apto{
+    font-weight: bold;
+}
+/* Estado de la factura */
+.ContainerInvoice_stateFalse, .ContainerInvoice_stateTrue{
+     display: inline-block;
+    width: 14px;
+    height: 14px;
+    border-radius: 100%;
+    margin-right: 8px; 
+    vertical-align: middle; 
+    
+}
+
+
+.ContainerInvoice_valueInvoice,.ContainerInvoice_date{
+    color: #9bf0a0;
+}
+.ContainerInvoice_valueInvoiceFalse,.ContainerInvoice_dateFalse{
+    color:#f13;
+
+}

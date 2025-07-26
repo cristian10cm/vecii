@@ -1,0 +1,33 @@
+.typeServices{
+    display: flex;
+    width: 80%;
+    justify-content: center;
+    align-items: start;
+    height: 50px;
+    gap:2.5%
+}
+
+.typeServices_option{
+    width: 45%;
+    height: 90%;
+    border: solid white 2px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.typeServices_paragraph{
+    color: white;
+}
+
+.grid_services_options{
+    margin: 20px auto;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    place-content: center;
+    justify-content: center;
+}
+.color{
+    color: #fff;
+}

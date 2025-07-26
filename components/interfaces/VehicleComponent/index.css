@@ -1,0 +1,44 @@
+.VehicleComponent_container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 30% 70%;
+    padding: 20px;
+    background-color: #000;
+    border: 1px solid var(--blueVecii);
+    margin: 20px;
+    border-radius: 20px;
+    color: #fff;
+     font-size:4vw ;
+}
+
+.VehicleComponent_imgVehicle {
+    margin: auto;
+    width: 13vw;
+}
+
+.VehicleComponent_containerInfo {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 10px;
+}
+
+.VehicleComponent_idCar,
+.VehicleComponent_position {
+    width: 90%;
+    background-color: #000;
+    border:1px solid var(--aquaMarineBackground) ;
+    padding: 8px 15px;
+    border-radius: 12px;
+    color: white;
+}
+
+.VehicleComponent_container_edit {
+    grid-column: 2/3;
+    grid-row: 2/3;
+    width: max-content;
+    margin: 20px auto;
+    width: 100px;
+    height: 30px;
+}

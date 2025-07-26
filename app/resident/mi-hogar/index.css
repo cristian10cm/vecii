@@ -1,0 +1,30 @@
+.grid_options_homeVecii-miHogar{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    align-content: center;
+    /* background-color: var(--background-componets); */
+    height: fit-content;
+    margin: 30px 0 30px 0;
+    padding: 30px 0px;
+    row-gap: 30px;
+    border-top-right-radius: 30px;
+    border-top-left-radius: 30px;
+}
+
+.homeVecii_option_payAdmin {
+    width: 100%;
+    height: 30dvb;
+    min-height: 130px;
+    background-image: url('https://cdn.shopify.com/s/files/1/0229/0839/articles/image4_3c304533-8bc2-48e9-816f-b5e80a281fa6.png?v=1727292911');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border-top-left-radius: 30px;
+    border-top-right-radius: 30px; */
+    border-radius: 30px;
+    overflow: hidden;
+}
