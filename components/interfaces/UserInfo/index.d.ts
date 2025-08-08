@@ -1,7 +1,7 @@
 import { toast } from 'react-toastify';
 const comprobarDatos = (name:string,lastName:string,email:string,phone:string,cel:string):boolean =>{
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const stringRegex = /^[A-Za-zÁáÉéÍíÓóÚúÜüÑñÇçÀàÈèÌìÒòÙùÂâÊêÎîÔôÛûÄäËëÏïÖöÅåÆæØøß\s]+$/;
+  lastName.length<=3 || lastName.length > 30 || !stringRegex.test(lastName)
   const numberRegex = /^[\d]+$/;
     if(name.length<=3 || name.length > 30 || !stringRegex.test(name)  ){
             toast.error('El nombre ingresado es invalido')

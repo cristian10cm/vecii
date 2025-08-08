@@ -12,7 +12,7 @@ const PagosServicios = ()=>{
         <VeciiHeader
                 srcImg={service.services?.imgSrcServices || 'Imagen no encontrada'}
                  name={service.services?.servicio || 'No existe el servicio'}
-                
+
         />
         <div className='containerPayServices'>
             <PaymentService

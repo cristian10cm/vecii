@@ -10,7 +10,7 @@ import { useGSAP } from '@gsap/react';
 const MiHogar = () => {
     const divSection = useRef<HTMLDivElement>(null)
     useGSAP(()=>{
-           for(let i = 1;i<=3;i++){
+           for(let i = 1;i<=4;i++){
              let res = '0.'+(i.toString())
              gsap.fromTo(`.option_interface_img_${i}`,{x: -20, opacity: 0, scale:0.2},{x: 0, opacity: 1,scale:1, delay:parseFloat(res) ,duration:0.7,ease: "elastic.inOut"})
            }
@@ -47,6 +47,14 @@ const MiHogar = () => {
                     name='Mis Reservas'
                     pathUrl="/resident/mi-hogar/mis-reservas"
                 />
+                <div className='grid_option'>
+                      <OptionInterface
+                        idImg='4'
+                         srcImg="/assets/svg/Ingreso.svg"
+                        name='Mis visitas'
+                        pathUrl="/resident/mi-hogar/mis-visitas"
+                    />
+                </div>
             </div>
             <FooterFantasma/>
         </>

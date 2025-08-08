@@ -1,30 +1,32 @@
 
 .container_newRegister_input {
     width: 90%;
-    display:grid ;
-    grid-template-columns: 10% 90%;
+    display:flex ;
+    gap: 10px;
     height: fit-content;
-
 }
 .container_newRegister_input-items{
-    display: flex;
-    width: 100%;
-    align-items: center;
-    justify-content: start;
-    padding: 5px 10px;
-    background-color: var(--background-componets);
-    border-radius:10px ;
-    gap: 5px;
-    color: #fff;
-    font-weight: bold;
     font-size: 4vw;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 10px  ;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    color: black;
+    font-weight: 600;
+    width: 100%;
+    background-color: #fff;
 }
 .container_newRegister_input-icon{
     font-size: 5vw;
     color: var(--blueVecii);
-
     display: flex;
     align-items: center;
+}
+.container_newRegister_input-imgIcon{
+    display: flex;
+    align-items: center;
+  
 }
 .container_newObject_input-items{
     color: #fff;
@@ -35,16 +37,27 @@
     background-color: transparent;
     border:none;
     border-radius: 10px;
-    color: #ddd;
+
+    color: #777;
     padding: 2px 3px ;
+    width: 100%;
+    font-size: 5vw;
+    height: fit-content;
 }
 .container_newRegister_input-items input::placeholder{
-    color: #ddd;
+    color: #777;
     font-size: 4vw;
 }
 .container_newRegister_input-items input:hover{
     outline: none;
 }
 .container_newRegister_input-items input:focus{
-    outline: 1px solid var(--aquaMarineBackground);
+    outline: none;
+    color:#000
+}
+.container_newRegister_dateLabel{
+    color: #fff;
+    font-size: 4vw;
+    background-color: red;
+    align-self: center;
 }

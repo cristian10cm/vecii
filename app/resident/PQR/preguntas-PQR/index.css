@@ -5,8 +5,7 @@
     width: 100%;
     height: fit-content;
     margin: 20px auto 0 ;
-    
-    
+
 }
 .container_pqr_sectionTitle{
     display: flex;
@@ -31,6 +30,9 @@
     width: 100%;
     margin: auto;
     height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     /* background-color: var(--background-componets); */
     padding: 10px 25px;
 }

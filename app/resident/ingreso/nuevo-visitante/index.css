@@ -6,7 +6,7 @@
   flex-direction: column;
   align-items: center;
   gap: 16px;
-    border: 1px solid var(--blueVecii);
+  background-color: var(--background-componets);
   border-radius: 30px;
 }
 
@@ -23,7 +23,6 @@
   background-color: rgb(198, 198, 198);
   border-radius: 20px;
 }
-
 .container_newVisitor_inputContainer {
   width: 90%;
   height: 45px;
@@ -92,7 +91,7 @@
 
 .container_newVisitor_btn {
   font-size: 5vw;
-    width: 60%;
+  width: fit-content;
   height: auto;
   padding: 20px  10px;
   background-color: var(--aquaMarineBackground);
@@ -100,6 +99,38 @@
   border-radius: 20px;
   border: none;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
 }
+.container_newVisitor_btn span{
+  display: flex;
+  font-size: 7vw;
+  align-items: center;
+  animation: loading 2s   infinite;
+}
+@keyframes loading {
+  0%{
+      opacity: 0.3;
+      rotate: 0deg;
+  }100%{
+      rotate: 360deg;
+      opacity: 1;
+  }
+}
+.container_newVisitor_dates{
+  display: flex;
+  
+  align-items: center;
+  font-weight: bolder;
+  font-size: 4.2vw;
+  color: #fff;
+  width: 90%;
+  margin: 0 auto;
 
+}
+.container_newVisitor_dates div input{
+  font-size: 4vw;
+}
 

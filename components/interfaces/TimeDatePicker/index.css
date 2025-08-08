@@ -1,0 +1,22 @@
+.react-datepicker__time-list-item--disabled {
+  display: none; 
+}
+
+.timePicker_reserved_areaComun{
+    font-size: 4vw;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 10px  ;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    color: black;
+    font-weight: 600;
+    width: 100%;
+}
+.timePicker_container{
+    width: 100%;
+    color: #000;
+}
+.timePicker_container::placeholder{
+    color: #000;
+}

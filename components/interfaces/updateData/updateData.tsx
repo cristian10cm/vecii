@@ -1,13 +1,22 @@
 'use client'
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './index.css'
-import { FaRegEdit } from "react-icons/fa";
+import { useBtnEdit } from '@/components/stores/storeEditInput';
+import IconSvgGradient from '../IconSvgGradient/IconSvgGradient';
+const UpdateData =({label,type,refElement,information,numBtn,formName}:{numBtn:number,label :string,type : string,refElement : React.RefObject<HTMLInputElement | null>,information: string,formName:string})=>{
+    const [useEdit,setEdit] = useState<boolean>(false)
+    const state = useBtnEdit().state.form[formName]?.btnEdit[numBtn]
+    const {updateBtn} = useBtnEdit()
+    useEffect(()=>{
 
-const UpdateData =({label,type,refElement,information}:{label :string,type : string,refElement : React.RefObject<HTMLInputElement | null>,information: string})=>{
-
+      updateBtn(formName,{key:numBtn,value:useEdit})
+    },[])
     const actualizarDatos =(ref : React.RefObject<HTMLInputElement | null>)=>{
+            console.log(state)     
+            updateBtn(formName,{key:numBtn,value:!useEdit})
+            setEdit(!state)
             if(ref.current){
-                ref.current.disabled = false
+                ref.current.disabled = useEdit
                 // ref.current.defaultValue = information
                 ref.current.focus()
             }
@@ -21,7 +30,18 @@ const UpdateData =({label,type,refElement,information}:{label :string,type : str
             disabled
             defaultValue={information}
           />
-          <button className='container_infoUser_patch_edit'  onClick={()=>actualizarDatos(refElement)}><FaRegEdit /></button>
+          <button className='container_infoUser_patch_edit'  onClick={()=>actualizarDatos(refElement)}>
+              {
+                !useEdit?
+                <IconSvgGradient
+                urlImage='/assets/svg/pencil.svg'
+                widthImg='6vw'
+                />:
+                <IconSvgGradient
+                urlImage='/assets/svg/pencil-slash.svg'
+                widthImg='6vw'/>
+              }
+          </button>
         </div>
     )
 }

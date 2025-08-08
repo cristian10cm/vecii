@@ -3,9 +3,10 @@ import VeciiHeader from '@/components/interfaces/VeciiHeader/VeciiHeader';
 import './index.css';
 import UserInfo from '@/components/interfaces/UserInfo/UserInfo';
 import VehicleComponent from '@/components/interfaces/VehicleComponent/VehicleComponent';
-import PetsComponents from '@/components/interfaces/PetsComponents/PetsComponents';
 import FooterFantasma from '@/components/interfaces/footerFantasma/FooterFantasma';
+import PetsInfo from '@/components/interfaces/PetsInfo/PetsInfo';
 import { useRef } from 'react';
+
 const MisDatos = () => {
     const PlacaAuto = useRef<HTMLInputElement>(null)
     const bahia = useRef<HTMLInputElement>(null)
@@ -16,6 +17,7 @@ const MisDatos = () => {
             <VeciiHeader
                 srcImg='/assets/svg/Mis datos.svg'
                 name='Mis Datos'
+                transparent={false}
             />
             <UserInfo/>
             <div className='container_vehicles_grid'>
@@ -39,26 +41,8 @@ const MisDatos = () => {
                    srcImg='https://cdn-icons-png.flaticon.com/512/15474/15474969.png'
                 />
             </div>
-
-            <div className='container_pets_grid'>
-                <div className='container_vehicles_grid_separator'>
-                    <div className='container_vehicles_grid_separator_line'></div>
-                    <p className='container_vehicles_grid_separator_nameText'> Mascotas </p>
-                    <div className='container_vehicles_grid_separator_line'></div>
-                </div>
-                <PetsComponents
-                    srcImg='https://img.icons8.com/3d-fluency/94/dog.png'
-                    name='Chispita'
-                    year='1 Año'
-                    type='Chiguagua'
-                />
-                <PetsComponents
-                    srcImg='https://img.icons8.com/3d-fluency/94/cat.png'
-                    name='Bola de nieve'
-                    year='2 Año'
-                    type='Siames'
-                />
-            </div>
+            <PetsInfo/>
+           
             <FooterFantasma/>
         </>
     )

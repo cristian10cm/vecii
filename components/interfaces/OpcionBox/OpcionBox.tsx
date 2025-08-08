@@ -2,16 +2,19 @@
 import './index.css'
 import {useState} from 'react';
 import GoTo from '@/components/logics/GoTo';
-const OpcionBox = ({nameBox1,nameBox2,path1,path2}:{nameBox1:string;nameBox2:string;path1:string,path2:string})=>{
+const OpcionBox = ({nameBox1,nameBox2,path1,path2, onClickDato}:{
+    onClickDato:(dato:boolean)=>void
+    nameBox1:string;nameBox2:string;path1?:string,path2?:string})=>{
     const [useColor ,setColor] = useState<boolean>()
     const goToPath = GoTo()
     const trueBox =()=>{
         setColor(true)
-        goToPath({path:path1})
+        onClickDato(true)
+        // goToPath({path:path1})
     }
     const falseBox =()=>{
         setColor(false)
-        goToPath({path:path1})
+        onClickDato(false)
     }
     return(
           <div className='typeMailbox'>

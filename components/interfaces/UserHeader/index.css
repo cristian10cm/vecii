@@ -38,6 +38,7 @@
 .userHeader_component_userName {
     color: white;
     margin-bottom: 10px;
+    text-wrap: balance;
 }
 
 .userHeader_component_complexName {

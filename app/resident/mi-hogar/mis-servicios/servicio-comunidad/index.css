@@ -1,0 +1,66 @@
+.container_requestService{
+    width: 90%;
+    height: auto;
+    margin: 20px auto ;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border-radius: 25px;
+    gap: 10px;
+    background-color: var(--background-componets);
+}
+.container_requestService_title{
+    color: #fff;
+    font-size: 5vw;
+    text-transform: uppercase;
+    text-align: center;
+    text-wrap: balance;
+    font-weight: bold;
+    width: 80%;
+}
+.container_requestService_img{
+    width: 50vw;
+    margin: 10px auto;
+    border-radius: 25px;
+}
+.container_requestService_infoAuthor{
+    display: flex;
+    font-size: 3.5vw;
+    flex-direction: column;
+    width: 100%;
+    gap: 5px;
+}
+.container_requestService_nameAuthor span{
+    color: #aaa;
+    font-size: 3.2vw;
+
+}
+.container_requestService_separatorLine{
+    width: 100%;
+    height: 1px;
+    background-color: #fff;
+}
+.container_requestService_nameAuthor{
+    color: #fff;
+}
+.container_requestService_precie{
+    color: #9bf0a0;
+
+}
+.container_requestService_description{
+    color: #fff;
+    font-size: 4vw;
+}
+.container_requestService_btn{
+font-size: 5vw;
+  width: 60%;
+  height: auto;
+  padding: 20px  10px;
+  background-color: var(--aquaMarineBackground);
+  color: white;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+   margin: 20px 0 20px;
+}

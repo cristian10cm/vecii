@@ -1,15 +1,46 @@
 'use client';
 import './index.css'
+import { GrNext } from "react-icons/gr";
 import GoTo from '@/components/logics/GoTo';
-const PQRQuestions =({paragraphPQR,pathPQR, srcImg,imgIcon}:{paragraphPQR:string,pathPQR:string, srcImg:string,imgIcon:string})=>{
+import IconSvgGradient from '../IconSvgGradient/IconSvgGradient';
+import {  useEffect, useState } from 'react';
+const PQRQuestions =({paragraphPQR,pathPQR,idQuestions,statusPQR,iconName}:
+    {paragraphPQR:string,pathPQR:string,idQuestions:string,statusPQR?:string,iconName:string })=>{
+    const [useIcon,setIcon] = useState<string>()
     const goToPath = GoTo()
+    const irPQR = ()=>{
+            goToPath({path:pathPQR});
+            localStorage.setItem('idPQRselected',idQuestions)
+            if(statusPQR)localStorage.setItem('statusPQR',statusPQR)
+    }
+    
+  useEffect(()=>{
+  if(iconName == 'Quejas'){
+        setIcon('/assets/svg/chat-centered-text.svg')
+    }else if(iconName == 'Preguntas'){
+        setIcon('/assets/svg/question.svg')
+    }else if(iconName == 'Reclamos'){
+        setIcon('/assets/svg/warning-circle.svg')
+    }
+  },[])
+     
     return(
         <div className='Pqr_question'>
-            <img className='Pqr_question_questionIcon' src={imgIcon} alt="Icono PQR" />
+            {
+                useIcon?
+                <IconSvgGradient
+                urlImage={useIcon}
+                widthImg={'9vw'}
+                />:
+                <IconSvgGradient
+                urlImage={'assets/svg/exclamation-mark.svg'}
+                widthImg={'9vw'}
+                />
+            }
             <p className='Pqr_question_paragraph'>{paragraphPQR}</p>
-            <img className='Pqr_question_sendIcon' src="/assets/svg/arrowIcon.svg" alt="Icono de seguir" 
-                onClick={()=>goToPath({path:pathPQR})}
-            />
+
+            <button className='Pqr_question_sendIcon' onClick={irPQR}><span><GrNext/></span></button>
+            
         </div>
     )
 }

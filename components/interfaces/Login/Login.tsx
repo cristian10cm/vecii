@@ -49,8 +49,14 @@ const Login = () => {
         try {
             const response = await http.post('auth/login', { email, password });
             const rolUser = await response.roles[0].slug;
-            const token = await response.token
-            const id = await response.id
+            const token = await response.token;
+            const id = await response.id;
+            const responseAuth = await axios.get('https://api.vecii.com.co/api/v1/auth/me', {
+                headers: {
+                Authorization:`Bearer ${token}`
+                }
+            })
+            setHousing.getState().setInformation(responseAuth.data)
            verifyPeople({rolUser,token,id})
             // Aqui irían a los diferentes perfiles de pendiendo del rol
             

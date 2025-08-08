@@ -8,8 +8,17 @@
     /* background-color: var(--background-componets); */
     border-radius: 10px;
     padding-right: 10px;
+        animation: animationCommunity .3s;
 }
-
+@keyframes animationCommunity {
+    0%{
+        opacity: 0;
+        scale: 0.9;
+    }100%{
+        scale: 1;
+        opacity: 1;
+    }
+}
 .container_servicio_img{
     width: 17vw;
     height: 17vw;
@@ -23,13 +32,14 @@
     display: inline-block;
 }
 .container_servicio_btn{
-    scale: .8;
-    filter: invert(100%);
+    font-size: 4vw;
+    color: #fff;
+    background-color: transparent;
+    border: none;
     justify-self: flex-end;
 }
-.container_servicio_precio{
+.container_servicio_precio,.container_servicio_description{
     color: #aaa;
-
     font-size: 3.5vw;
 
 }   

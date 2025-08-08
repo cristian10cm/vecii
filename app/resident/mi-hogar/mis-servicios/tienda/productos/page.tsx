@@ -9,8 +9,15 @@ import SearchBar from '@/components/interfaces/SearchBar/SearchBar';
 import Cookies from 'js-cookie';
 import { useSearchBar } from '@/components/stores/storeSearch';
 import ComunityService from '@/components/interfaces/ComunityService/ComunityService';
+interface producto{
+    createdAt:string ,
+    id:string ,
+    name:string ,
+    description: string,
+    price: string
+}
 const productos = ()=>{
-    const [useProduct,setProduct] = useState<any []>([]);
+    const [useProduct,setProduct] = useState<producto []>([]);
     const {setInformation,information} = useSearchBar()
     useEffect(()=>{
         setInformation({

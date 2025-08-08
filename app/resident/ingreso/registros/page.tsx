@@ -10,14 +10,39 @@ import axios from 'axios';
 import { setHousing } from '@/components/stores/StoreHousing';
 import OpcionBox from '@/components/interfaces/OpcionBox/OpcionBox';
 import { useSearchBar } from '@/components/stores/storeSearch';
+import LockerPublicService from '@/components/interfaces/LockerPublicService/LockerPublicService';
+type visitor ={
+departureDate: string ,
+entryDate: string,
+housingLocation: string,
+id: string,
+status: string,
+visitor: string
+}
+type packages ={
+      id: "5c804a3d-1d6e-449a-bedf-6bdc3034c4cf",
+      type: "entrance",
+      entrydate: "2025-02-19T00:00:00+00:00",
+      housing_id: "f3a54e33-b898-4d34-8efe-e0fbcb91f681",
+      housing_name: "303",
+      unit_id: "4c57e370-50ac-40b4-900b-117f48830e2f",
+      unit_name: "Torre 1"
+}
 const Registry = () => {
     const {setInformation} = useSearchBar()
     const informationSearch = useSearchBar()
-    const [typeRegistry, setTypeRegistry] = useState<'Visitante' | 'Objeto'>('Visitante')
     const {information} = setHousing();
-    const [useData,setData] = useState<any[]>([])
- useEffect(() => {
-    if (!information?.location?.housing?.id) return;
+    const [useData,setData] = useState<visitor[]>([])
+    const [usePackages,setPackages] = useState<packages[]>([])
+    const [useBoton,setBoton] = useState<boolean>(false)
+    const datosVisitante = useData.filter((x)=>x.visitor.toLowerCase().trim().includes(informationSearch?.information?.inputValue || ''))
+    // const packages = usePackages.filter((x)=>x..toLowerCase().trim().includes(informationSearch?.information?.inputValue || ''))
+
+    const changeOption = (data:boolean)=>{
+        setBoton(data)
+    }
+    useEffect(() => {
+    if (!information) return;
         setInformation(
             {
                 inputValue :''
@@ -40,27 +65,56 @@ const Registry = () => {
             console.error("Error al hacer la petición:", error);
         }
     };
-
+    const getPackages =async ()=>{
+        try{
+            const peticion = await axios.get(`https://api.vecii.com.co/api/v1/object-movements`,{
+                params: {
+                    housingId: information.location.housing.id,
+                },
+                headers:{
+                    Authorization: `Bearer ${Cookies.get('token')}`
+                }
+            }) 
+            console.log(peticion)
+            setPackages(peticion.data.results)
+        }catch(err){
+            console.log(err)
+        }
+    }
+    getPackages()
     peticion();
 }, [information]);
-    const datosVisitante = useData.filter((x)=>x.visitor.toLowerCase().trim().includes(informationSearch.information?.inputValue))
-    return (
+
+return (
         <>
             <VeciiHeader
                 srcImg="/assets/svg/historial.svg"
                 name="Registros"
+                transparent = {false}
             />
-            <SearchBar placeholder={`Nombre del ${typeRegistry}`} />
+            <SearchBar placeholder={``} />
             <OpcionBox
                 nameBox1='Visitante'
                 nameBox2='Objetos'
-                path1=''
-                path2=''
+                onClickDato={changeOption}
 
             />
             <div className='containerGrid_registries_order'>
                {
-                typeRegistry == 'Visitante'?
+                useBoton?
+                 usePackages.map((x,k)=>(
+                    <LockerPublicService
+                        dataFalse='Ingreso'
+                        dataTrue='Salida'
+                       imgServicio= 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiK7SXYrBCQUOqJUlyFX6Cu3KhcBLMnsC0dg&s'
+                       nameServicio='Sin definir'
+                       stateServicio={x.type == 'entrance' ? true:false}
+                       fechaServicio={x.entrydate.split('T')[0]}
+                       key={k}
+                    />
+                ))
+                :
+                useData.length > 0 ?
                 datosVisitante.length>0 ?
                 datosVisitante.map((x,k)=>(
                       <VisitorRegistries
@@ -72,7 +126,6 @@ const Registry = () => {
                     key={k}
                 />
                 )):
-
                  <VisitorRegistries
                     srcImg='https://upload.wikimedia.org/wikipedia/commons/a/a3/Image-not-found.png'
                     name={'Visitante no encontrado'}
@@ -82,9 +135,10 @@ const Registry = () => {
                     
                 />
                 :
-                <div>ok</div>
-               
+                    <div className='containerGrid_message_anyVisitor'><p>! No tienes visitas registradas Vecii¡</p></div>
                 
+               
+            
                }
             </div>
             <FooterFantasma/>

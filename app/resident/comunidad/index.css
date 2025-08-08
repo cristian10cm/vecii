@@ -1,5 +1,42 @@
 .container_serviciosComunitarios{
     width: 90%;
+    margin: 20px auto 0;
+
+}
+.container_community_searchBar {
+    display: flex;
+    justify-content: right;
+    height: fit-content;
+    width: 90%;
     margin: 10px auto 0;
-    
+}
+.container_community_searchBar_items{
+    display: flex;
+    align-items: center;
+    height: fit-content;
+    gap: 5px;
+    padding: 5px 0;
+}
+.container_community_add {
+    border: none;
+    font-size: 7vw;
+    color: var(--blueVecii);
+    background-color: transparent;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+}
+
+.container_community_paragraphe{
+    font-size: 3.5vw;
+    color: #aaa;
+
+}
+
+.grid_services_void {
+    width: 100%;
+    color: #fff;
+    padding: 20px;
+    font-size: 5vw;
+    text-align: center;
 }

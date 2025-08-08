@@ -1,0 +1,16 @@
+.containerServices{
+    margin: 30px auto 0;
+    width: 95%;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-direction: column;
+}
+.containerServices_anyItem{
+    color: #fff;
+    font-size: 5vw;
+    font-weight: bold;
+    text-align: center;
+    padding: 25px;
+    text-wrap: balance;
+}

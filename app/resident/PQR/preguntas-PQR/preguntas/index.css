@@ -1,0 +1,33 @@
+.container_questionPQR{
+    background-color: var(--background-componets);
+    margin: 30px auto;
+    width: 90%;
+    border-radius: 25px;
+    height: fit-content;
+    padding: 20px;
+}
+.container_questionPQR span{
+    color:var(--blueVecii);
+    font-size: 15vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px;
+}
+.container_questionPQR_lineSeparator{
+    width: 90%;
+    padding: 1px;
+    background-color: #aaa;
+    margin:20px auto;
+
+}
+.container_questionPQR_title{
+    color: #aaa;
+    font-weight: bold;
+    text-wrap: balance;
+    text-align: center;
+}
+.container_questionPQR_paragraphe{
+    color: #fff;
+    
+}

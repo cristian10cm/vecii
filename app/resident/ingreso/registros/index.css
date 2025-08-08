@@ -22,7 +22,7 @@
 }
 
 .grid_reservation_options {
-    width: 90%;
+    width: 100%;
     margin: 20px auto;
     display: flex;
     justify-content: center;
@@ -35,6 +35,14 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    margin: 20px 0px;
+    margin: 20px auto;
+    justify-content: center;
+    width: 95%;
+}
+.containerGrid_message_anyVisitor{
+    color: #fff;
+    font-size: 5vw;
     width: 100%;
+    text-align: center;
+    padding: 20px;
 }

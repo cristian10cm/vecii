@@ -39,3 +39,32 @@
     width: 100%;
     margin: 20px auto 0;
 }
+.container_reservePlaces_noReserved{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin:20px auto;
+    
+}
+.container_reservePlaces_noReserved_paragraphe{
+    color: #fff;
+    font-size: 5vw;
+    text-align: center;
+    text-wrap: balance;
+}
+.container_reservePlaces_noReserved_btn{
+  font-size: 5vw;
+  width: 60%;
+  margin: 20px auto;
+  height: auto;
+  padding: 20px  10px;
+  background-color: var(--aquaMarineBackground);
+  color: white;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}

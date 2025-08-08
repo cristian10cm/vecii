@@ -6,7 +6,7 @@
     height: 40px;
     gap:2.5%;
     padding: 10px 20px;
-    font-size: .8em;
+    font-size: 3.8vw;
     margin: 5px 0 10px 0;
     gap: 20px;
 }
@@ -22,22 +22,22 @@
     text-align: center;
     font-weight: 600;
 }
-/* .typeMailbox_optionTrue{
-    background: var(--blueVecii);
-    color: #000;
-}
-.typeMailbox_optionFalse{
-    background: var(--blueVecii);
-    color: #000;
-} */
+
 .option_true{
     background: var(--blueVecii);
     color: #000;
+    
 }
 
 .option_false {
-
+    animation: animationBoton 0.3s both;
     background-color: #000;
     color: #fff;
-    box-shadow: 0px 0px 6px 1px var(--blueVecii);
+}
+@keyframes animationBoton {
+    0%{
+        box-shadow: 0;
+    }100%{
+        box-shadow: 0px 0px 6px 1px var(--blueVecii);
+    }
 }

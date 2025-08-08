@@ -8,8 +8,14 @@ import SearchBar from '@/components/interfaces/SearchBar/SearchBar';
 import VeciiHeaderImg from '@/components/interfaces/VeciiHeaderImg/VeciiHeaderImg';
 import { useSearchBar } from '@/components/stores/storeSearch';
 import CatalogStore from '@/components/interfaces/CatalogStore/CatalogStore'
+interface catalogo{
+    createdAt: string,
+    id: string,
+    name: string,
+    status: string
+}
 const tienda = ()=>{
-     const [useCatalogo,setCatalogo]  = useState<any []>([])
+     const [useCatalogo,setCatalogo]  = useState<catalogo []>([])
      const {setInformation,information} = useSearchBar();
     useEffect(()=>{
         setInformation({

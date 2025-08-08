@@ -3,10 +3,11 @@ import { useState,useEffect } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { data } from '@/components/stores/StoreHousing';
-const ModalWindow = ({imgIcon,title,date,nameUser,code,stateBoton}:{stateBoton:boolean,imgIcon:string,title:string,date:string,nameUser:string,code:string})=>{
-    const [useBoton,setBoton] = useState<boolean>(true);
+const ModalWindow = ({imgIcon,title,date,nameUser,code,onClose}:{imgIcon:string,title:string,date:string,nameUser:string,code:string,onClose:(state:boolean)=>void})=>{
     const [useData, setData] = useState<data>()
- 
+    const closeModal = ()=>{
+        onClose(false)
+    }
     useEffect(()=>{
         const peticionRes = async()=>{
                 
@@ -25,7 +26,7 @@ const ModalWindow = ({imgIcon,title,date,nameUser,code,stateBoton}:{stateBoton:b
         peticionRes()
     },[])
     return(
-        <div className={useBoton?`container_modalWindow`:'container_modalWindow_close'}>
+        <div className={'container_modalWindow'}>
             <div className='container_modalWindow_ad'>
 
                     <img src={imgIcon} className='container_modalWindow_icon' alt="Icono modal" />
@@ -42,7 +43,7 @@ const ModalWindow = ({imgIcon,title,date,nameUser,code,stateBoton}:{stateBoton:b
                         <p className="container_modalWindow_codeReserved-title">Codigo de ingreso</p>
                         <p className="container_modalWindow_codeReserved-code">{code}</p>
                     </div>
-                       <img className='container_modalWindow_closeModal' onClick={()=>setBoton(!stateBoton)} src='https://cdn-icons-png.flaticon.com/128/6785/6785304.png'/>
+                       <img className='container_modalWindow_closeModal' onClick={closeModal} src='https://cdn-icons-png.flaticon.com/128/6785/6785304.png'/>
             </div>
         </div>
         

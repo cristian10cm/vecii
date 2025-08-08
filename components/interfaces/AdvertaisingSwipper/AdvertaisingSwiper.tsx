@@ -19,8 +19,8 @@ const AdvertaisingSwipper = () =>{
                 className='swiperAdvertaising'
             >
                 <SwiperSlide>
-                    <div style={{width:'100%', height:'300px', display:'flex'}}>
-                        <img src="https://www.shutterstock.com/image-photo/st-petersburg-russia-july-17-600nw-2492719799.jpg"></img>
+                    <div className='swiperAdvertaising_img'>
+                        <img src="/assets/png/conjuntoBaner.png"></img>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide>

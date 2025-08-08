@@ -46,7 +46,7 @@ const Porteria = () => {
         <>
             <VeciiHeaderImg
                 srcImg='https://dimobaservicios.com/wp-content/uploads/2023/08/recepcionista-funciones.jpg'
-                name='Portería'
+                name='Directorio'
                 detail='Comunícate con nosotros'
             />
             <SearchBar

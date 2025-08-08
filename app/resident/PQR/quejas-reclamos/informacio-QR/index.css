@@ -1,0 +1,87 @@
+.container_grid_PQRSelected{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.container_grid_PQRSelected_items{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    padding: 20px;
+    border: 1px solid var(--blueVecii);
+    border-radius: 25px;
+    gap: 10px;
+}
+.container_grid_PQRSelected_title{
+    font-size: 8vw;
+    color: var(--blueVecii);
+    text-align: center;
+}
+.container_grid_PQRSelected_subject{
+    color: var(--aquaMarineBackground);
+    font-weight: bolder;
+}
+.container_grid_PQRSelected_info{
+    display: grid;
+    grid-template-columns: 70% 30%;
+    font-weight: 4vw;
+}
+.container_grid_PQRSelected_subject{
+    text-wrap: balance;
+}
+.container_grid_PQRSelected_date{
+    font-size: 3.8vw;
+    color: #aaa;
+    font-weight: bold;
+}
+.container_grid_PQRSelected_description{
+    text-wrap: balance;
+    color:#fff;
+    /* background-color: var(--background-componets); */
+    
+    border-radius: 0 0 25px 25px;
+}
+.container_grid_PQRSelected_caseNumber{
+    color: var(--aquaMarineBackground);
+}
+.container_grid_PQRSelected_separator{
+    width: 100%;
+    padding: 1px;
+    background-color: #fff;
+    height: 1px;
+}
+.container_grid_PQRSelected_history{
+    font-weight: 4vw;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.container_grid_PQRSelected_history_title{
+    color: var(--aquaMarineBackground);
+    text-align: center;
+}
+.container_grid_PQRSelected_history_user{
+    color: #aaa;
+    font-weight: bold;
+}
+.container_grid_PQRSelected_history_comments{
+    color: #fff;
+    background-color: var(--background-componets);
+    border-radius: 10px;
+    padding: 5px 8px;
+}
+.container_grid_PQRSelected_history_state{
+    display: flex;
+    background-color: red;
+    padding: 3px 5px;
+    border-radius: 8px;
+    color: #fff;
+}
+.container_grid_PQRSelected_history_admin{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

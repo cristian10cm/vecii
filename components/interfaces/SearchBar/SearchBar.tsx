@@ -1,6 +1,8 @@
 "use client";
 import React, { useEffect, useRef, useState } from 'react';
 import { useSearchBar } from '@/components/stores/storeSearch';
+import { FaSearch } from "react-icons/fa";
+import IconSvgGradient from '../IconSvgGradient/IconSvgGradient';
 import './index.css';
 
 const SearchBar = ({placeholder}:{placeholder:string}) => {
@@ -18,7 +20,10 @@ const SearchBar = ({placeholder}:{placeholder:string}) => {
     return(
         <div className='container_searchBar'>
             <div className='container_searchBar_icon'>
-                <img src="/assets/svg/buscarIcono.svg"></img>
+                    <IconSvgGradient
+                        urlImage='/assets/svg/magnifying-glass-bold.svg'
+                        widthImg='5vw'
+                    />
             </div>
             <div className='container_searchBar_inputContainer'>
                 <input 

@@ -1,0 +1,11 @@
+.container_myVisitors{
+ display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 20px 0px;
+    margin:20px auto;
+    width: 90%;
+}
+.containerGrid_message_anyVisitor{
+    color: #fff;
+}

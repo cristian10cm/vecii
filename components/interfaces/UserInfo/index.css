@@ -1,14 +1,14 @@
 .container_infoUser {
     width: 90%;
     height: fit-content;
-    margin: 20px auto ;
-    background-color: #000;
+    margin: 20px auto 20px;
+    background-color: var(--background-componets);
     display: flex;
     flex-direction: column;
     align-items: center;
     border-radius: 20px;
-    border: 1px solid var(--aquaMarineBackground);
-    padding: 15px 0;
+
+    padding: 15px 0 40px;
     font-size:3.8vw ; /*TAMAÑO CORRESPONDE  A 14PX */
 }
 
@@ -16,9 +16,12 @@
     color: white;
     font-weight: 600;
     margin: 20px 0px;
-    text-shadow: 1px 2px 5px var(--blueVecii);
-}
 
+}
+.load_infoUser{
+    color: #fff;
+    font-size: 5vw;
+}
 .container_infoUser_avatar {
     width: 23vw;
     height: auto;
@@ -36,19 +39,32 @@
     row-gap: 10px;
     border-radius: 12px;
     color: white;
-
+    
 }
 
 .btn_Edit_infoUSer {
-    background-color: var(--blueVecii);
-    width: 40%;
-    height: fit-content;
-    border: none;
-    padding: 10px 0;
-    outline: none;
-    margin: 15px 0 0 0;
-    color: #000;
-    font-size: 4vw;
-    border-radius: 20px;
-    font-weight: bold;
+  font-size: 5vw;
+  width: 60%;
+  height: auto;
+  padding: 20px  10px;
+  background-color: var(--aquaMarineBackground);
+  color: white;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  animation: btnUserUpdate .6s;
+}
+@keyframes btnUserUpdate {
+    0%{
+        opacity: 0;
+    }100%{
+        opacity: 1;
+    }
+}
+.btn-form{
+  margin: 30px 0 20px;
 }

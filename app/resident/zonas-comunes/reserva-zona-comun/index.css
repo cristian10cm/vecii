@@ -1,42 +1,22 @@
 .container_reserveRegister{
-    font-family: mainFont;
-    margin: 0px auto;
-    width: 100%;
+    margin: 20px auto;
+    width: 90%;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    gap: 10px;
     color: #fff;
-    height: 50dvh;
+    height: auto;
+   background-color: var(--background-componets);
+    border-radius: 30px;
+    padding: 40px 0;
 }
 .container_reserveRegister_title{
-    color: var(--blueVecii);
-    margin:15px auto ;
+    color: #fff;
+    margin: 0 auto 10px ;
+
 }
-.container_reserveRegister_form{
-    width: 80%;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    border-radius: 20px;
-    /* border: 1px solid var(--blueVecii); */
-    box-shadow: 0px 0px 8px 6px var(--blueVecii);
-    padding: 20px;
-    gap: 10px;
-}
-.container_reserveRegister_form textarea{
-    resize: none;
-    
-}
-.container_reserveRegister_form-input{
-    border-radius: 8px 8px 0 0;
-    outline: none;
-    background-color: transparent;
-    border: none;
-    /* border: 1px solid var(--blueVecii); */
-    border-radius: 8px;
-    padding: 3px 12px;
-    background-color: #fff;
-    color: #000;
-}
+
 .container_reserveRegister_form-send{
     width: 40%;
     background-color: var(--blueVecii);
@@ -49,5 +29,42 @@
     font-weight: bold;
     align-self: center;
 }
+.container_newReserved_btn{
+  font-size: 5vw;
+  width: 60%;
+  height: auto;
+  padding: 20px  10px;
+  background-color: var(--aquaMarineBackground);
+  color: white;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
 
-
+.container_reserveRegister_time{
+    display: grid;
+      grid-template-columns: 10% 1fr 1fr ;
+     width: 90%;
+     align-items: center;
+     
+}
+.container_reserveRegister_date{
+    display: grid;
+    grid-template-columns: 10% 1fr 1fr ;
+    width: 90%;
+     align-items: center;
+}   
+.container_reserveRegister_date label,.container_reserveRegister_time label{
+    font-size: 4.2vw;
+    font-weight: bolder;
+}
+.container_reserveRegister_date-icon{
+      font-size: 5vw;
+    color: var(--blueVecii);
+    display: flex;
+    align-items: center;
+}

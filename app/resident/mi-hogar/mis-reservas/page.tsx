@@ -2,63 +2,89 @@
 import VeciiHeader from '@/components/interfaces/VeciiHeader/VeciiHeader';
 import './index.css';
 import SearchBar from '@/components/interfaces/SearchBar/SearchBar';
-import Reservations from '@/components/interfaces/Reservation/Reservation';
 import FooterFantasma from '@/components/interfaces/footerFantasma/FooterFantasma';
-import OpcionBox from '@/components/interfaces/OpcionBox/OpcionBox';
 import PlacesComponents from '@/components/interfaces/PlacesComponents/PlacesComponents';
-import apiFalsa from '@/app/resident/mi-hogar/mis-reservas/apiFalsa.json'
 import { useSearchBar } from '@/components/stores/storeSearch';
-import {setOpcionBox} from '@/components/stores/storeOpcionBox'
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { setHousing } from '@/components/stores/StoreHousing';
+import Cookies from 'js-cookie';
+import GoTo from '@/components/logics/GoTo';
+import axios from 'axios';
+type reservedAreas = {
+    id: string,
+    startTime: Date | string,
+    endTime: Date | string,
+    status: "pending",
+    totalCost: string,
+    commonArea: {
+        name: string
+    }
+}
+
 const MisReservas = () => {
+    const goToPath = GoTo()
     const {setInformation} =  useSearchBar();
-    const information = useSearchBar();
-    const dataState = setOpcionBox();
-    const {setStateOpcion} = setOpcionBox()
-    const buscarData = apiFalsa.filter((a)=>a.name.toLocaleLowerCase().trim().includes((information.information?.inputValue || '').toLocaleLowerCase().trim()))
+    const searchOInfo = useSearchBar();
+    const {information} = setHousing();
+    const [usePlace,setPlace] = useState<reservedAreas[]>([])
+    const places = usePlace.filter((a)=>a.commonArea.name.toLocaleLowerCase().trim().includes((searchOInfo.information?.inputValue || '').toLocaleLowerCase().trim()))
+     const peticionReservedAreas =async ()=>{
+        try{
+            const peticion = await axios.get('https://api.vecii.com.co/api/v1/common-areas-reservations',
+                {headers:{
+                    Authorization:`Bearer ${Cookies.get('token')}`
+                }}
+            )
+            
+            setPlace(peticion.data.results)
+        }catch(err){
+             console.log(err)
+        }
+      } 
     useEffect(()=>{
+        if(!information) return
         setInformation({
             inputValue : ''
-        });
-        setStateOpcion({
-            state:null
         })
-    },[])
+       
+        peticionReservedAreas()
+       
+    },[information])
     return(
         <>
             <VeciiHeader
                 srcImg='/assets/svg/mis reservas.svg'
                 name='Mis reservas'
+                transparent={false}
             />
             <SearchBar placeholder='Nombre de la reserva'/>
-            <OpcionBox
-                  nameBox1= 'Reservado'
-                  nameBox2= 'Sin reserva'
-                  path1=''
-                  path2=''
-            />
 
             <div className='container_reservePlaces'>
-                {   buscarData.length >0 ?
-                    buscarData.map((e,k)=>
-                      
-                         <PlacesComponents
-                           namePlace = {e.name}
-                           statePlace = {e.state}
-                           reservationTime = {e.time}
-                           date = {e.datePlace}
-                           pathPlace = '/resident/zonas-comunes/reserva-zona-comun/'
-                           key={k}
-                        />
-                    ):
-                      <PlacesComponents
-                           namePlace = 'No encontrado'
-                           statePlace = {false}
-                           reservationTime = {'00:00'}
-                           date = {'00/00/00'}
-                           pathPlace = ''
-                        />
-                }
+              { 
+              usePlace.length>0 ?
+              places.length>0 ?
+                 places.map((e,k)=>(
+                    <PlacesComponents
+                    stateOpcion={false}
+                    idPlace={e.id}
+                    namePlace={e.commonArea.name}
+                    pathPlace='/resident/zonas-comunes/reserva-zona-comun/'
+                    key={k}
+                 />
+                 )): 
+                <PlacesComponents                    
+                    idPlace=''
+                    pathPlace='' 
+                    namePlace='No encontrado'
+                    stateOpcion= {false}
+                    
+                />:
+                <div className='container_reservePlaces_noReserved'>
+                    <p className='container_reservePlaces_noReserved_paragraphe'>No tienes ningún registro de reserva.</p>
+                    <button onClick={()=>goToPath({path:'/resident/zonas-comunes/'})} className='container_reservePlaces_noReserved_btn'>¡Ver reservas!</button> 
+                </div>
+              
+               }
             </div>
             <FooterFantasma/>
         </>
