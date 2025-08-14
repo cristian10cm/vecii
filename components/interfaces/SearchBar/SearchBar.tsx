@@ -7,12 +7,12 @@ import './index.css';
 
 const SearchBar = ({placeholder}:{placeholder:string}) => {
     const [currentValue , setCurrentValue] = useState<string>('');
-    const {setInformation} = useSearchBar();
+    const {setInformation,barInformation} = useSearchBar();
     const information = useSearchBar();
     const handlerSearchBar = (e:React.KeyboardEvent) =>{
         if (e.key == 'Enter'){
             e.preventDefault();
-            console.log(information.information?.inputValue)
+            console.log(barInformation?.inputValue)
             alert(`buscando coincidencias ${currentValue}`)
         };
     };

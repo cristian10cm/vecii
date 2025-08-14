@@ -1,7 +1,8 @@
+import React from 'react'
 import './index.css'
-const FooterFantasma =()=>{
+const FooterFantasma =({ref}:{ref?:React.RefObject<HTMLDivElement | null>})=>{
     return(
-        <div className='footer_fantasma'>
+        <div ref={ref} className='footer_fantasma'>
         </div>
     )
 }

@@ -6,15 +6,15 @@ export interface ValuesSearchBar{
 }
 
 type SearchBar = {
-    information : ValuesSearchBar | null;
+    barInformation : ValuesSearchBar | null;
     setInformation: (newInformation:ValuesSearchBar)=>void
 }
 export const useSearchBar = create<SearchBar>()(
             (set)=>
                 (
                 {
-                    information : null,
-                    setInformation: (newInformation:ValuesSearchBar)=>set({information:newInformation})
+                    barInformation : null,
+                    setInformation: (newInformation:ValuesSearchBar)=>set({barInformation:newInformation})
                 }
             )
 ) 

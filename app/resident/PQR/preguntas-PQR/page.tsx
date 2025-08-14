@@ -6,6 +6,9 @@ import SearchBar from '@/components/interfaces/SearchBar/SearchBar';
 import PQRQuestionsS from '@/components/interfaces/PQRQuestions/PQRQuestions';
 import { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
+import BtnSeeMore from '@/components/interfaces/BtnSeeMore/BtnSeeMore';
+import { apiDataFilter } from '@/components/stores/apiDataFilter';
+import NoApiData from '@/components/interfaces/NoApiData/NoApiData';
 import axios from 'axios';
 import { setHousing } from '@/components/stores/StoreHousing';
 import { useSearchBar } from '@/components/stores/storeSearch';
@@ -17,10 +20,10 @@ interface PreguntaPQR {
 }
 
 const PreguntasVecii = ({nameSection}:{nameSection:string})=>{
-    const {setInformation} = useSearchBar()
+        const [seeMore,setMore ]= useState<boolean>(false) 
+    const {setInformation,barInformation} = useSearchBar()
     const [useInfo, setInfo] = useState<PreguntaPQR[]>([])
     const {information} = setHousing() ;
-    const searchInfo = useSearchBar()
     useEffect(()=>{
         if (!information) return
         setInformation({
@@ -49,7 +52,8 @@ const PreguntasVecii = ({nameSection}:{nameSection:string})=>{
         }
         peticionPreguntas();
     },[information])
-    const datos = useInfo.filter((x)=>x.question.toLowerCase().trim().includes((searchInfo.information?.inputValue.toLowerCase().trim()) || ''))
+
+    const questions = apiDataFilter(useInfo,'question',seeMore,barInformation?.inputValue || '')
     return(
         <>
             <VeciiHeaderImg 
@@ -67,9 +71,14 @@ const PreguntasVecii = ({nameSection}:{nameSection:string})=>{
                         <div className='container_pqr_sectionTitle-line'></div>
                 </div>
                 <div className='container_pqr_questions'>
-                       { datos.length>0 ? 
-                            datos.map((x,k)=>(
+                       { useInfo.length>0 ? 
+                            questions.filterData.length>0 ? 
+                           <>
+                           {
+                             questions.filterData.map((x,k)=>(
                                    <PQRQuestionsS
+                                        question={x.question}
+                                        answer={x.answer}
                                         iconName='Preguntas'
                                         paragraphPQR = {x.question}
                                         pathPQR = {'/resident/PQR/preguntas-PQR/preguntas/'}     
@@ -77,7 +86,10 @@ const PreguntasVecii = ({nameSection}:{nameSection:string})=>{
                                         // imgIcon  = '/assets/svg/PreguntaIcono.svg'
                                         key={k}
                                     />
-                        ))
+                             ))
+                           }
+                           {questions.stateSeeMore ? <BtnSeeMore enable={()=>setMore(true)}/>:''}
+                           </>
                         
                        :
                        <PQRQuestionsS
@@ -86,7 +98,9 @@ const PreguntasVecii = ({nameSection}:{nameSection:string})=>{
                                paragraphPQR = 'No encontrada'
                                pathPQR = ''
                             //    imgIcon  = 'https://upload.wikimedia.org/wikipedia/commons/a/a3/Image-not-found.png'
-                        />}
+                        />:
+                           <NoApiData message='¡No hay preguntas disponibles en este momento Vecii!'></NoApiData>
+                    }
                        
                 </div>
             </div>

@@ -1,0 +1,16 @@
+.containerGrid_message_noData{
+       color: #fff;
+    font-size: 5vw;
+    width: 100%;
+    text-align: center;
+    padding: 40px;
+    animation: animationNoData 1s ;
+    animation-delay: 2s;
+}
+@keyframes animationNoData {
+    0%{
+        opacity: 0;
+    }100%{
+        opacity: 1;
+    }
+}

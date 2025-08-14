@@ -1,28 +1,37 @@
 'use client'
 import './index.css'
-import {useState} from 'react';
+import {useRef, useState} from 'react';
 import GoTo from '@/components/logics/GoTo';
-const OpcionBox = ({nameBox1,nameBox2,path1,path2, onClickDato}:{
+import { useSearchBar } from '@/components/stores/storeSearch';
+import { useFilterDate } from '@/components/stores/storeFilterDate';
+import SearchBar from '../SearchBar/SearchBar';
+const OpcionBox = ({nameBox1,nameBox2,path1,path2, onClickDato,gradients}:{
     onClickDato:(dato:boolean)=>void
-    nameBox1:string;nameBox2:string;path1?:string,path2?:string})=>{
+    nameBox1:string;nameBox2:string;path1?:string,path2?:string,gradients?:boolean})=>{
+    const {setInformation} = useSearchBar()
+    const refDiv = useRef<HTMLDivElement>(null)
     const [useColor ,setColor] = useState<boolean>()
-    const goToPath = GoTo()
     const trueBox =()=>{
         setColor(true)
         onClickDato(true)
-        // goToPath({path:path1})
+        setInformation({
+            inputValue:''
+        })
+
     }
     const falseBox =()=>{
         setColor(false)
         onClickDato(false)
     }
+    const classTrue = gradients == true? !useColor?`typeMailbox_option option_true_gradient`:'typeMailbox_option option_false_gradient':!useColor?`typeMailbox_option option_true`:'typeMailbox_option option_false'
+    const classFalse = gradients == true? useColor?`typeMailbox_option option_true_gradient`:'typeMailbox_option option_false_gradient':useColor?`typeMailbox_option option_true`:'typeMailbox_option option_false'
     return(
-          <div className='typeMailbox'>
+          <div className='typeMailbox' ref={refDiv}>
               
-                <div className={ !useColor?`typeMailbox_option option_true`:'typeMailbox_option option_false'} onClick={falseBox}>
+                <div  className={ classTrue} onClick={falseBox}>
                     <p className='typeMailbox_paragraph'>{nameBox1}</p>
                 </div>
-                  <div className={ useColor?`typeMailbox_option option_true`:'typeMailbox_option option_false'} onClick={trueBox}>
+                  <div className={ classFalse} onClick={trueBox}>
                     <p className='typeMailbox_paragraph'>{nameBox2}</p>
                 </div>
             </div> 

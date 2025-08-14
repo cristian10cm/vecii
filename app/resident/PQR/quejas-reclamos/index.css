@@ -36,21 +36,42 @@
     /* background-color: var(--background-componets); */
     padding: 10px 25px;
 }
-.container_quejasReclamos_searchBar{
-    display:flex;
-    margin:0 auto;
-    width: 90%;
-    column-gap: 10px;
-    align-items: center;
 
-}
-.container_quejasReclamos_btnAdd{
-    border: none;
-    width: fit-content;
-    height: fit-content;
-    font-size: 10vw;
+/*Option*/
+.container_quejasReclamos_searchBar {
     display: flex;
-     margin: 10px auto 0;
+    justify-content: right;
+    height: fit-content;
+    width: 90%;
+    margin: 10px auto 0;
+}
+.container_quejasReclamos_searchBar_items{
+    display: flex;
+    align-items: center;
+    height: fit-content;
+    gap: 5px;
+    padding: 5px 0;
+}
+.container_quejasReclamos_add {
+    border: none;
+    font-size: 7vw;
     color: var(--blueVecii);
     background-color: transparent;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+}
+
+.container_quejasReclamos_paragraphe{
+    font-size: 3.5vw;
+    color: #aaa;
+
+}
+
+.grid_quejasReclamos_void {
+    width: 100%;
+    color: #fff;
+    padding: 20px;
+    font-size: 5vw;
+    text-align: center;
 }

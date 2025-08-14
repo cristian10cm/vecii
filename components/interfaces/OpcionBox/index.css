@@ -1,43 +1,107 @@
 .typeMailbox{
     display: flex;
-    width: 80%;
-    justify-content: center;
+    width: 90%;
+
+
     align-items: start;
-    height: 40px;
-    gap:2.5%;
-    padding: 10px 20px;
+    height: fit-content;
+    margin:10px auto 0px;
     font-size: 3.8vw;
-    margin: 5px 0 10px 0;
+  
     gap: 20px;
 }
 .typeMailbox_option:nth-child(1),
 .typeMailbox_option:last-child {
-    width: 45%;
-    height: 90%;
-    border-radius: 10px;
+    width: 35%;
+    height: 100%;
+    max-height: 50px;
+    border-radius: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 24px 5px;
+    padding: 15px 10px;
     text-align: center;
-    font-weight: 600;
-}
 
+}
 .option_true{
-    background: var(--blueVecii);
+  color: #000;
+  background-color: var(--blueVecii);
+  font-weight: bold;
+}
+.option_false{
+  background-color: #000;
+  box-shadow: 0px 0px 5px 1px var(--blueVecii);
+  color: #fff;
+  font-weight: bolder;
+  animation:animationBotonFalse .6s;
+}
+/*Button gradient*/
+.option_true_gradient{
     color: #000;
-    
+   background:linear-gradient( 275deg, #a141e0ff, #49ebd5ff);
+  background-size: 200% 200%;
+    animation: moveGradient 6s  infinite;
+  color: #000;
+    font-weight: bold;
+  
 }
 
-.option_false {
-    animation: animationBoton 0.3s both;
+.option_false_gradient {
+    position: relative;
     background-color: #000;
-    color: #fff;
+    width: fit-content;
+
 }
+.option_false_gradient::before,.option_false_gradient::after{
+    content: '';
+    width: 100%;
+    height:100%;
+    padding: 1px;
+    z-index: -2;
+    background:linear-gradient( 90deg, #a141e0dd, #49ebd5dd); 
+    position: absolute;
+    border-radius: 15px;
+    background-size: 200% 200%;
+    animation: moveGradient 6s  infinite, animationBoton 1s ;
+  
+}
+.option_false_gradient::after{
+  z-index: -1;
+  filter: blur(10px);
+}
+.option_false_gradient p {
+  background: linear-gradient(275deg, blueViolet, cyan, blueViolet,cyan);
+  background-size: 400% 400%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: moveGradient 10s  infinite;
+  font-weight: bolder;
+}
+
 @keyframes animationBoton {
-    0%{
-        box-shadow: 0;
-    }100%{
-        box-shadow: 0px 0px 6px 1px var(--blueVecii);
+    from{
+       opacity: 0; 
+    }to{
+      opacity: 1;
     }
 }
+@keyframes animationBotonFalse{
+  0%{
+    box-shadow:  0 0 0 0 transparent;
+  }100%{
+      box-shadow: 0px 0px 5px 1px var(--blueVecii);
+  }
+}
+@keyframes moveGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+

@@ -4,13 +4,17 @@ import VeciiHeaderImg from '@/components/interfaces/VeciiHeaderImg/VeciiHeaderIm
 import FooterFantasma from '@/components/interfaces/footerFantasma/FooterFantasma';
 import { BsPatchQuestion } from "react-icons/bs";
 import axios from 'axios';
-import { useEffect } from 'react';
+import { useEffect,useState } from 'react';
 
 const Preguntas = ()=>{
+    const [useAnswer,setAnswer] = useState<string>()
+    const [useQuestion,setQuestion] = useState<string>()
     useEffect(()=>{
-            const peticionPregunta = async()=>{
-                const peticion = await axios.get('')
-            }
+           const answer = localStorage.getItem('answerPQR')
+           const question = localStorage.getItem('questionPQR')
+           if(!answer && !question) return
+           setQuestion(question || 'Cargando..')
+           setAnswer(answer || 'Cargando..')
     },[])
     return(
         <>
@@ -22,9 +26,9 @@ const Preguntas = ()=>{
 
             <div className='container_questionPQR'>
                 <span><BsPatchQuestion/></span>
-                <p className='container_questionPQR_title'>¿Cómo puedo reservar el salón comunal para una reunión familiar?</p>
+                <p className='container_questionPQR_title'>{useQuestion}</p>
                 <div className='container_questionPQR_lineSeparator'></div>
-                <li className='container_questionPQR_paragraphe'>Puedes reservar el salón comunal directamente desde la aplicación. Ve a la sección Reservas, selecciona Salón comunal, elige la fecha y horario que deseas, y sigue las instrucciones para confirmar la reserva. Recibirás una notificación una vez sea aprobada por la administración.</li>
+                <li className='container_questionPQR_paragraphe'>{useAnswer}</li>
             </div>
 
             <FooterFantasma/>

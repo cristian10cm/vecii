@@ -63,4 +63,49 @@ export type Reservation = {
   totalCost: number;
   notes: string;
 };
+
+
+import { AxiosError, AxiosRequestConfig, AxiosResponse, AxiosHeaders } from 'axios';
+
+export type AxiosBadRequestError = AxiosError<{
+  message: string;
+  error: string;
+  statusCode: number;
+}> & {
+  config: AxiosRequestConfig;
+  code: string;
+  message: string;
+  name: string;
+  request: XMLHttpRequest & {
+    onabort: (() => void) | null;
+    onerror: (() => void) | null;
+    onload: (() => void) | null;
+    onloadend: (() => void) | null;
+    onloadstart: (() => void) | null;
+    onprogress: (() => void) | null;
+    onreadystatechange: (() => void) | null;
+    ontimeout: (() => void) | null;
+    readyState: number;
+    response: string;
+    responseText: string;
+    responseType: string;
+    responseURL: string;
+    responseXML: Document | null;
+    status: number;
+    statusText: string;
+    timeout: number;
+    upload: XMLHttpRequestUpload;
+    withCredentials: boolean;
+  };
+  response: AxiosResponse<{
+    message: string;
+    error: string;
+    statusCode: number;
+  }> & {
+    headers: AxiosHeaders;
+    status: 400;
+    statusText: 'Bad Request';
+  };
+  stack: string;
+};
 export {startDate,endDate,numberRegex,regexFecha,today,stringRegex}

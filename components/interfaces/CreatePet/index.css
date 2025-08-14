@@ -11,6 +11,7 @@
     background-color: var(--background-componets);
     border-radius: 30px;
     padding: 40px 0;
+
 }
 .container_form_pet_selects{
     width: 90%;
@@ -51,8 +52,8 @@
 .container_form_btn{
      font-size: 5vw;
   width: 60%;
-  height: auto;
-  padding: 20px  10px;
+  height: 30%;
+  padding: 10px;
   background-color: var(--aquaMarineBackground);
   color: white;
   border-radius: 20px;

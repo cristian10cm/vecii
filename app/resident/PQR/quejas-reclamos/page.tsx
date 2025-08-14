@@ -13,13 +13,18 @@ import { MdAddCircle } from 'react-icons/md';
 import FormModal from '@/components/interfaces/FormModal/FormModal';
 import { typesPQ } from '.';
 import { useStateForm } from '@/components/stores/storeFormUpdate';
+import BtnSeeMore from '@/components/interfaces/BtnSeeMore/BtnSeeMore';
+import { apiDataFilter } from '@/components/stores/apiDataFilter';
+import NoApiData from '@/components/interfaces/NoApiData/NoApiData';
+import IconSvgGradient from '@/components/interfaces/IconSvgGradient/IconSvgGradient';
 const quejasReclamos = () => {
-  const { setInformation } = useSearchBar();
+  const { setInformation,barInformation } = useSearchBar();
   const [useInfo, setInfo] = useState<typesPQ[]>([]);
+      const [seeMore,setMore ]= useState<boolean>(false) 
   const { information } = setHousing();
   const [idPQR, setIdPQR] = useState('');
   const [nombreType, setNombreType] = useState('');
-  const searchInfo = useSearchBar();
+
   const { setStateForm, stateForm } = useStateForm();
 
   const openForm = () => {
@@ -60,12 +65,12 @@ const quejasReclamos = () => {
     peticionQR();
   }, [information, idPQR, stateForm]);
 
-  const datos = useInfo.filter((x) =>
-    x.subject.toLowerCase().trim().includes(
-      searchInfo.information?.inputValue.toLowerCase().trim() || ''
-    )
-  );
-
+  // const datos = useInfo.filter((x) =>
+  //   x.subject.toLowerCase().trim().includes(
+  //     searchInfo.information?.inputValue.toLowerCase().trim() || ''
+  //   )
+  // );
+  const datos = apiDataFilter(useInfo,'subject',seeMore,barInformation?.inputValue || '')
   return (
     <>
       <VeciiHeaderImg
@@ -73,12 +78,9 @@ const quejasReclamos = () => {
         name="PQR"
         detail="Conjunto de madelena"
       />
-      <div className="container_quejasReclamos_searchBar">
         <SearchBar placeholder="" />
-        <button className="container_quejasReclamos_btnAdd" onClick={openForm}>
-          <MdAddCircle />
-        </button>
-      </div>
+    
+   
       <div className="container_quejasReclamos">
         <div className="container_quejasReclamos_sectionTitle">
           <div className="container_quejasReclamos_sectionTitle-line"></div>
@@ -87,10 +89,25 @@ const quejasReclamos = () => {
           </h2>
           <div className="container_quejasReclamos_sectionTitle-line"></div>
         </div>
+         <div className='container_quejasReclamos_searchBar'>
+            
+           <div className='container_quejasReclamos_searchBar_items'>
+               <p className='container_quejasReclamos_paragraphe'>Agregar nuevo servicio</p>
+              <button className="container_quejasReclamos_add" onClick={openForm}>
+                <IconSvgGradient 
+                  urlImage='/assets/svg/plus-circle-fill.svg'
+                  widthImg='7vw'
+                />
+              </button>
+           </div>
+      </div>
         <div className="container_quejasReclamos_items">
 
-          {datos.length > 0?
-          datos.map((x, k) => (
+          {
+          useInfo.length>0 ? 
+          datos.filterData.length > 0?
+            <>
+            { datos.filterData.map((x, k) => (
             <PQRQuestionsS
               iconName={nombreType}
               paragraphPQR={x.subject}
@@ -99,14 +116,19 @@ const quejasReclamos = () => {
               key={k}
               statusPQR={x.status.name}
             />
-          )):
+          ))}
+            { datos.stateSeeMore ? <BtnSeeMore enable={()=>setMore(true)}/>:''}
+            </>
+         
+          :
             <PQRQuestionsS
             iconName={nombreType}
               paragraphPQR='No encontrada'
               pathPQR="/resident/PQR/quejas-reclamos/informacio-QR/"
               idQuestions=''
               
-            />
+            />: 
+            <NoApiData message={`¡No tienes ${nombreType || 'PQR'} publicadas Vecii!`}/>
           
           }
         </div>

@@ -6,32 +6,26 @@
     align-items: center;
     gap: 10px;
     color: #fff;
-    height: auto;
+    height: fit-content;
    background-color: var(--background-componets);
     border-radius: 30px;
-    padding: 40px 0;
+    padding: 40px 0 ;
 }
-.container_reserveRegister_title{
-    color: #fff;
-    margin: 0 auto 10px ;
-
-}
-
-.container_reserveRegister_form-send{
-    width: 40%;
-    background-color: var(--blueVecii);
+.container_reserveRegister_form{
+    width: 100%;
     display: flex;
+    flex-direction: column;
+    height: fit-content;
+    justify-content: center;
     align-items: center;
-    justify-content: space-evenly;
-    border-radius: 12px;
-    border: none;
-    padding: 5px 7px;
-    font-weight: bold;
-    align-self: center;
+    gap: 10px;
 }
-.container_newReserved_btn{
+
+
+.container_newReserved_btn_send{
   font-size: 5vw;
   width: 60%;
+
   height: auto;
   padding: 20px  10px;
   background-color: var(--aquaMarineBackground);
@@ -42,29 +36,22 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 5px;
 }
 
 .container_reserveRegister_time{
     display: grid;
-      grid-template-columns: 10% 1fr 1fr ;
+      grid-template-columns:  1fr 1fr ;
      width: 90%;
      align-items: center;
      
 }
 .container_reserveRegister_date{
     display: grid;
-    grid-template-columns: 10% 1fr 1fr ;
+    grid-template-columns:  1fr 1fr ;
     width: 90%;
      align-items: center;
 }   
 .container_reserveRegister_date label,.container_reserveRegister_time label{
     font-size: 4.2vw;
     font-weight: bolder;
-}
-.container_reserveRegister_date-icon{
-      font-size: 5vw;
-    color: var(--blueVecii);
-    display: flex;
-    align-items: center;
 }

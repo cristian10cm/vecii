@@ -39,6 +39,7 @@ const PlacesComponents = ({idPlace,pathPlace,stateOpcion,namePlace,datePlace,sta
       availability:usePlace?.availability
     }) 
     localStorage.setItem('namePlaceReserved',usePlace.name)
+     localStorage.setItem('idZonaComun',usePlace.id)
    }
   }
   const peticionPlace = async () => {
@@ -78,7 +79,7 @@ const PlacesComponents = ({idPlace,pathPlace,stateOpcion,namePlace,datePlace,sta
         <div className='container_places' onClick={reservar}> 
             <div className='container_places-info'>
             <p className='container_places_namePlace'>{usePlace?.name}</p>
-            <p className='container_places_timeReserved'>2025/12/23</p>
+            <p className='container_places_timeReserved'>{}</p>
       </div>
       <div className='container_places-status'>
         <StateComponent

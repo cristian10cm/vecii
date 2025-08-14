@@ -1,11 +1,12 @@
 .PetComponent_container {
   width: 100%;
   display: grid;
-  grid-template-rows: 20% 80% ;
   padding: 40px 0;
   border-radius: 12px;
   height: fit-content;
-background-color: var(--background-componets);
+  backdrop-filter: blur(10px);
+background-color: #8315158e;
+/* filter: opacity(.5); */
   margin-top: 10px;
   row-gap: 20px;
   color: #fff;
@@ -31,7 +32,7 @@ background-color: var(--background-componets);
 
   color: #fff;
   display: grid;
-  grid-template-columns:30% 60% 10%; 
+  grid-template-columns:1fr 60% 10%; 
   width: 100%;
     border-radius: 10px;
     height: fit-content;

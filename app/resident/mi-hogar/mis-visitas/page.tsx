@@ -8,6 +8,9 @@ import { useEffect,useState } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { setHousing } from '@/components/stores/StoreHousing';
+import { apiDataFilter } from '@/components/stores/apiDataFilter';
+import NoApiData from '@/components/interfaces/NoApiData/NoApiData';
+import BtnSeeMore from '@/components/interfaces/BtnSeeMore/BtnSeeMore';
 import VisitorRegistries from '@/components/interfaces/VisitorRegistries/VisitorRegistries';
 type visitor ={
 departureDate: string ,
@@ -19,7 +22,8 @@ visitor: string
 }
 const MisVisitas =()=>{
     const information = setHousing()
-     const searchBar = useSearchBar()
+     const {setInformation,barInformation} = useSearchBar()
+    const [seeMore,setMore ]= useState<boolean>(false) 
      const [useData,setData] = useState<visitor[]>([])
     const peticion = async () => {
         try {
@@ -42,15 +46,11 @@ const MisVisitas =()=>{
    
     useEffect(()=>{
         if(!information.information?.location.housing.id) return
-        searchBar.setInformation(
-            {
-                inputValue:''
-            }
-        )
+        setInformation({inputValue:''})
         peticion()
     },[information])
-    const datosVisitante = useData.filter((x)=>x.visitor.toLowerCase().trim().includes(searchBar.information?.inputValue || ''))
 
+    const datosVisitante = apiDataFilter(useData,'visitor',seeMore,barInformation?.inputValue || '')
     return (
         <>
         <VeciiHeader
@@ -63,8 +63,9 @@ const MisVisitas =()=>{
         />
         <div className='container_myVisitors'>
             { useData.length > 0 ?
-                datosVisitante.length>0 ?
-                datosVisitante.map((x,k)=>(
+                datosVisitante.filterData.length>0 ?
+                <>
+               { datosVisitante.filterData.map((x,k)=>(
                       <VisitorRegistries
                     srcImg='https://design-assets.adobeprojectm.com/content/download/express/public/urn:aaid:sc:VA6C2:cfacf7cb-ed6a-5d0a-9666-b813562ad731/component?assetType=TEMPLATE&etag=c89f0ac8cffa44429198179c61aa3e29&revision=b7ea20f7-37d3-4329-92c7-11687a06537b&component_id=d1ecb99a-a6b3-4746-86c7-ef88c49baf49'
                     name={x.visitor}
@@ -73,7 +74,12 @@ const MisVisitas =()=>{
                     date={x.departureDate.split('T')[0]}
                     key={k}
                 />
-                )):
+                ))
+                
+                }
+                {datosVisitante.stateSeeMore? <BtnSeeMore enable={()=>setMore(true)}/> : ''}
+                </>
+                :
                  <VisitorRegistries
                     srcImg='https://upload.wikimedia.org/wikipedia/commons/a/a3/Image-not-found.png'
                     name={'Visitante no encontrado'}
@@ -83,7 +89,8 @@ const MisVisitas =()=>{
                     
                 />
                 :
-                    <div className='containerGrid_message_anyVisitor'><p>! No tienes visitas registradas Vecii¡</p></div>}
+                    <NoApiData message='¡No tienes visitas registradas Vecii!'/>
+                }
         </div>
         <FooterFantasma/>
         </>

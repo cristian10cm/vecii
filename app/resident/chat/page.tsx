@@ -45,7 +45,7 @@ const Chat = () => {
             <SearchBar
                 placeholder=''
             />
-            <div className='container_chat'> 
+            <div className='container_chat_conversation'> 
                     { data.length > 0 ? 
                             data.map((info,k)=>(
                                     <OptionChat

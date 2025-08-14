@@ -11,15 +11,21 @@ import Cookies from 'js-cookie';
 import axios from 'axios';
 import { setHousing } from '@/components/stores/StoreHousing';
 import { places,reservedAreas } from '.';
+import { apiDataFilter } from '@/components/stores/apiDataFilter';
+import NoApiData from '@/components/interfaces/NoApiData/NoApiData';
+import BtnSeeMore from '@/components/interfaces/BtnSeeMore/BtnSeeMore';
 const ZonaComun = () =>{
-    const {setInformation} = useSearchBar();
-    const searchBarInfo =  useSearchBar();
+    const {setInformation,barInformation} = useSearchBar();
+    const [seeMore1,setMore1 ]= useState<boolean>(false) 
+     const [seeMore2,setMore2 ]= useState<boolean>(false) 
     const {information} = setHousing();
     const [usePlaces,setPlaces] = useState<places[]>([])
     const [useReservedAreas,setReservedAreas] = useState<reservedAreas[]>([]);
     const [useStateOpcion,setStateOpcion] = useState<boolean>(false)
     const viewOpcion = (data:boolean)=>{
         setStateOpcion(data)
+        setMore1(false)
+        setMore2(false)
     }
     const peticionReservedAreas =async ()=>{
         try{
@@ -57,8 +63,11 @@ const ZonaComun = () =>{
         peticionReservedAreas()
         peticionPlace()  
     },[information])
-      const dataAreas  = usePlaces.filter((e)=>e.name.toLocaleLowerCase().trim().includes((searchBarInfo.information?.inputValue || '').toLocaleLowerCase().trim()))
-      const dataReseved = useReservedAreas.filter((e)=>e.commonArea.name.toLocaleLowerCase().trim().includes((searchBarInfo.information?.inputValue || '').toLocaleLowerCase().trim()))
+    //   const dataAreas  = usePlaces.filter((e)=>e.name.toLocaleLowerCase().trim().includes((searchBarInfo.information?.inputValue || '').toLocaleLowerCase().trim()))
+    //   const dataReseved = useReservedAreas.filter((e)=>e.commonArea.name.toLocaleLowerCase().trim().includes((searchBarInfo.information?.inputValue || '').toLocaleLowerCase().trim()))
+    const places = apiDataFilter(usePlaces,'name',seeMore1,barInformation?.inputValue || '')
+    const reservedPlaces = apiDataFilter(useReservedAreas,'commonArea',seeMore2,barInformation?.inputValue || '')
+
     return(
         <>
             <VeciiHeader 
@@ -74,49 +83,37 @@ const ZonaComun = () =>{
                 onClickDato = {viewOpcion}
             />
             <div className='container_places-main'>
-               {/* { data.length>0 ?
-                data.map((e,k)=>(
-                    <PlacesComponents
-                    stateOpcion = {true}
-                     idPlace={e.id}
-                    pathPlace='/resident/zonas-comunes/reserva-zona-comun/'
-                    key={k}
-                />
-                )):
-                <PlacesComponents 
-                    stateOpcion = {true}
-                    idPlace=''
-                    pathPlace='' 
-                />
-               } */}
                {
                 useStateOpcion ? 
                 usePlaces.length>0?
-                dataAreas.length>0 ?
-                dataAreas.map((e,k)=>(
+                places.filterData.length>0 ?
+                <>
+                {places.filterData.map((e,k)=>(
                     <PlacesComponents
                     stateOpcion = {true}
+                    namePlace={e.name}
                      idPlace={e.id}
+
                     pathPlace='/resident/zonas-comunes/reserva-zona-comun/'
                     key={k}
                 />
-                )):
-               <PlacesComponents
+                ))}
+                {places.stateSeeMore ? <BtnSeeMore enable={()=>setMore1(true)}/> : ''}
+                </>
+               :<PlacesComponents
                     stateOpcion = {false}
                     idPlace={'No encontrado'}
                     pathPlace=''
-                    
                     datePlace={'00-00-00'}
                     namePlace={'No encontrado'}
                 />: 
-                <div className='container_places_noReserved'>
-                    <p className='container_places_noReserved_paragraphe'>Sin reservas comunes.</p>    
-                </div> 
-               
+               <NoApiData message='Sin reservas comunes.'/>
                 :
                 useReservedAreas.length >0 ?
-                    dataReseved.length>0?  
-                        dataReseved.map((x,k)=>(
+                    reservedPlaces.filterData.length>0?  
+                    <>
+                    {
+                        reservedPlaces.filterData.map((x,k)=>(
                         <PlacesComponents
                             stateOpcion = {false}
                             idPlace={x.id}
@@ -124,7 +121,14 @@ const ZonaComun = () =>{
                             key={k}
                             datePlace={x.startTime.toString()}
                             namePlace={x.commonArea.name}
-                        />)):
+                        />))
+                    }
+                    {
+                       reservedPlaces.stateSeeMore ? <BtnSeeMore enable={()=>setMore2(true)}/> : '' 
+                    }
+                    </>    
+                    
+                    :
                        
                          <PlacesComponents
                     stateOpcion = {false}
@@ -136,7 +140,7 @@ const ZonaComun = () =>{
 
                 :
                 <div className='container_places_noReserved'>
-                    <p className='container_places_noReserved_paragraphe'>No tienes ningún registro de reserva.</p>
+                <NoApiData message='No tienes ningún registro de reserva.'/>
                     <button onClick={()=>setStateOpcion(true)} className='container_places_noReserved_btn'>¡Ver reservas!</button> 
                 </div>
                 

@@ -6,11 +6,13 @@ import FooterFantasma from '@/components/interfaces/footerFantasma/FooterFantasm
 import OpcionBox from '@/components/interfaces/OpcionBox/OpcionBox';
 import ModalFormCreate from '@/components/interfaces/ModalFormCreate/ModalFormCreate';
 import ComunityService from '@/components/interfaces/ComunityService/ComunityService';
-import { MdAddCircle } from 'react-icons/md';
+import IconSvgGradient from '@/components/interfaces/IconSvgGradient/IconSvgGradient';
 import { CommunityService ,datosComunidad } from '.';
 import { useSearchBar } from '@/components/stores/storeSearch';
 import { useStateForm } from '@/components/stores/storeFormUpdate';
-
+import { apiDataFilter } from '@/components/stores/apiDataFilter';
+import NoApiData from '@/components/interfaces/NoApiData/NoApiData';
+import BtnSeeMore from '@/components/interfaces/BtnSeeMore/BtnSeeMore';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
@@ -18,15 +20,18 @@ import Cookies from 'js-cookie';
 const Comunidad = () => {
   const [useServicios, setServicios] = useState<datosComunidad[]>([]);
   const [useMineServicios, setMineServicios] = useState<CommunityService[]>([]);
+      const [seeMore1,setMore1 ]= useState<boolean>(false) 
+     const [seeMore2,setMore2 ]= useState<boolean>(false) 
+  const { setInformation,barInformation } = useSearchBar();
 
-  const { setInformation } = useSearchBar();
-  const { information } = useSearchBar();
   const [stateBoton, setStateBoton] = useState<boolean>(false);
   const { setStateForm } = useStateForm();
   const stateForm = useStateForm().stateForm;
 
   const changeState = (data: boolean) => {
     setStateBoton(data);
+    setMore1(false)
+    setMore2(false)
   };
 
   const openForm = () => {
@@ -58,15 +63,8 @@ const Comunidad = () => {
     peticionServicios('community')
     peticionServicios('mine')
   }, [stateForm?.updatePQR]);
-
-  const serviciosFiltrados = useServicios.filter((e) =>
-    e.title.toLowerCase().trim().includes(information?.inputValue?.toLowerCase().trim() || '')
-  );
-
-  const misServiciosFiltrados = useMineServicios.filter((e) =>
-    e.title.toLowerCase().trim().includes(information?.inputValue?.toLowerCase().trim() || '')
-  );
-
+  const servicioComunidad = apiDataFilter(useServicios,'title',seeMore1,barInformation?.inputValue || '')
+  const misServicios = apiDataFilter(useMineServicios,'title',seeMore2,barInformation?.inputValue || '')
   return (
     <>
        <VeciiHeader
@@ -80,6 +78,8 @@ const Comunidad = () => {
         nameBox1='Comunidad'
         nameBox2='Mis servicios'
         path1=''
+        gradients={true
+        }
         path2=''
         onClickDato={changeState}
       />
@@ -90,7 +90,10 @@ const Comunidad = () => {
            <div className='container_community_searchBar_items'>
                <p className='container_community_paragraphe'>Agregar nuevo servicio</p>
               <button className='container_community_add' onClick={openForm}>
-                <MdAddCircle />
+                 <IconSvgGradient 
+                  urlImage='/assets/svg/plus-circle-fill.svg'
+                  widthImg='7vw'
+                />
               </button>
            </div>
           </div>
@@ -99,10 +102,11 @@ const Comunidad = () => {
       <div className='container_serviciosComunitarios'>
         {stateBoton ? (
           useMineServicios.length>0 ?
-          misServiciosFiltrados.length > 0 ? (
-            misServiciosFiltrados.map((info, k) => (
+          misServicios.filterData.length > 0 ? (
+            <>
+             {misServicios.filterData.map((info, k) => (
               <ComunityService
-                pathService=''
+                pathService='/resident/mi-hogar/mis-servicios/servicios_publicados/'
                 key={k}
                 imgServicio='https://todocedritos.com/servicio_domicilio_supermercado_barrio_cedritos_bogota/fruver_belmira_supermercado_fruteria_barrio_belmira_cedritos_norte_bogota_2b.jpg'
                 nameServicio={info.title}
@@ -110,6 +114,9 @@ const Comunidad = () => {
                  idService={info.id}
               />
             ))
+            }
+            {misServicios.stateSeeMore ? <BtnSeeMore enable={()=>setMore2(true)} />:''}
+            </>
           ) : (
             <ComunityService
               pathService=''
@@ -118,20 +125,25 @@ const Comunidad = () => {
               nameServicio='No encontrado'
               precioServicio='0000'
             />
-          ): <p className='grid_services_void'>¡Crea tu servicio Vecii!</p>
+          ): <NoApiData message='¡Crea tu servicio Vecii!'/>
         ) : 
         useServicios.length>0?
-        serviciosFiltrados.length > 0 ? (
-          serviciosFiltrados.map((info, k) => (
-            <ComunityService
-            pathService='/resident/mi-hogar/mis-servicios/servicio-comunidad/'
-              key={k}
-              idService={info.id}
-              imgServicio='https://todocedritos.com/servicio_domicilio_supermercado_barrio_cedritos_bogota/fruver_belmira_supermercado_fruteria_barrio_belmira_cedritos_norte_bogota_2b.jpg'
-              nameServicio={info.title}
-              precioServicio='5000'
-            />
-          ))
+        servicioComunidad.filterData.length > 0 ? (
+            <>
+              {
+                servicioComunidad.filterData.map((info, k) => (
+                <ComunityService
+                  pathService='/resident/mi-hogar/mis-servicios/servicio-comunidad/'
+                  key={k}
+                  idService={info.id}
+                  imgServicio='https://todocedritos.com/servicio_domicilio_supermercado_barrio_cedritos_bogota/fruver_belmira_supermercado_fruteria_barrio_belmira_cedritos_norte_bogota_2b.jpg'
+                  nameServicio={info.title}
+                  precioServicio={info.price}
+              />
+              ))
+              }
+             {servicioComunidad.stateSeeMore ? <BtnSeeMore enable={()=>setMore1(true)} />:''}
+            </>
         ) : (
            <ComunityService
            idService=''
@@ -141,8 +153,7 @@ const Comunidad = () => {
               precioServicio='0000'
             />
         ):
-
-      <p className='grid_services_void'>¡No hay servicios disponibles!</p>
+         <NoApiData message='¡No hay servicios disponibles!'/>
       
       }
 

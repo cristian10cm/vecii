@@ -6,6 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { FaEyeSlash,FaRegEye } from "react-icons/fa";
 import 'react-toastify/dist/ReactToastify.css';
 import http from '@/components/services/http';
+import IconSvgGradient from '../IconSvgGradient/IconSvgGradient';
 import { setHousing } from '@/components/stores/StoreHousing';
 import axios from 'axios';
 import Cookies from 'js-cookie';
@@ -28,7 +29,7 @@ const Login = () => {
     const verifyInfo = async () => {
         const emailInput = inputEmail.current! as HTMLInputElement;
         const passwordInput = inputPassWord.current! as HTMLInputElement;
-        const email = emailInput.value.trim();
+        const email = emailInput.value.trim().toLowerCase();
         const password = passwordInput.value.trim();
         if (!email || !password) {
             toast.error("Por favor ingrese su correo y contraseña");
@@ -117,7 +118,19 @@ const Login = () => {
                         placeholder="Contraseña"
                         ref={inputPassWord}
                     ></input>
-                    <button className='input_vecii_hiden' onClick={()=>hidePassword()}>{useHide?<FaEyeSlash/>:<FaRegEye/>}</button>
+                    <button className='input_vecii_hiden' onClick={()=>hidePassword()}>{useHide?
+                        <IconSvgGradient
+                            urlImage='/assets/svg/eye-closed.svg'
+                            widthImg='6vw'
+                        />
+                        :
+                         <IconSvgGradient
+                            urlImage='/assets/svg/eye.svg'
+                            widthImg='6vw'
+                        />
+                        
+                        }
+                    </button>
                 </div>
                 <p
                     className="login_component_container_paragraph"

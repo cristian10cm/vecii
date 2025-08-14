@@ -1,0 +1,55 @@
+.container_updateTextArea{
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+    width: 100%;
+    height: auto;
+    gap: 10px;
+}
+.container_updateTextArea_edit{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+.container_updateTextArea_label{
+    font-size: 5vw;
+    text-wrap: balance;
+}
+
+.container_updateTextArea_textarea{
+    font-size: 3.8vw;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 10px  ;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    color: #777;
+    resize: none;
+    width: 100%;
+    background-color: #fff;
+     min-height: auto;
+    /* field-sizing: content; */
+    
+}
+.container_updateTextArea_btn{
+    background-color: transparent;
+    border: none;
+}
+
+.container_updateTextArea_textarea:focus{
+    color: #000;
+    outline: 1px solid var(--aquaMarineBackground);
+}
+
+/* @keyframes moveGradientTextArea {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+} */

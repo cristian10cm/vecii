@@ -13,9 +13,10 @@ import {useDateCalendar,useTimeReserved} from '@/components/stores/storeAvailabi
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import ReservedAreaModal from '@/components/interfaces/ReservedAreaModal/ReservedAreaModal';
-import { startDate,endDate,numberRegex,regexFecha,today,stringRegex,Reservation } from './index';
-import { timeEnd } from 'console';
+import { startDate,endDate,numberRegex,regexFecha,today,stringRegex,Reservation,AxiosBadRequestError } from './index';
+
 const ReserveArea = () => {
+  console.log('ok')
   const nombreRef = useRef<HTMLInputElement>(null);
   const apellidoRef = useRef<HTMLInputElement>(null);
   const cedulaRef = useRef<HTMLInputElement>(null);
@@ -25,7 +26,7 @@ const ReserveArea = () => {
   const [useId,setId] = useState<string>()
   const dateSelected = useDateCalendar();
   const timeSelected = useTimeReserved();
-
+  const  [useKey,setKey] = useState<number>(1) 
   const closeModal = (data:boolean)=>{
           setModal(data)
   }
@@ -68,10 +69,10 @@ const ReserveArea = () => {
     const [hEnd, mEnd] = end.split(':');
     startDate.setHours(Number(hStart), Number(mStart), 0);
     endDate.setHours(Number(hEnd), Number(mEnd), 0);
-    if (startDate >= endDate) {
-      toast.error('La hora de finalización debe ser mayor a la de inicio');
-      return;
-    }
+    // if (startDate >= endDate) {
+    //   toast.error('La hora de finalización debe ser mayor a la de inicio');
+    //   return;
+    // }
     const [year, month, day] = fecha.split('-').map(Number);
     const timeStart = new Date(year, month - 1, day);
     const timeExit = new Date(year, month - 1, day);
@@ -91,6 +92,7 @@ const ReserveArea = () => {
           }
         )
         setModal(true)
+        setKey(useKey+1)
         setDataArea(reserved.data)
         toast.success('Zona reservada correctamente')
         setTimeout(()=>{
@@ -103,10 +105,16 @@ const ReserveArea = () => {
           start: undefined,
           end: undefined}});
         },500)
+
     }catch(err){
-      console.log(err)
-      console.log(timeStart, timeExit)
-      toast.error('No se pudo realizar la reserva')}
+      const res = err
+      const response = err as AxiosBadRequestError
+      if(response.status === 400){
+        toast.error(response.response.data.message)
+      }else{
+        toast.error(`No se pudo realizar la reserva`)}
+      }
+      
 
   };
   useEffect(()=>{
@@ -131,55 +139,46 @@ const ReserveArea = () => {
       <form onSubmit={handleSubmit} className="container_reserveRegister">
         <h2 className="container_reserveRegister_title">Registro</h2>
 
+       <div className='container_reserveRegister_form'>
         <InputForm
+          imgIcon='/assets/svg/user-circle.svg'
           nameOnsubmit="nombre"
           placeHolder="Ejem. Juanita"
-          icon={MdOutlinePermIdentity}
           typeInput="text"
           refInput={nombreRef}
         />
         <InputForm
           nameOnsubmit="apellido"
           placeHolder="Ejem. Lopez"
-          icon={MdOutlinePermIdentity}
+          imgIcon='/assets/svg/pencil-simple.svg'
           typeInput="text"
           refInput={apellidoRef}
         />
         <InputForm
           nameOnsubmit="cedula"
           placeHolder="Ejem. 112255633"
-          icon={MdOutlinePermIdentity}
+          imgIcon='/assets/svg/identification-card.svg'
           typeInput="text"
           refInput={cedulaRef}
         />
 
         <div className="container_reserveRegister_date">
-          <p className="container_reserveRegister_date-icon">
-            <MdOutlinePermContactCalendar />
-          </p>
           <label>Fecha de Inicio</label>
-          <AvailabilityDatePicker />
+          <AvailabilityDatePicker key={'Date:'+useKey} />
         </div>
 
         <div className="container_reserveRegister_time">
-          <p className="container_reserveRegister_date-icon">
-            <MdOutlinePermContactCalendar />
-          </p>
           <label>Hora de inicio:</label>
           <TimeDatePicker typeTime="start" />
         </div>
 
         <div className="container_reserveRegister_time">
-          <p className="container_reserveRegister_date-icon">
-            <MdOutlinePermContactCalendar />
-          </p>
+     
           <label>Hora salida:</label>
           <TimeDatePicker typeTime="end" />
         </div>
-
-        <button className="container_newReserved_btn" type="submit" >
-          Registrar reserva
-        </button>
+       </div>
+          <input className="container_newReserved_btn_send" type="submit" value={'Registrar reserva'}/>
       </form>
       {
         useModal?

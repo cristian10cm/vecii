@@ -5,14 +5,6 @@ export type CommunityService = {
   description: string;
   price: number;
   backgroundImage: {
-    createdAt: string;
-    id: string;
-    name: string;
-    type: string;
-    size: number;
-    path: string;
-    attachableType: string;
-    attachableId: string;
   };
   author: {
     createdAt: string;
@@ -75,6 +67,6 @@ export type servicioTomadoType = {
     id: string;
     name: string;
     description: string;
-    type: "direct" | "group"; // si hay más de un tipo, puedes ampliar el union
+    type: string; 
   };
 };

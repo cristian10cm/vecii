@@ -1,0 +1,191 @@
+.container_chats{
+    flex-direction: column;
+     height: 450px;         
+    min-height: 450px;      
+    max-height: 450px;
+    width: 90%;
+    margin:20px auto 0;
+    position: relative;
+    display: grid;
+    border-radius: 25px;
+    padding: 10px 8px;
+    grid-template-rows: 15% 70% 15%;
+}
+.container_chats::before{
+    content: '';
+    position: absolute;
+     border-radius: 25px;
+    width: 100%;
+    height: 100%;
+    background-color: var(--background-componets);
+    z-index: -4;
+}
+.container_chats_sendMessage{
+
+    display: flex;
+    width: 95%;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    
+}
+.container_chats_sendMessage_input{
+    width: 100%;
+    border: none;
+    background-color: var(--background-componets);
+    height: 30px;
+    border-radius: 20px;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+
+}
+.container_chats_sendMessage_input input{
+    width: 100%;
+    color: #fff;
+ padding: 0 10px;
+    border-radius: inherit;
+    height: 100%;
+    border: none;
+    background-color: transparent;
+}
+.container_chats_sendMessage_input input:focus{
+    outline: transparent;
+}
+/**/
+.container_chats_gridConversation{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0 10px 0 0;
+    gap: 5px;
+    overflow: auto;
+    padding: 5px 10px;
+            scrollbar-width: thin;
+    scrollbar-color: var(--aquaMarineBackground) var(--blueVecii) ;
+}
+.container_chats_messages-message_time{
+    color: #aaa;
+    font-size: 3vw;
+}
+.container_chats_messages_mine{
+    width: fit-content;
+    height: auto;
+    max-width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    gap: 3px;
+    align-self: end;
+}
+.container_chats_messages-message_text{
+    text-wrap: balance;
+}
+.container_chats_messages-message_mine{
+    background-color: #fff;
+    width: fit-content;
+    max-width: 100%;
+    border-radius: 10px 10px 0 10px;
+    padding: 5px 10px;
+    font-size: 3.8vw;
+}
+.container_chats_messages_transmitter{
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+     align-self: start;
+     align-items: start;
+    max-width: 70%;
+    font-size: 3.8vw;
+}
+/* .container_chats_messages-message_transmitter::after{
+    content: "";
+    position: absolute;
+    background-color:var(--aquaMarineBackground);
+clip-path: polygon(29% 0, 0% 100%, 100% 70%);
+    width: 16px;
+    height: 16px;
+bottom: -4px;
+    left: -4px;
+} */
+.container_chats_messages-message_transmitter{
+    background-color: var(--aquaMarineBackground);
+    width: fit-content;
+    display: flex;
+         position: relative;
+    color: #333;
+    max-width: 100%;
+    border-radius: 10px 10px 10 0px;
+    padding: 5px 10px;
+    font-size: 3.8vw;
+}
+
+/**/
+
+.container_chats_sendMessage_input::before,.container_chats_sendMessage_input::after{
+    content: '';
+    position: absolute;
+    background: linear-gradient( 90deg, #a141e0dd, #49ebd5dd);
+    width: 100%;
+    height: 100%;
+    padding: 1px;
+    z-index: -2;
+    border-radius:20px ;
+    background-size: 250% 250%;
+    animation: moveGradientMessage 6s  infinite;
+
+
+}
+.container_chats_sendMessage_btn{
+    background-color: transparent;
+    border:none
+}
+.container_chats_sendMessage_btn:focus{
+    outline: transparent;
+}
+.container_chats_sendMessage_input::after{
+    z-index: -1;
+    filter: blur(3px);
+}
+.container_chats_info{
+    display: grid;
+    grid-template-columns: 15% 70% 10%;
+    align-items: center;
+    width: 100%;
+}
+.container_chats_info_img{
+    width: 10vw;
+    height: 10vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.container_chats_info_img img{
+    width: 100%;
+    display: inline-block;
+    object-fit: cover;
+}
+.container_chats_info_paragraphe{
+    color: #fff;
+    justify-self: start;
+    font-size:4.2vw;
+    width: 100%;
+    
+}
+
+@keyframes moveGradientMessage {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

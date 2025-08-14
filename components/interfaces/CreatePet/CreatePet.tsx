@@ -2,7 +2,7 @@
 import './index.css'
 import axios from 'axios';
 import InputForm from '../InputForm/InputForm';
-import { useEffect,useState } from 'react';
+import { useEffect,useRef,useState } from 'react';
 import Cookies from 'js-cookie';
 import { MdOutlinePets,MdOutlinePermContactCalendar,MdDriveFileRenameOutline } from "react-icons/md";
 import { typePet,breedPet } from '.';
@@ -12,57 +12,56 @@ import { toast } from 'react-toastify';
 import IconSvgGradient from '../IconSvgGradient/IconSvgGradient';
 import { useUpdatePets } from '@/components/stores/storePets';
 import InputDate from '../InputDate/InputDate';
+import FooterFantasma from '../footerFantasma/FooterFantasma';
+
 const CreatePet =()=>{
     const [useTypePet,setTypePet] = useState<typePet[]>([])
     const [useBreed, setBreed] = useState<breedPet[]>([])
     const [useSelectPet,setSelectPet] = useState<boolean>(false)
+    const [useSend,setSend] = useState<boolean>(false)
+    const scroll = useRef<HTMLDivElement>(null)
     const [useSelectBreed,setSelectBreed] = useState<boolean>(false)
     const {information} = setHousing();
     const {setUpdatePets} = useUpdatePets()
     const OnSub = async(event:FormEvent<HTMLFormElement>)=>{
     event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-
-    const nombre = formData.get('nombre')?.toString() ?? '';
-    const Fecha = formData.get('Fecha')?.toString() ?? '';
-    const raza = formData.get('raza')?.toString() ?? '';
-    const typePet = formData.get('typePet')?.toString() ?? '';
-
+    const {nombre,Fecha,typePet,raza} = event.target as HTMLFormElement;
     const regexFecha = /^\d{4}-\d{2}-\d{2}$/;
-    const today = new Date().toISOString().split('T')[0];
+    let today = new Date().toISOString().split('T')[0];
 
-    if(nombre.length < 3 || nombre.length > 30 || !/^[A-Za-zÁáÉéÍíÓóÚúÜüÑñÇçÀàÈèÌìÒòÙùÂâÊêÎîÔôÛûÄäËëÏïÖöÅåÆæØøß\s]+$/.test(nombre)) {
+    if(nombre.value.length < 3 || nombre.value.length > 30 || !/^[A-Za-zÁáÉéÍíÓóÚúÜüÑñÇçÀàÈèÌìÒòÙùÂâÊêÎîÔôÛûÄäËëÏïÖöÅåÆæØøß\s]+$/.test(nombre.value)) {
         toast.error('El nombre ingresado es inválido');
+        console.log(nombre.value)
         return;
     }
 
-    if(!regexFecha.test(Fecha) || Fecha >= today) {
+    if(!regexFecha.test(Fecha.value) || Fecha.value >= today) {
         toast.error('La fecha ingresada es inválida');
         return;
     }
-
-    if(raza === '' || raza === 'Cargando..') {
+    if(typePet.value === '' || typePet.value === 'Elige el tipo de mascota') {
+        toast.error('Elige un tipo de mascota');
+        return;
+    }
+    if(raza.value === '' || raza.value === 'Selecciona la raza') {
         toast.error('Elige una raza de mascota');
         return;
     }
 
-    if(typePet === '') {
-        toast.error('Elige un tipo de mascota');
-        return;
-    }
-    if(raza === '' || raza === 'Selecciona la raza'){
-        toast.error('Elige un tipo de raza');
-        return;
-    }
-
+    const scrollToBottom = () => {
+        window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: 'smooth',
+        });
+    };
     try {
         const crearMascota = await axios.post('https://api.vecii.com.co/api/v1/pets',
             {
-                name: nombre,
-                typeId: typePet,
-                birthDate: Fecha,
+                name: nombre.value,
+                typeId: typePet.value,
+                birthDate: Fecha.value,
                 housingId: information?.location.housing.id,
-                breedId: raza,
+                breedId: raza.value,
             },
             {
                 headers: {
@@ -73,12 +72,22 @@ const CreatePet =()=>{
         setUpdatePets({
             state: crearMascota.data.id,
         });
-        console.log(crearMascota)
+        setSend(true)
+        nombre.value = ''
+        Fecha.value = ''
+        typePet.value = 'Elige el tipo de mascota'
+        raza.value = 'Selecciona la raza'
         toast.success('Mascota creada exitosamente');
+        setTimeout(()=>{
+            scrollToBottom()
+        },500)
     } catch(err) {
+        console.log(typePet.value)
+        console.log(raza.value)
         toast.error('No se pudo crear la mascota..');
     }
 };
+
 
     const getBreedsPet = async (id:string)=>{
         try{
@@ -119,7 +128,9 @@ const CreatePet =()=>{
     },[])
 
     return(
-        <form onSubmit={OnSub} className='container_form_pet'>
+     
+     <>
+           <form onSubmit={OnSub} className='container_form_pet'>
             <p className='container_form_pet_title'>Registrar mascota</p>
             <InputForm
                 imgIcon='/assets/svg/article.svg'
@@ -143,7 +154,7 @@ const CreatePet =()=>{
                 </span>
                 <div className='container_form_pet_containerSelect'>
                    
-                    <select className='container_form_pet_select' name='typePet' onChange={(e)=>{
+                    <select className='container_form_pet_select'  name='typePet' onChange={(e)=>{
                         setSelectPet(true)
                         const tipo = useTypePet.find(x=>x.id == e.target.value);
                         if(tipo){getBreedsPet(tipo?.id)}}}>
@@ -174,8 +185,11 @@ const CreatePet =()=>{
                     </div>
                 </div>:''
             }
-            <button className='container_form_btn' type='submit' >Registrar mascota</button>
+            <button className='container_form_btn' type='submit' >{useSend ? 'Registrar otra mascota':'Registrar mascota'}</button>
+   
+      
         </form>
+     </>
     )
 }
 export default CreatePet

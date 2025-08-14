@@ -1,13 +1,48 @@
 import './index.css'
 import StateComponent from '../StateComponent/StateComponent'
-const LockerPublicService = ({imgServicio,nameServicio,stateServicio,fechaServicio,dataFalse,dataTrue}:{imgServicio:string,nameServicio:string,stateServicio:boolean,fechaServicio:string,dataFalse:string,dataTrue:string})=>{
+import GoTo from '@/components/logics/GoTo'
+type locker = {
+    imgServicio:string,
+    nameServicio:string,
+    stateServicio:boolean,
+    fechaServicio:string,
+    dataFalse:string,
+    dataTrue:string,
+    entranceObject?:boolean,
+    url?:string,
+    id? : string
+}
+const LockerPublicService = ({imgServicio,nameServicio,stateServicio,url,fechaServicio,dataFalse,dataTrue,entranceObject,id}:locker)=>{
+
+    const statePackages = imgServicio == '/assets/svg/sign-in-bold.svg' ? 'enter':'exit'
+    const stylePackagesIcon = entranceObject?`container_serviceLocker_iconService_packages ${statePackages}`:'container_serviceLocker_iconService'
+    const goToPath = GoTo()
+    const type = statePackages== 'enter' ? 'entrance':'output'
+    const goToObject = ()=>{
+        goToPath({path:url || ''})
+        id? localStorage.setItem('idLocker',id):'';
+        // localStorage.setItem('nameLocker',nameServicio);
+        // localStorage.setItem('dateLocker',fechaServicio);
+        // localStorage.setItem('typeLocker',type)
+        // localStorage.setItem('statusLocker',stateServicio ? 'Aprobado':'No aprobado')
+    }
     return(
-        <div className='container_serviceLocker'>
+        <div className='container_serviceLocker' onClick={goToObject}>
             <div className='container_serviceLocker_info'>
-                <div className='container_serviceLocker_iconService'>
+                <div className={stylePackagesIcon}>
                     <img src={imgServicio} className='container_serviceLocker_info_img' alt="Icono del servicio" />
                 </div>
-                <p className='container_serviceLocker_info_paragraphe'>{nameServicio}</p>
+                { entranceObject?
+                        <div className='container_serviceLocker_info_type'>
+                             <p className='container_serviceLocker_info_paragraphe'>{nameServicio}</p>
+                             <p className={`container_serviceLocker_info_type_${statePackages}`}>
+                                {statePackages== 'enter' ? 'Entrada':'Salida'}
+                             </p>
+                        </div>
+                    :
+                    <p className='container_serviceLocker_info_paragraphe'>{nameServicio}</p>
+                
+                }
             </div>
             <div className='container_serviceLocker_state'>
                 <StateComponent

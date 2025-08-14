@@ -39,7 +39,7 @@ const ServicioComunidad = ()=>{
                 }
             )
             console.log(requiere.data)
-            alert('¡ Solicitud creada correctamente !')
+            toast.success('¡ Solicitud creada correctamente !')
             setBoton(false)
         }catch(err){
             console.log(useIdService)
@@ -72,6 +72,7 @@ const ServicioComunidad = ()=>{
         <VeciiHeader
                 srcImg='/assets/svg/mis servicios.svg'
                 name='Mis Servicios'
+                transparent = {false}
         />
         <div className='container_requestService'>
             <p className='container_requestService_title'>{useService?.title || 'Cargando..'} </p>

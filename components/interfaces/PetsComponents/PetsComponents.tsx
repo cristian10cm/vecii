@@ -18,7 +18,8 @@ type PetsComponentsProps = {
   idType: string;
   breed: string;
   idBreed: string;
-  idPet:string
+  idPet:string;
+
 };
 
 const PetsComponents = ({
@@ -27,6 +28,7 @@ const PetsComponents = ({
   year,
   breed,
   idPet,
+
   idType,
   idBreed
 }: PetsComponentsProps) => {
@@ -51,6 +53,25 @@ const PetsComponents = ({
     }
     console.log('ok');
   };
+    const getBreeds = async () => {
+      try {
+        const peticion = await axios.get(
+          'https://api.vecii.com.co/api/v1/breeds',
+          {
+            headers: {
+              Authorization: `Bearer ${Cookies.get('token')}`
+            },
+            params: {
+              petTypeId: idType
+            }
+          }
+        );
+        const data = await peticion.data;
+        setBreed(data.results);
+      } catch (err) {
+        console.log(err);
+      }
+    };
    const verifyInfo = useBtnEdit((state)=>{
           const filterForm = state.state.form[`pet:${idPet}`]?.btnEdit || {}
           const values = Object.values(filterForm)
@@ -66,7 +87,7 @@ const PetsComponents = ({
         console.log(detete)
         toast.success('Mascota eliminada correctamente')
         setUpdatePets({
-                state:2+ Math.random()*10
+                state:useReset+5*Math.random()*3
             })
             }catch{
          
@@ -115,43 +136,22 @@ const PetsComponents = ({
                         }
                     }
             )
-            console.log(uptadePet.data)
-            setReset((x)=>x+1)
             actualizarDatos(refRaza)
-            
+            console.log(uptadePet)
             toast.success('¡Mascota actualiza!')
+            setReset(useReset+1)
         }catch(error){
             toast.error('No se pudo actualizar tu mascota')
            
         }
 
   }
+
   useEffect(() => {
     if(refRaza.current){
       refRaza.current.value = idBreed 
       console.log(refRaza.current.value)
     }
-    const getBreeds = async () => {
-      try {
-        const peticion = await axios.get(
-          'https://api.vecii.com.co/api/v1/breeds',
-          {
-            headers: {
-              Authorization: `Bearer ${Cookies.get('token')}`
-            },
-            params: {
-              petTypeId: idType
-            }
-          }
-        );
-        const data = await peticion.data;
-        console.log(data)
-        setBreed(data.results);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-
     getBreeds();
   }, [refRaza.current?.value]);
   
@@ -189,43 +189,6 @@ const PetsComponents = ({
        />
 
 
-        
-        {/* <div className='PetComponent_containerInfo_select_raza'>
-          <label htmlFor='raza'>Raza:</label>
-          <select
-           key={`select-raza-${useReset}`} 
-            className='PetComponent_containerInfo_select'
-            ref={refRaza}
-            name='raza'
-            disabled
-          >
-            {useBreed.length > 0 ? (
-              useBreed.map((x, k) => (
-                <option value={x.id} key={'name'+k}>
-                  {x.name}
-                </option>
-              ))
-            ) : (
-              <option>Cargando..</option>
-            )}
-          </select>
-          <button
-            className='container_pet_patch_edit'
-            onClick={() => actualizarDatos(refRaza)}
-          >
-            <FaRegEdit />
-            { !useEdit ? 
-              <IconSvgGradient
-                urlImage='/assets/svg/pencil.svg'
-                widthImg='6vw'
-              />:
-               <IconSvgGradient
-                urlImage='/assets/svg/pencil-slash.svg'
-                widthImg='6vw'
-              />
-            }
-          </button>
-        </div> */}
           {
             verifyInfo ?
              <button className='container_editPet_btn'onClick={editPet}>Editar</button>:''

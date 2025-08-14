@@ -11,11 +11,15 @@ import { setHousing } from '@/components/stores/StoreHousing';
 import axios from 'axios';
 import { servicesType,packageItem } from '.';
 import Cookies from 'js-cookie';
+import { apiDataFilter } from '@/components/stores/apiDataFilter';
+import NoApiData from '@/components/interfaces/NoApiData/NoApiData';
+import BtnSeeMore from '@/components/interfaces/BtnSeeMore/BtnSeeMore';
 const Buzon = () => {
   const housingId = setHousing().information?.location.housing.id
-  const information = useSearchBar().information?.inputValue;
-
-  const [useServices,setServices] = useState<servicesType[]>([])
+  const {setInformation,barInformation } = useSearchBar()
+  const [seeMore1,setMore1 ]= useState<boolean>(false)  
+   const [seeMore2,setMore2 ]= useState<boolean>(false)  
+    const [useServices,setServices] = useState<servicesType[]>([])
   const [usePackage,setPackage] = useState<packageItem[]>([])
   const [useBoton,setBoton] = useState<boolean>(false)
   const token = Cookies.get('token')
@@ -30,6 +34,7 @@ const Buzon = () => {
           }
         })
         const {data} = peticion
+        console.log(data)
         setServices(data.results)
       }catch(err){
         console.log(err)
@@ -46,6 +51,7 @@ const Buzon = () => {
           }
         })
         const {data} = peticion
+        console.log(data)
         setPackage(data.results)
       }catch(err){
         console.log(err)
@@ -53,10 +59,13 @@ const Buzon = () => {
   }
   const changeOption = (data:boolean)=>{
     setBoton(data)
+    setMore1(false)
+    setMore2(false)
   }
     useEffect(()=>{
       
       if(!housingId) return
+      setInformation({inputValue:''})
       const callApis =async()=>{
         try{
            const getLocker = await axios.get(`https://api.vecii.com.co/api/v1/housing/${housingId}/locker`,
@@ -67,7 +76,6 @@ const Buzon = () => {
             }
           )
           const lockerId = getLocker.data[0].id
-
           await getServices(lockerId)   
           await getPackages(lockerId)      
         }catch(err){
@@ -76,8 +84,8 @@ const Buzon = () => {
       }
       callApis()
     },[housingId,token])
-    const services = useServices.filter((x)=>x.description.toLowerCase().trim().includes(information?.toLowerCase().trim() || ''))
-    const packages = usePackage.filter((x)=>x.description.toLowerCase().trim().includes(information?.toLowerCase().trim() || ''))
+    const services = apiDataFilter(useServices,'description',seeMore1,barInformation?.inputValue || '')
+    const packages = apiDataFilter(usePackage,'description',seeMore2,barInformation?.inputValue || '')
     return(
         <>
             <VeciiHeaderImg
@@ -97,18 +105,22 @@ const Buzon = () => {
                 {
                   !useBoton ?
                   useServices?.length >0?
-                    services.length>0?
-                    services?.map((x,k)=>(
+                    services.filterData.length>0?
+                    <>
+                    { services.filterData?.map((x,k)=>(
                         <LockerPublicService
                           dataFalse='No recibido'
                           dataTrue='Recibido'
                           nameServicio={x.description || 'Cargando..'}
-                          fechaServicio={'20/25/2025'}
+                          fechaServicio={x.createdAt.split('T')[0]}
                           imgServicio='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSryvVofo68EvMAaGepDFtzmuJ49qDUZ54Kgw&s'
                           stateServicio={x.status == 'pending' ? false: true}
                           key={k}
                     />
-                    )):
+                    ))}
+                    {services.stateSeeMore ? <BtnSeeMore enable={()=>setMore1(true)}/> :''}
+                    </>
+                   :
                       <LockerPublicService
                           dataFalse='No recibido'
                           dataTrue='Recibido'
@@ -118,21 +130,26 @@ const Buzon = () => {
                           stateServicio={false}
                     />
                    :
-                   <div className='containerServices_anyItem'>! No tienes ninguna factura en el buzon ! </div>
+                   <NoApiData message='! No tienes ninguna factura en el buzon ! '/>
                 :
                   usePackage?.length>0?
-                    packages.length>0?
-                      packages.map((x,k)=>(
+                    packages.filterData.length>0?
+                      
+                      <>
+                     {packages.filterData.map((x,k)=>(
                         <LockerPublicService
                          dataFalse='No recibido'
                           dataTrue='Recibido'
                           nameServicio={x.description || 'Cargando..'}
-                          fechaServicio={'20/25/2025'}
+                          fechaServicio={x.createdAt.split('T')[0]}
                           imgServicio='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiK7SXYrBCQUOqJUlyFX6Cu3KhcBLMnsC0dg&s'
                           stateServicio={x.status == 'pending' ? false: true}
                           key={k}
                       />
-                    )): <LockerPublicService
+                    ))}
+                    {services.stateSeeMore ? <BtnSeeMore enable={()=>setMore2(true)}/> :''}
+                    </>
+                    : <LockerPublicService
                      dataFalse='No recibido'
                           dataTrue='Recibido'
                           nameServicio={'No encontrado'}
@@ -140,8 +157,7 @@ const Buzon = () => {
                           imgServicio='https://upload.wikimedia.org/wikipedia/commons/a/a3/Image-not-found.png'
                           stateServicio={false}
                     />:
-                    <div className='containerServices_anyItem'>! No tienes ningun paquete en el buzon ! </div>
-
+                    <NoApiData message=' ¡No tienes ningun paquete en el buzon! '/>
                 }
             </div>
             <FooterFantasma/>

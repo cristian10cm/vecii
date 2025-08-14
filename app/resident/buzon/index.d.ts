@@ -1,4 +1,5 @@
 export type servicesType = {
+  createdAt:string
   id: string
   description: string
   status: string
@@ -17,6 +18,8 @@ export type servicesType = {
 
 }
 type packageItem = {
+    createdAt:string
+
   id: string
   description: string
   status: string

@@ -21,16 +21,16 @@ const ModalFormCreate =()=>{
 
             event.preventDefault()
             const {servicio,descripcion,precio} = event.target as HTMLFormElement;
-            if (servicio.value.length < 5 || servicio.value.length > 50) {
-                  toast.error('La longitud del motivo debe ser de 5 a 30 caracteres.');
+            if (servicio.value.length <= 4 || servicio.value.length > 50) {
+                  toast.error('La longitud del motivo del servicio debe estar entre 5 y 50 caracteres.');
                   return;
                 }
             
-            if (descripcion.value.length < 10 || descripcion.value.length > 500) {
+            if (descripcion.value.length < 9 || descripcion.value.length > 500) {
                   toast.error('La longitud de la descripción debe ser de mínimo 10 caracteres y máximo 200.');
                   return;
             }
-            if (precio.value<0 || precio.value>10000000){
+            if (precio.value<=1 || precio.value>10000000  || precio.value == '' ){
                 toast.error('Escribe un valor valido');
                   return;
             }

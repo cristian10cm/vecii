@@ -11,21 +11,26 @@ import IconSvgGradient from '@/components/interfaces/IconSvgGradient/IconSvgGrad
 import { CommunityService ,datosComunidad,servicioTomadoType } from '.';
 import { useSearchBar } from '@/components/stores/storeSearch';
 import { useStateForm } from '@/components/stores/storeFormUpdate';
+import BtnSeeMore from '@/components/interfaces/BtnSeeMore/BtnSeeMore';
+import { apiDataFilter,apiDataFilterKeyChild } from '@/components/stores/apiDataFilter';
+import NoApiData from '@/components/interfaces/NoApiData/NoApiData';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 const Comunidad = () => {
   const [useServicios, setServicios] = useState<servicioTomadoType[]>([]);
   const [useMineServicios, setMineServicios] = useState<CommunityService[]>([]);
-
-  const { setInformation } = useSearchBar();
-  const { information } = useSearchBar();
+  const { setInformation,barInformation } = useSearchBar();
+      const [seeMore1,setMore1 ]= useState<boolean>(false) 
+     const [seeMore2,setMore2 ]= useState<boolean>(false) 
   const [stateBoton, setStateBoton] = useState<boolean>(false);
   const { setStateForm } = useStateForm();
   const stateForm = useStateForm().stateForm;
 
   const changeState = (data: boolean) => {
     setStateBoton(data);
+     setMore1(false)
+        setMore2(false)
   };
   const openForm = () => {
     setStateForm({
@@ -63,6 +68,7 @@ const Comunidad = () => {
         }
       );
       const data = peticion.data.results
+      console.log(data)
       setMineServicios(data)
     } catch (error) {
       console.log("Petición mis servicios: ", error);
@@ -74,14 +80,8 @@ const Comunidad = () => {
    misServicios()
   }, [stateForm?.updatePQR]);
 
-  const serviciosFiltrados = useServicios.filter((e) =>
-    e.service.title.toLowerCase().trim().includes(information?.inputValue?.toLowerCase().trim() || '')
-  );
-
-  const misServiciosFiltrados = useMineServicios.filter((e) =>
-    e.title.toLowerCase().trim().includes(information?.inputValue?.toLowerCase().trim() || '')
-  );
-
+  const serviciosTomados = apiDataFilterKeyChild(useServicios,'service','title',seeMore2,barInformation?.inputValue || '');
+  const serviciosPublicados = apiDataFilter(useMineServicios,'title',seeMore1,barInformation?.inputValue || '')
   return (
     <>
       <VeciiHeaderImg
@@ -93,6 +93,7 @@ const Comunidad = () => {
     
 
       <OpcionBox
+      gradients={true}
         nameBox1='Servicios tomados'
         nameBox2='Publicados'
         path1=''
@@ -117,17 +118,23 @@ const Comunidad = () => {
       <div className='container_serviciosComunitarios'>
         {stateBoton ? (
           useMineServicios.length>0 ?
-          misServiciosFiltrados.length > 0 ? (
-            misServiciosFiltrados.map((info, k) => (
+          serviciosPublicados.filterData.length > 0 ? (
+            <>
+            {
+              serviciosPublicados.filterData.map((info, k) => (
               <ComunityService
                 idService={info.id}
-                pathService=''
+               
+                pathService='/resident/comunidad/servicios_publicados/'
                 key={k}
                 imgServicio='https://todocedritos.com/servicio_domicilio_supermercado_barrio_cedritos_bogota/fruver_belmira_supermercado_fruteria_barrio_belmira_cedritos_norte_bogota_2b.jpg'
                 nameServicio={info.title}
-                precioServicio={'5000'}
+                precioServicio={info.price}
               />
             ))
+            }
+            {serviciosPublicados.stateSeeMore ? <BtnSeeMore enable={()=>setMore1(true)}/>:''}
+            </>
           ) : (
             <ComunityService
               pathService=''
@@ -136,20 +143,29 @@ const Comunidad = () => {
               precioServicio='0000'
               idService=''
             />
-          ): <p className='grid_services_void'>¡Crea tu servicio Vecii!</p>
+          ): <NoApiData message='¡Crea tu servicio Vecii!'/>
         ) : 
         useServicios.length>0?
-        serviciosFiltrados.length > 0 ? (
-          serviciosFiltrados.map((info, k) => (
+        serviciosTomados.filterData.length > 0 ? (
+          <>
+          {
+            serviciosTomados.filterData.map((info, k) => (
             <ComunityService
             idService={info.id}
               key={k}
-              pathService=''
+              idChat={info.chat.id}
+               nameChatService = {info.service.title}
+              pathService='/resident/comunidad/servicios-tomados/'
               imgServicio='https://todocedritos.com/servicio_domicilio_supermercado_barrio_cedritos_bogota/fruver_belmira_supermercado_fruteria_barrio_belmira_cedritos_norte_bogota_2b.jpg'
               nameServicio={info.service.title}
               precioServicio={info.service.price }
+              activeState={true}
+              stateService = {info.isConfirmed}
             />
           ))
+          }
+          {serviciosTomados.stateSeeMore ?<BtnSeeMore enable={()=>setMore2(true)}/>:''}
+          </>
         ) : (
            <ComunityService
               pathService=''
@@ -159,8 +175,8 @@ const Comunidad = () => {
               precioServicio=''
             />
         ):
+        <NoApiData message='¡No tienes servicios tomados!'/>
 
-      <p className='grid_services_void'>¡No tienes servicios tomados!</p>
       
       }
         {stateForm?.stateFormPQR && <ModalFormCreate />}

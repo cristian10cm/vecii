@@ -11,7 +11,7 @@ const UpdateData =({label,type,refElement,information,numBtn,formName}:{numBtn:n
 
       updateBtn(formName,{key:numBtn,value:useEdit})
     },[])
-    const actualizarDatos =(ref : React.RefObject<HTMLInputElement | null>)=>{
+    const actualizarDatos =(ref : React.RefObject<HTMLInputElement | null >)=>{
             console.log(state)     
             updateBtn(formName,{key:numBtn,value:!useEdit})
             setEdit(!state)

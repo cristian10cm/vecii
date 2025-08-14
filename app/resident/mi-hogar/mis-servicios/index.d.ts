@@ -3,7 +3,7 @@ export type CommunityService = {
   id: string;
   title: string;
   description: string;
-  price: number;
+  price: string   | number;
   backgroundImage: {
     createdAt: string;
     id: string;
@@ -36,6 +36,7 @@ export type CommunityService = {
 
 export interface datosComunidad {
   createdAt: string;
+  price:string;
   id: string;
   title: string;
   description: string;

@@ -6,7 +6,7 @@
     align-items: center;
     padding: 2px;
     border-radius: 12px;
-    font-size: 3.8vw;
+    font-size: 3.5vw;
     overflow: hidden;
     width: 90%;
 }
@@ -19,8 +19,10 @@
 }
 
 .containerServiceMailBox_falseState {
-    color: #aaa;
-    border: 1px solid #aaa;
+    color: #fff;
+    background-color: #f136;
+    /* border: 1px solid #fff; */
+    /* border: 1px solid #f13 ; */
 }
 
 /* Estado del circulo */

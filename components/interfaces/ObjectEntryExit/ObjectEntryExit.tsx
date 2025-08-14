@@ -14,6 +14,7 @@ const regexFecha = /^\d{4}-\d{2}-\d{2}$/;
 const today = new Date().toISOString().split('T')[0];
 
 const ObjectEntryExit = ({typeRegister}:{typeRegister:'Entrada' | 'Salida'}) => {
+    const [useParagraphe,setParagraphe] = useState<boolean>(false)
     const register = typeRegister == 'Entrada' ? true:false
     const hounsingId = setHousing().information?.location.housing.id
     const createEntrance = async(event: FormEvent<HTMLFormElement>)=>{
@@ -34,7 +35,7 @@ const ObjectEntryExit = ({typeRegister}:{typeRegister:'Entrada' | 'Salida'}) => 
     }
        if(!regexFecha.test(fecha.value) || fecha.value < today) {
         console.log(fecha.value)
-        toast.error('La fecha ingresada es inválida');
+        toast.error('La fecha ingresada es inválida');  
         return;
     }
     
@@ -52,9 +53,17 @@ const ObjectEntryExit = ({typeRegister}:{typeRegister:'Entrada' | 'Salida'}) => 
                         Authorization:`Bearer ${Cookies.get('token')}`
                     }
                 }
+                
             )
+            descripcion.value =  '';
+            fecha.value = ''
+            nombre.value= ''
+            apellido.value = ''
+            setParagraphe(true)
+            toast.success(`¡Solicitud creada correctamente Vecii!`)
             console.log(create)
         }catch(err){
+            toast.error(`No se pudo realizar la solitud`)
             console.log(hounsingId)
             console.log(fecha.value)
             console.log(err)
@@ -105,7 +114,14 @@ const ObjectEntryExit = ({typeRegister}:{typeRegister:'Entrada' | 'Salida'}) => 
                         </span>
                         <textarea   placeholder='Objetos a ingresar' name="descripcion" id=""></textarea>
                     </div> */}
-                    <button className='container_newObject_inputs_btn' type='submit'>Registrar {register?'ingreso':'salida'}</button>
+                    <button className='container_newObject_inputs_btn' type='submit'>
+                        {
+                            useParagraphe ?
+                             `Registrar ${register?' otro ingreso':' otra salida'}`
+                            :`Registrar ${register?'ingreso':'salida'}`
+                        }
+
+                    </button>
          
                 </form>
               
