@@ -1,0 +1,11 @@
+.container_allStores{
+    width: 95%;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.container_allStores div{
+background-color: var(--background-componets);
+border-radius: 10px;
+}

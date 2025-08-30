@@ -25,12 +25,12 @@
 .grid_admin_payment {
    
     margin: 20px auto;
- 
+    padding: 20px 0;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    /* background-color: var(--background-componets); */
-    background-color: #000;
+    width: 95%;
+    background-color: var(--background-componets);
+    /* background-color: var(--backgroundBlur); */
     border-radius: 30px;
 }

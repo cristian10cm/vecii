@@ -1,0 +1,35 @@
+.container_places{
+    width: 95%;
+    /* border: 1px solid var(--aquaMarineBackground); */
+    background-color: var(--background-componets);
+    border-radius: 15px;
+    margin: 0 auto;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 60% 40%;
+    color: #fff;
+    animation: animation .3s;
+     font-size: clamp(14px,3.8vw,18px);
+    align-items: center;
+    gap: 1vw;
+}
+.container_places-info,.container_places-status{
+    display: flex;
+    flex-direction: column;
+    gap: 0.8em;
+}
+.container_places_namePlace{
+    font-weight: bolder;
+    font-size: clamp(14px,3.8vw,18px);
+    overflow: hidden;
+    text-wrap: ellipsis;
+}
+@keyframes animation {
+    0%{
+        opacity: 0;
+        scale: 0.9;
+    }100%{
+        scale: 1;
+        opacity: 1;
+    }
+}

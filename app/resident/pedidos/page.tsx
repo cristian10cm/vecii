@@ -2,26 +2,26 @@
 import VeciiHeaderImg from '@/components/interfaces/VeciiHeaderImg/VeciiHeaderImg';
 import './index.css';
 import OpcionBox from '@/components/interfaces/OpcionBox/OpcionBox';
-import FooterFantasma from '@/components/interfaces/footerFantasma/FooterFantasma';
 import SectionShopping from '@/components/interfaces/SectionShopping/SectionShopping';
 import SearchBar from '@/components/interfaces/SearchBar/SearchBar';
+import { setHousing } from '@/components/stores/StoreHousing';
 const Pedidos = () =>{
-
+          const compleName = setHousing().information?.location.complex.name 
+      
     return(
         <>
             <VeciiHeaderImg
                 srcImg='https://totalfood.com/wp-content/uploads/2023/04/Restaurant-Online-Food-Delivery-1.webp'
                 name='Pedidos'
-                detail='Conjunto pimientos de madelena'
+                detail={compleName || 'Cargando..'}
             />
             <SearchBar 
             placeholder=''/>
             <OpcionBox
-              nameBox1 =  'Restaurantes'
+              nameBox1 =  'Tiendas'
               nameBox2 =  'Paquetes'
-              path1='/resident/buzon'
-              path2='/resident/buzon'
-       
+              onClickDato={()=>true}
+
             />
             
             <div className='container_orders_section'>
@@ -35,7 +35,7 @@ const Pedidos = () =>{
                         nameSection='Restaurantes'
                   />
             </div>
-           <FooterFantasma/>
+        
            
         </>
     )

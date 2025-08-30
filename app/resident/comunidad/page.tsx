@@ -2,7 +2,6 @@
 import './index.css';
 import VeciiHeaderImg from '@/components/interfaces/VeciiHeaderImg/VeciiHeaderImg';
 import SearchBar from '@/components/interfaces/SearchBar/SearchBar';
-import FooterFantasma from '@/components/interfaces/footerFantasma/FooterFantasma';
 import OpcionBox from '@/components/interfaces/OpcionBox/OpcionBox';
 import ModalFormCreate from '@/components/interfaces/ModalFormCreate/ModalFormCreate';
 import ComunityService from '@/components/interfaces/ComunityService/ComunityService';
@@ -182,7 +181,6 @@ const Comunidad = () => {
         {stateForm?.stateFormPQR && <ModalFormCreate />}
       </div>
 
-      <FooterFantasma />
     </>
   );
 };

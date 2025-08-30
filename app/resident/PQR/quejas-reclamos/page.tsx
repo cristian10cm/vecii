@@ -1,7 +1,6 @@
 'use client';
 import './index.css';
 import VeciiHeaderImg from '@/components/interfaces/VeciiHeaderImg/VeciiHeaderImg';
-import FooterFantasma from '@/components/interfaces/footerFantasma/FooterFantasma';
 import SearchBar from '@/components/interfaces/SearchBar/SearchBar';
 import PQRQuestionsS from '@/components/interfaces/PQRQuestions/PQRQuestions';
 import {  useEffect, useState } from 'react';
@@ -70,6 +69,7 @@ const quejasReclamos = () => {
   //     searchInfo.information?.inputValue.toLowerCase().trim() || ''
   //   )
   // );
+  const nameFilter =  nombreType === 'Quejas' ? 'queja' :'reclamo' 
   const datos = apiDataFilter(useInfo,'subject',seeMore,barInformation?.inputValue || '')
   return (
     <>
@@ -92,7 +92,7 @@ const quejasReclamos = () => {
          <div className='container_quejasReclamos_searchBar'>
             
            <div className='container_quejasReclamos_searchBar_items'>
-               <p className='container_quejasReclamos_paragraphe'>Agregar nuevo servicio</p>
+               <p className='container_quejasReclamos_paragraphe'>Agregar {nameFilter}</p>
               <button className="container_quejasReclamos_add" onClick={openForm}>
                 <IconSvgGradient 
                   urlImage='/assets/svg/plus-circle-fill.svg'
@@ -136,7 +136,7 @@ const quejasReclamos = () => {
           <FormModal typePQR={idPQR} nameType={nombreType} />
         )}
       </div>
-      <FooterFantasma />
+   
     </>
   );
 };

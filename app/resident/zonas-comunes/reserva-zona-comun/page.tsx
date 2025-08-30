@@ -1,31 +1,33 @@
 'use client';
 import './index.css';
 import VeciiHeaderImg from '@/components/interfaces/VeciiHeaderImg/VeciiHeaderImg';
-import FooterFantasma from '@/components/interfaces/footerFantasma/FooterFantasma';
 import InputForm from '@/components/interfaces/InputForm/InputForm';
 import {MdOutlinePermIdentity,MdOutlinePermContactCalendar} from 'react-icons/md';
-
 import { toast } from 'react-toastify';
 import { useEffect, useRef, useState } from 'react';
 import TimeDatePicker from '@/components/interfaces/TimeDatePicker/TimeDatePicker';
 import AvailabilityDatePicker from '@/components/interfaces/DiasDatePicker/DiasDatePicker';
-import {useDateCalendar,useTimeReserved} from '@/components/stores/storeAvailabilityArea';
+import {useDateCalendar,useTimeReservedStart,useTimeReservedEnd,useAvailability} from '@/components/stores/storeAvailabilityArea';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import ReservedAreaModal from '@/components/interfaces/ReservedAreaModal/ReservedAreaModal';
 import { startDate,endDate,numberRegex,regexFecha,today,stringRegex,Reservation,AxiosBadRequestError } from './index';
+import IconSvgGradient from '@/components/interfaces/IconSvgGradient/IconSvgGradient';
 
 const ReserveArea = () => {
   console.log('ok')
+  const timeStartHour = useTimeReservedStart()
+  const timeEndHour = useTimeReservedEnd()
   const nombreRef = useRef<HTMLInputElement>(null);
   const apellidoRef = useRef<HTMLInputElement>(null);
   const cedulaRef = useRef<HTMLInputElement>(null);
+  // const resetTimes = useTimeReserved((state) => state.resetTimes)
   const [useModal,setModal] = useState<boolean>(false)
   const [useDataArea,setDataArea] = useState<Reservation>()
   const [useName,setName] = useState<string>()
   const [useId,setId] = useState<string>()
   const dateSelected = useDateCalendar();
-  const timeSelected = useTimeReserved();
+  // const timeSelected = useTimeReserved();
   const  [useKey,setKey] = useState<number>(1) 
   const closeModal = (data:boolean)=>{
           setModal(data)
@@ -37,8 +39,11 @@ const ReserveArea = () => {
     const cedula = cedulaRef.current?.value.trim() ?? '';
     const fechaState = dateSelected.dateCalendar?.dateSelected;
     const fecha = fechaState instanceof Date ? fechaState.toISOString().split('T')[0] : '';
-    const start = timeSelected.time?.timesReserved?.start?.toString().split(' ')[4];
-    const end = timeSelected.time?.timesReserved?.end?.toString().split(' ')[4];
+    // const start = timeSelected.time?.timesReserved?.start?.toString().split(' ')[4];
+    const start = timeStartHour.time?.timesReservedStart.toString().split(' ')[4];
+    const end = timeEndHour.time?.timesReservedEnd.toString().split(' ')[4];
+    console.log(timeStartHour.time?.timesReservedStart)
+    // const end = timeSelected.time?.timesReserved?.end?.toString().split(' ')[4];
     if(!useId) return
     if (nombre.length <= 2 || nombre.length > 30 || !stringRegex.test(nombre)) {
       toast.error('El nombre del visitante ingresado es inválido');
@@ -50,12 +55,14 @@ const ReserveArea = () => {
       return;
     }
 
-    if (cedula.length !== 10 || !numberRegex.test(cedula)) {
+    if (cedula.length > 10 || cedula.length < 7  || !numberRegex.test(cedula)) {
       toast.error('El número de identificación ingresado es inválido');
       return;
     }
 
     if (!fecha || !regexFecha.test(fecha) || fecha <= today) {
+      console.log(today)
+      console.log(fecha)
       toast.error('La fecha ingresada es inválida');
       return;
     }
@@ -100,10 +107,6 @@ const ReserveArea = () => {
         if (apellidoRef.current) apellidoRef.current.value = '';
         if (cedulaRef.current) cedulaRef.current.value = '';
         dateSelected.setDateCalendar({ dateSelected: null });
-        timeSelected.setTimesReserved({
-          timesReserved: {
-          start: undefined,
-          end: undefined}});
         },500)
 
     }catch(err){
@@ -118,14 +121,18 @@ const ReserveArea = () => {
 
   };
   useEffect(()=>{
+    
       const namePlace = localStorage.getItem('namePlaceReserved')
       const idZonaComun = localStorage.getItem('idZonaComun')
+
       if(idZonaComun){
         setId(idZonaComun)
       } 
       if(namePlace){
         setName(namePlace)
       }
+      
+      
   },[])
 
   return (
@@ -138,23 +145,25 @@ const ReserveArea = () => {
 
       <form onSubmit={handleSubmit} className="container_reserveRegister">
         <h2 className="container_reserveRegister_title">Registro</h2>
-
        <div className='container_reserveRegister_form'>
         <InputForm
           imgIcon='/assets/svg/user-circle.svg'
-          nameOnsubmit="nombre"
+          nameLabel='Nombre'
+          nameOnsubmit="Nombre"
           placeHolder="Ejem. Juanita"
           typeInput="text"
           refInput={nombreRef}
         />
         <InputForm
-          nameOnsubmit="apellido"
+          nameLabel='Apellido'
+          nameOnsubmit="Apellido"
           placeHolder="Ejem. Lopez"
           imgIcon='/assets/svg/pencil-simple.svg'
           typeInput="text"
           refInput={apellidoRef}
         />
         <InputForm
+          nameLabel='Cedula'
           nameOnsubmit="cedula"
           placeHolder="Ejem. 112255633"
           imgIcon='/assets/svg/identification-card.svg'
@@ -163,22 +172,24 @@ const ReserveArea = () => {
         />
 
         <div className="container_reserveRegister_date">
-          <label>Fecha de Inicio</label>
+          <IconSvgGradient urlImage='/assets/svg/calendar-blank-bold.svg' widthImg='7vw'/>
+          <label>Fecha</label>
           <AvailabilityDatePicker key={'Date:'+useKey} />
         </div>
 
         <div className="container_reserveRegister_time">
-          <label>Hora de inicio:</label>
-          <TimeDatePicker typeTime="start" />
+              <IconSvgGradient urlImage='/assets/svg/sign-in-bold.svg' widthImg='7vw'/>
+          <label>Hora de inicio</label>
+          <TimeDatePicker typeTime="start" key={'timeStart:'+useKey}/>
         </div>
 
         <div className="container_reserveRegister_time">
-     
-          <label>Hora salida:</label>
-          <TimeDatePicker typeTime="end" />
+          <IconSvgGradient urlImage='/assets/svg/sign-out-bold.svg' widthImg='7vw'/>
+          <label>Hora salida</label>
+          <TimeDatePicker typeTime="end" key={'timeEnd:'+useKey}/>
         </div>
        </div>
-          <input className="container_newReserved_btn_send" type="submit" value={'Registrar reserva'}/>
+          <input className="container_newReserved_btn_send" type="submit" value={useKey>1?'Realizar otra Reserva':'Registrar reserva'}/>
       </form>
       {
         useModal?
@@ -190,7 +201,7 @@ const ReserveArea = () => {
         date = {useDataArea?.startTime || 'Cargando..'}
         />:''
       }
-      <FooterFantasma />
+
     </>
   );
 };

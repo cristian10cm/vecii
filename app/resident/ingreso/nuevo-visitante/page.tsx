@@ -2,7 +2,6 @@
 import VeciiHeader from '@/components/interfaces/VeciiHeader/VeciiHeader';
 import './index.css';
 import { useRef, useState } from 'react';
-import FooterFantasma from '@/components/interfaces/footerFantasma/FooterFantasma';
 import { toast } from 'react-toastify';
 import InputForm from '@/components/interfaces/InputForm/InputForm';
 // import { MdDriveFileRenameOutline,MdOutlinePermIdentity,MdOutlinePermContactCalendar,MdCreditCard,MdOutlineDataSaverOff   } from "react-icons/md";
@@ -49,19 +48,19 @@ const NewVisitor = () => {
       const dateToday = new Date().toISOString().split('T')[0]
         const numberRegex = /^[\d]+$/;
         if(nameRef.current){
-            if(nameRef.current.value.length<=3 || nameRef.current.value.length > 30 || !stringRegex.test(nameRef.current.value)  ){
+            if(nameRef.current.value.length<=2 || nameRef.current.value.length > 30 || !stringRegex.test(nameRef.current.value)  ){
                         toast.error('El nombre del visitante ingresado es invalido')
                         return 
                 }
         }
         if(lasNameRef.current){
-            if(lasNameRef.current.value.length<=3 || lasNameRef.current.value.length > 30 || !stringRegex.test(lasNameRef.current.value)  ){
+            if(lasNameRef.current.value.length<=2 || lasNameRef.current.value.length > 30 || !stringRegex.test(lasNameRef.current.value)  ){
                     toast.error('El Apellido del visitante ingresado es invalido')
                     return 
                 }
         }
         if(identificationRef.current){
-            if(identificationRef.current.value.length !== 10 || !numberRegex.test(identificationRef.current.value)){
+            if(identificationRef.current.value.length <7 || identificationRef.current.value.length >10  || !numberRegex.test(identificationRef.current.value)){
                 toast.error("El número de identificación ingresado es inválido");
                 return ;   
                 }
@@ -131,14 +130,16 @@ const NewVisitor = () => {
                 <h2 className='container_newVisitor_title'>Datos del visitante</h2>
                 <div className='separator_newVisitor'></div>
                     <InputForm
-                        placeHolder='Nombre del visitante'
+                        nameLabel='Nombre del visitante'
+                        placeHolder='Nombre'
                         // icon={MdOutlinePermIdentity}
                         imgIcon='/assets/svg/user-circle.svg'
                         refInput={nameRef}
                         typeInput = 'text' 
                     />
                       <InputForm
-                        placeHolder='Apellido del visitante'
+                      nameLabel='Apellido del visitante'
+                        placeHolder='Apellido'
                         // icon={MdDriveFileRenameOutline}
                         refInput={lasNameRef}
                         typeInput = {'text'}
@@ -152,24 +153,26 @@ const NewVisitor = () => {
                         refInput={identificationRef}
                         typeInput = {'text'}
                     /> 
-                    <InputDate
+                    <InputForm    
+                        imgIcon='/assets/svg/sign-in-bold.svg'
                         typeInput= 'date'
                         refInput= {fechaEntradaRef}
                         nameOnsubmit= {'fechaIngreso'}
                         nameLabel={'Fecha de ingreso'}
                     />
-                    <InputDate
+                    <InputForm    
+                        imgIcon='/assets/svg/sign-out-bold.svg'
                         typeInput= 'date'
                         refInput= {fechaSalidaRef}
                         nameOnsubmit= {'fechaSalida'}
                         nameLabel={'Fecha de salida'}
                     />
+
                   
                     <button className='container_newVisitor_btn' >
                         {useLoading?'Registrar visita':'Realizar otro registro'}
                     </button>
             </form>
-            <FooterFantasma/>
         </>
     )
     }

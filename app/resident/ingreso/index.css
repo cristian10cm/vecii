@@ -17,7 +17,9 @@
 .comeIn_separator_title{
     width: 60%;
     text-align: center;
-    color: var(--blueVecii);
+        background:linear-gradient( 90deg, #a141e0ff, #49ebd5ff);
+    background-clip: text;
+    color: transparent;
     font-weight: 800;
 }
 
@@ -48,10 +50,11 @@
     justify-content: center;
     align-items: center;
     position: relative;
-    height: 20dvh;
+    height: 20vh;
     width: 90%;
     margin: 50px auto 20px auto;
-    background-color: var(--background-componets);
+       background-color: var(--backgroundBlur);
+    backdrop-filter: blur(4px);
     /* background-color: #000; */
     border-radius: 20px;
     border: 2px solid white;

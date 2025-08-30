@@ -2,10 +2,9 @@
     display: flex;
     width: 90%;
 
-
     align-items: start;
     height: fit-content;
-    margin:10px auto 0px;
+    margin:20px auto 0px;
     font-size: 3.8vw;
   
     gap: 20px;

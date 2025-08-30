@@ -3,7 +3,6 @@ import './index.css'
 import {useInvoiceStore} from '@/components/stores/storeFactura';
 import StateComponent from '@/components/interfaces/StateComponent/StateComponent';
 import VeciiHeader from '@/components/interfaces/VeciiHeader/VeciiHeader';
-import FooterFantasma from '@/components/interfaces/footerFantasma/FooterFantasma';
 const Paquete = ()=>{
     const dataPackage = useInvoiceStore();
     const classLetter = dataPackage.invoice?.status ? 'container_package_info-true':'container_package_info-false'
@@ -38,7 +37,6 @@ const Paquete = ()=>{
                         </div>
                     </div>
             </div>
-            <FooterFantasma/>
         </>
     )
 }

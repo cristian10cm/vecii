@@ -1,0 +1,58 @@
+.veciiHeaderImg_container{
+    height: 20vh;
+    min-height: 130px;
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: flex-end;
+    position: relative;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    overflow: hidden;
+    background-color: #000;
+}
+
+.veciiHeaderImg_container_background{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: .3;
+    object-fit: cover;
+}
+
+.veciiHeaderImg_container_info{
+    display: flex;
+    width: 95%;
+    height: 100px;
+    z-index: 1;
+    margin-left: 5%;
+}
+
+.veciiHeaderImg_container_backArrow{
+    width: 15%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.veciiHeaderImg_container_names{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    width: 85%;
+}
+
+.veciiHeaderImg_container_nameComponet{
+    font-size: clamp(18px,6.7vw,28px);
+    color: white;
+    font-weight: 600;
+}
+
+.veciiHeaderImg_container_detailComponent{
+    color: rgb(197, 197, 197);
+    font-size: clamp(16px,4.3vw,25px);
+}

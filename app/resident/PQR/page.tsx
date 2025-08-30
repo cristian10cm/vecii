@@ -2,7 +2,6 @@
 import VeciiHeaderImg from '@/components/interfaces/VeciiHeaderImg/VeciiHeaderImg';
 import './index.css';
 import PQROption from '@/components/interfaces/PQROption/PQROption';
-import FooterFantasma from '@/components/interfaces/footerFantasma/FooterFantasma';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
@@ -38,28 +37,27 @@ const PQR = () =>{
             <div className='PQR_section'>
                 
                 <PQROption
-                    bakground=''
+                    bakground='https://cdn-icons-png.flaticon.com/512/18821/18821602.png'
                     title={useTypes[1]?.name || 'cargando...'}
                     idPQR={useTypes[1]?.id}
-                    details='Encontrarás  un canal de información que te ayudará a responder tus inquietudes Vecii.'
+                    details='Encontrarás  un canal de información que te ayudará a responder tus inquietudes, Vecii.'
                     pathUrl='/resident/PQR/preguntas-PQR/'
                 />
                 <PQROption
-                    bakground=''
+                    bakground='https://cdn-icons-png.flaticon.com/512/1972/1972461.png'
                     idPQR={useTypes[0]?.id}
                     title={useTypes[0]?.name || 'cargando...'}
-                    details='Encontrarás  un canal de información que te ayudará a responder tus inquietudes Vecii.'
+                    details='Atenderemos cualquier tipo de queja para poder mejorar nuestro servicio en el menor tiempo posible, Vecii..'
                     pathUrl='/resident/PQR/quejas-reclamos/'
                 />
                 <PQROption
                     idPQR={useTypes[2]?.id}
-                    bakground=''
+                    bakground='https://cdn-icons-png.flaticon.com/512/2891/2891237.png'
                     title={useTypes[2]?.name || 'cargando...'}
-                    details='Encontrarás  un canal de información que te ayudará a responder tus inquietudes Vecii.'
+                    details='Déjanos tus reclamos y te daremos una solución.'
                     pathUrl='/resident/PQR/quejas-reclamos/'
                 />
             </div>
-           <FooterFantasma/>
         </>
     )
 

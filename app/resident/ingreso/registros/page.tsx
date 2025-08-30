@@ -4,7 +4,6 @@ import './index.css'
 import VeciiHeader from "@/components/interfaces/VeciiHeader/VeciiHeader";
 import VisitorRegistries from '@/components/interfaces/VisitorRegistries/VisitorRegistries';
 import { useEffect, useState } from "react";
-import FooterFantasma from '@/components/interfaces/footerFantasma/FooterFantasma';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 import { setHousing } from '@/components/stores/StoreHousing';
@@ -129,7 +128,7 @@ return (
                   id={x.id}
                   url='/resident/ingreso/registros/objetos-registrados/'
                   entranceObject = {true}
-                  imgServicio={x.type === 'entrance' ? '/assets/svg/sign-in-bold.svg':'/assets/svg/sign-out-bold.svg'}
+                  imgServicio={x.type === 'entrance' ? '/assets/svg/sign-in-bold.svg':'/assets/svg/sign-out-bold-white.svg'}
                   nameServicio={x.description}
                   stateServicio={x.approveddate !== null ? true:false}
                   fechaServicio={x.entrydate.split('T')[0]}
@@ -195,7 +194,6 @@ return (
   )
 }
 
-<FooterFantasma />
         </>
     )
 

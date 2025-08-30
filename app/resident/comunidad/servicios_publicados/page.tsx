@@ -2,7 +2,6 @@
 import './index.css'
 import EditMyServices from '@/components/interfaces/EditMyServices/EditMyServices'
 import VeciiHeaderImg from '@/components/interfaces/VeciiHeaderImg/VeciiHeaderImg'
-import FooterFantasma from '@/components/interfaces/footerFantasma/FooterFantasma'
 const serviciosPublicados = ()=>{
     return(
         <>
@@ -13,7 +12,7 @@ const serviciosPublicados = ()=>{
       />
         <EditMyServices
         />
-        <FooterFantasma/>
+
         </>
 
     )

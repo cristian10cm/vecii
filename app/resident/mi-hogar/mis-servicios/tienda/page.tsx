@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react'
 import './index.css'
 import Cookies from 'js-cookie'
 import axios from 'axios'
-import FooterFantasma from '@/components/interfaces/footerFantasma/FooterFantasma'
 import SearchBar from '@/components/interfaces/SearchBar/SearchBar';
 import VeciiHeaderImg from '@/components/interfaces/VeciiHeaderImg/VeciiHeaderImg';
 import { useSearchBar } from '@/components/stores/storeSearch';
@@ -74,7 +73,6 @@ const tienda = ()=>{
             
             }
        </div>
-       <FooterFantasma/>
        </>
     )
 }   

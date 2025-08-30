@@ -20,7 +20,7 @@ const ComunityService = ({imgServicio,nameServicio,precioServicio,idChat,pathSer
                 <img src={imgServicio}  alt="Foto del servicio" />
             </div>
             <div className='container_servicio_info'>
-                <p className='container_servicio_paragraphe'>⚡{nameServicio}</p>
+                <p className='container_servicio_paragraphe'>{nameServicio}</p>
                 <p className='container_servicio_precio'>Desde COOP $ {precioServicio}</p>
             </div>
 

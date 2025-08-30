@@ -33,14 +33,25 @@ export interface data{
 }
 type updateApi = {
     information : data | null;
-    setInformation: (newInformation:data)=>void
+    setInformation: (newInformation:data)=>void;
+    setName:(newName:string,newLastName:string)=>void
 }
 
 export const setHousing = create<updateApi>()(
     persist(
         (set)=>({
             information:null,
-            setInformation: (newInformation:data)=>set({information:newInformation})
+            setInformation: (newInformation:data)=>set({information:newInformation}),
+            setName:(newName:string,newLastName:string)=>set((status)=>{
+                if(!status.information) return {}
+                return{
+                    information:{
+                        ...status.information,
+                        firstName:newName,
+                        lastName:newLastName
+                    }
+                }
+            })
         }),
         {
             name: 'Hounsing data', 

@@ -1,7 +1,6 @@
 "use client";
 import './index.css';
 import VeciiHeader from '@/components/interfaces/VeciiHeader/VeciiHeader';
-import FooterFantasma from '@/components/interfaces/footerFantasma/FooterFantasma';
 import ObjectEntryExit from '@/components/interfaces/ObjectEntryExit/ObjectEntryExit';
 
 const inComeObject = () => {
@@ -17,7 +16,6 @@ const inComeObject = () => {
                 typeRegister='Entrada'
             />
             
-            <FooterFantasma/>
         </>
     )
 

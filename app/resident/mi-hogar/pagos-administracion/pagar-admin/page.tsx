@@ -1,22 +1,45 @@
 'use client'
 import VeciiHeader from '@/components/interfaces/VeciiHeader/VeciiHeader';
 import './index.css';
-import FooterFantasma from '@/components/interfaces/footerFantasma/FooterFantasma';
 import { useInvoiceStore } from '@/components/stores/storeFactura';
 import StateComponent from '@/components/interfaces/StateComponent/StateComponent';
+interface months  {
+    meses: Partial<Record <number,string>>
+}
+const meses:months ={
+meses : {      
+  1: 'Enero',
+  2: 'Febrero',
+  3: 'Marzo',
+  4: 'Abril',
+  5: 'Mayo',
+  6: 'Junio',
+  7: 'Julio',
+  8: 'Agosto',
+  9: 'Septiembre',
+  10: 'Octubre',
+  11: 'Noviembre',
+  12: 'Diciembre'
+}};
 const PagarAdministracion = () => {
     const factura = useInvoiceStore()
     const precio = factura.invoice?.status ?'container_payAdmin_info-precieTrue':'container_payAdmin_info-precieFalse';
     const fechaVencimiento = factura.invoice?.status ? 'Fecha de pago':'Fecha de vencimiento';
     const fecha = factura.invoice?.status ? 'container_payAdmin_info-dateTrue':'container_payAdmin_info-dateFalse'
+     const toMonth = (date:string):string | undefined=>{
+            const month  = Number(date.split('-')[1]) 
+            return meses.meses[month]
+    }
+    const monthPaid = toMonth(factura.invoice?.monthService || '')
     return(
         <>
             <VeciiHeader
                 srcImg='/assets/svg/pago admin.svg'
                 name='Pago Administración'
+                transparent={false}
             />
             <div className='container_payAdmin'>
-                <p className='container_payAdmin_month'>{factura.invoice?.monthService}</p>
+                <p className='container_payAdmin_month'>{monthPaid}</p>
                 <div className='container_payAdmin_invoice'>
                    <div className='container_payAdmin_info'>
                         <div className='container_payAdmin_info-state'>
@@ -38,7 +61,6 @@ const PagarAdministracion = () => {
                    </div>
                 </div>
             </div>
-            <FooterFantasma/>
         </>
     )
 

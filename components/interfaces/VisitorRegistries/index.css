@@ -4,7 +4,9 @@
     grid-template-columns: 20% 40% 40%;
     margin: 0 auto;
     background-color:  transparent;
-    height: max-content;
+     min-height: 12vw;
+    
+    aspect-ratio: 5/1;
     padding: 10px 5px;
     border-radius: 20px;
     /* border: 1px solid var(--blueVecii); */
@@ -20,21 +22,21 @@
         opacity: 1;
     }
 }
-.container_visitorRegistry_avatarContainer {
+/* .container_visitorRegistry_avatarContainer {
     width: 100%;
     height: 100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
-.container_visitorRegistry_avatarImg {
+} */
+
+/* .container_visitorRegistry_avatarImg {
     width: 50px;
     height: 50px;
     border-radius: 50%;
     outline: 1px solid var(--blueVecii);
     outline-offset: 3px;
-}
+} */
+
 
 .container_visitorRegistry_infoVisitor {
     display: flex;
@@ -47,10 +49,21 @@
 
 .container_visitorRegistry_visitorName {
     font-weight: 600;
+
+    width: 100%;
+    text-wrap: nowrap;
+    font-size: (12px,3.5vw,18px);
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .container_visitorRegistry_complexDetails {
     color: grey;
+      font-size: (12px,3.3vw,18px);
+      
+      width: 100%;
+         overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .container_visitorRegistry_statusAndDate {
@@ -62,6 +75,8 @@
     flex-direction: column;
     padding: 0px 10px;
     gap: 10px;
+    /* background-color: red; */
+    justify-content: flex-start;
     color: white;
 }
 
@@ -79,7 +94,6 @@
 .container_visitorRegistry_statusDiv {
     width: 15px;
     height: 15px;
-    background-color: blue;
     border-radius: 50px;
 }
 

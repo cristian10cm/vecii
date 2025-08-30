@@ -4,7 +4,6 @@ import VeciiHeaderImg from '@/components/interfaces/VeciiHeaderImg/VeciiHeaderIm
 import './index.css';
 import VisitorComeIn from '@/components/interfaces/VisitorComeIn/VisitorComeIn';
 import GoTo from '@/components/logics/GoTo';
-import FooterFantasma from '@/components/interfaces/footerFantasma/FooterFantasma';
 const Ingreso = () =>{
 
     const goToPath = GoTo();
@@ -59,7 +58,6 @@ const Ingreso = () =>{
                 </div>
                 
             </div>
-            <FooterFantasma/>
         </>
     )
 

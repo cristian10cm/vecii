@@ -1,8 +1,8 @@
 .directoryNumbers {
-    width: 100%;
+    width: 95%;
     height: max-content;
     display: flex;
     flex-direction: column;
     gap: 15px;
-    margin: 20px 0px;
+    margin: 20px auto;
 }

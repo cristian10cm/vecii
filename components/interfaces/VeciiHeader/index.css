@@ -3,12 +3,12 @@
     justify-content: center;
     align-items: center;
     position: relative;
-    /* background-color: var(--background-componets); */
+    background-color: var(--backgrounColor);
     height: max-content;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
     padding: 20px 0px 20px 0px;
-    box-shadow: var(--shadowBoxBlue)
+    /* box-shadow: var(--shadowBoxBlue) */
 }
 
 .container_identity_component {

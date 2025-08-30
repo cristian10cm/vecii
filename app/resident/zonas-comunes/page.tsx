@@ -3,7 +3,6 @@ import VeciiHeader from '@/components/interfaces/VeciiHeader/VeciiHeader';
 import OpcionBox from '@/components/interfaces/OpcionBox/OpcionBox';
 import PlacesComponents from '@/components/interfaces/PlacesComponents/PlacesComponents';
 import './index.css';
-import FooterFantasma from '@/components/interfaces/footerFantasma/FooterFantasma';
 import SearchBar from '@/components/interfaces/SearchBar/SearchBar';
 import { useSearchBar } from '@/components/stores/storeSearch';
 import { useEffect, useState } from 'react';
@@ -50,6 +49,7 @@ const ZonaComun = () =>{
                     }}
                 );
                 const {data} = peticion
+                console.log(peticion.data)
                 setPlaces(data.results)
             }catch(error){
                 console.log(error)
@@ -93,7 +93,7 @@ const ZonaComun = () =>{
                     stateOpcion = {true}
                     namePlace={e.name}
                      idPlace={e.id}
-
+                    statePlace = {e.requiresPayment}
                     pathPlace='/resident/zonas-comunes/reserva-zona-comun/'
                     key={k}
                 />
@@ -117,6 +117,7 @@ const ZonaComun = () =>{
                         <PlacesComponents
                             stateOpcion = {false}
                             idPlace={x.id}
+                            statePlace={x.status === 'pending' ? false:true}
                             pathPlace=''
                             key={k}
                             datePlace={x.startTime.toString()}
@@ -147,7 +148,7 @@ const ZonaComun = () =>{
                }
                
             </div>
-            <FooterFantasma/>
+        
         </>
     )
 

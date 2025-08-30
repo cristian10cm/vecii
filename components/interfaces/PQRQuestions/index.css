@@ -1,7 +1,8 @@
 .Pqr_question{
     display: grid;
-    background-color: var(--background-componets);
+    background-color: var(--backgroundBlurComps);
     width: 100%;
+    backdrop-filter: blur(4px);
     grid-template-columns: 15% 75% 10%;
     margin: auto;
     align-items: center;

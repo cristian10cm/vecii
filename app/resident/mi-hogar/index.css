@@ -20,6 +20,8 @@
     width: 100%;
     height: 30dvb;
     min-height: 130px;
+     margin-top: 10px;
+     
     background-image: url('https://cdn.shopify.com/s/files/1/0229/0839/articles/image4_3c304533-8bc2-48e9-816f-b5e80a281fa6.png?v=1727292911');
     background-size: cover;
     background-repeat: no-repeat;

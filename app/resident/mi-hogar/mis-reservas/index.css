@@ -37,7 +37,7 @@
     flex-direction: column;
     gap: 10px;
     width: 100%;
-    margin: 20px auto 0;
+    margin: 20px auto 10px;
 }
 .container_reservePlaces_noReserved{
     display: flex;

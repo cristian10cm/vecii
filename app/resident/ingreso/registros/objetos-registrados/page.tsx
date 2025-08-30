@@ -1,6 +1,5 @@
 'use client'
 import './index.css'
-import FooterFantasma from '@/components/interfaces/footerFantasma/FooterFantasma'
 import VeciiHeader from '@/components/interfaces/VeciiHeader/VeciiHeader'
 import UpdateData from '@/components/interfaces/updateData/updateData'
 import UpdateOptions from '@/components/interfaces/UpdateOptions/UpdateOptions'
@@ -146,10 +145,27 @@ const EditObjectMovement = () => {
 
         <div className='container_objectLocker_info'>
             <div className={`container_objectLocker_info_img ${type ? 'enter':'exit'}`}>
-                <img  src={type ? '/assets/svg/sign-in-bold.svg':'/assets/svg/sign-out-bold.svg'} alt="Icono registro" />     
+                <img  src={type ? '/assets/svg/sign-in-bold.svg':'/assets/svg/sign-out-bold-white.svg'} alt="Icono registro" />     
             </div>           
             {
-                statusObject ? <p></p>:
+                statusObject ? 
+                    useData ? 
+                   <div className='container_objectLocker_info_aprob'>
+                    <p className='container_objectLocker_info_object'>{`Registro ${type?'entrada':'salida'}`}</p>
+                    <div className='container_objectLocker_edit_separator'></div>
+                    <div className='container_objectLocker_info_items'>
+                        <p className='container_objectLocker_info_items_paragraphe'>Nombre del objeto: <span>{useData.description}</span></p>
+                        
+                        <p className='container_objectLocker_info_items_paragraphe'>Fecha de aprobación: <span className='item_aprob'>{useData.approvedDate}</span></p>
+                        <p className='container_objectLocker_info_items_paragraphe'>Fecha de {type ? 'entrada': 'salida'}: <span >{ useData.entryDate}</span></p>
+                        
+                    </div>
+                   </div>
+                    
+                    :<NoApiData message='Cargando información...'/>
+
+                
+                :
                 useData ? 
                 
                  <div className='container_objectLocker_edit'>
@@ -176,27 +192,14 @@ const EditObjectMovement = () => {
                             formName='objectLocker'
                          />
                          <UpdateOptions
-                            label={'Tipo solitud'}
+                            key={`kTipe:${useContK}`}
+                            label={'Tipo de movimiento'}
                             refElement={typeRef}
                             numBtn={3}
                             formName='objectLocker'
-                            option = {['Entrada','Salida']}
+                            option = {type?['Entrada','Salida']:['Salida','Entrada']}
                          />
-                {useModal && (
-                    <div className='modal_objectLocker_edit'>
-                        <div className='modal_objectLocker_edit_info'>
-                            <p>¿Estás seguro de eliminar este movimiento?</p>
-                            <div className='modal_objectLocker_edit_btns'>
-                                <button className='modal_objectLocker_edit_delete' onClick={deleteMovement}>
-                                    Eliminar
-                                </button>
-                                <button className='modal_objectLocker_edit_cancel' onClick={() => setModal(false)}>
-                                    Cancelar
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                )}
+
 
                 <div className='container_objectLocker_btns'>
                     {verifyInfo ? 
@@ -204,15 +207,12 @@ const EditObjectMovement = () => {
                             <b>Actualizar</b>
                         </button>:''
                     }
-                    <button onClick={() => setModal(true)} className='container_objectLocker_btns_delete'>
-                        <b>Eliminar</b>
-                    </button>
+
                 </div>
             </div> :  <NoApiData message='Cargando información...'/>
          
             }
         </div>
-        <FooterFantasma/>
       </>
     )
 }

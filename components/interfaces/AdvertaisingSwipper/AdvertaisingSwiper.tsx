@@ -20,7 +20,7 @@ const AdvertaisingSwipper = () =>{
             >
                 <SwiperSlide>
                     <div className='swiperAdvertaising_img'>
-                        <img src="/assets/png/conjuntoBaner.png"></img>
+                        <img src="https://conjuntokamelia.com/wp-content/uploads/2024/04/Foto-Kamelia-e1714514077290.jpg"></img>
                     </div>
                 </SwiperSlide>
                 <SwiperSlide>

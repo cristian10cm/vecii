@@ -4,10 +4,10 @@ import './index.css';
 import {AdvertaisingSwipper} from "@/components/interfaces/AdvertaisingSwipper/AdvertaisingSwiper";
 import OptionInterface from "@/components/interfaces/OptionInterface/OptionsInterface";
 import UserHeader from "@/components/interfaces/UserHeader/UserHeader";
+import FooterFantasma from '@/components/interfaces/footerFantasma/FooterFantasma';
 import {gsap} from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { useRef } from 'react';
-import FooterFantasma from '@/components/interfaces/footerFantasma/FooterFantasma';
 const Inicio = () =>{
     const divRef = useRef<HTMLDivElement>(null)
     useGSAP(()=>{
@@ -27,6 +27,12 @@ const Inicio = () =>{
             />
             <AdvertaisingSwipper />
             <div className="grid_options_homeVecii" ref={divRef}>
+                 {/* <OptionInterface
+                    idImg = '1'
+                    srcImg="/assets/svg/Buzon.svg"
+                    name='Mi Hogar'
+                    pathUrl="/resident/chatfalso"
+                /> */}
                 <OptionInterface
                     idImg = '1'
                     srcImg="/assets/svg/Buzon.svg"
@@ -64,7 +70,7 @@ const Inicio = () =>{
                     pathUrl="/resident/PQR"
                 />
             </div>
-         <FooterFantasma/>
+            <FooterFantasma/>
         </>
     )
 }

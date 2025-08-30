@@ -5,105 +5,126 @@ import GoTo from '@/components/logics/GoTo'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import Cookies from 'js-cookie'
+import { addDays, nextDay } from 'date-fns'
 import { useAvailability } from '@/components/stores/storeAvailabilityArea'
-import { placeInterface, dias  } from '.'
-import { nextDay } from 'date-fns'
-const PlacesComponents = ({idPlace,pathPlace,stateOpcion,namePlace,datePlace,statePlace}: {idPlace: string,pathPlace: string,stateOpcion:boolean,namePlace?:string,datePlace?:string,statePlace?:string}) => {
-  const [usePlace, setPlace] = useState<placeInterface | null>(null)
-  const [useDays, setDays] = useState<string | null>(null)
-  const [useStateOpcion,setStateOpcion] = useState<boolean>()
-  const {setAvailability} = useAvailability()
-  const dias: dias[] = [
-    'monday',
-    'tuesday',
-    'wednesday',
-    'thursday',
-    'friday',
-    'saturday',
-    'sunday',
-  ]
-//    const diasTraducidos: Partial<Record<string,string>>={
-//   monday: 'Lunes',
-//   tuesday: 'Martes',
-//   wednesday: 'Miércoles',
-//   thursday: 'Jueves',
-//   friday: 'Viernes',
-//   saturday: 'Sábado',
-//   sunday: 'Domingo',
-// }  
-  const goToPath = GoTo()
-  const reservar = ()=>{
-    goToPath({ path: pathPlace })
-   if(usePlace){
-     setAvailability({
-      availability:usePlace?.availability
-    }) 
-    localStorage.setItem('namePlaceReserved',usePlace.name)
-     localStorage.setItem('idZonaComun',usePlace.id)
-   }
-  }
-  const peticionPlace = async () => {
-      try {
-        const peticion = await axios.get(
-          `https://api.vecii.com.co/api/v1/common-areas/${idPlace}`,
-          {
-            headers: {
-              Authorization: `Bearer ${Cookies.get('token')}`,
-            },
-          }
-        )
-        console.log(peticion)
-        setPlace(peticion.data)
+import { placeInterface, dias, TimeRange } from '.'
 
-      } catch (error) {
-        console.log(error)
+const PlacesComponents = ({idPlace,pathPlace,stateOpcion,namePlace,datePlace,statePlace}: {idPlace: string,pathPlace: string,stateOpcion:boolean,namePlace?:string,datePlace?:string,statePlace?:boolean}) => {
+  const [usePlace, setPlace] = useState<placeInterface | null>(null)
+  const [useStateOpcion,setStateOpcion] = useState<boolean>()
+  const {setAvailability,resetAvailability} = useAvailability()
+  const goToPath = GoTo()
+
+
+  const reservar = ()=>{
+    useAvailability.persist.clearStorage()
+    resetAvailability()
+    goToPath({ path: pathPlace })
+    if(usePlace){
+      setAvailability({availability:usePlace?.availability}) 
+      localStorage.setItem('namePlaceReserved',usePlace.name)
+      localStorage.setItem('idZonaComun',usePlace.id)
+    }
+  }
+
+  const peticionPlace = async () => {
+    try {
+      const peticion = await axios.get(
+        `https://api.vecii.com.co/api/v1/common-areas/${idPlace}`,
+        {
+          headers: {
+            Authorization: `Bearer ${Cookies.get('token')}`,
+          },
+        }
+      )
+      setPlace(peticion.data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    
+    if (!idPlace) return
+    setStateOpcion(stateOpcion)
+    if(stateOpcion){    
+      peticionPlace()
+    }
+  }, [idPlace,stateOpcion])
+
+  useEffect(() => {
+   
+    if (!usePlace) return
+    // resetTimes()
+    // setTimesReserved({ timesReserved: {} })
+    localStorage.setItem("namePlaceReserved", usePlace.name)
+    console.log(usePlace.name)
+    console.log(usePlace.availability)
+    localStorage.setItem("idZonaComun", usePlace.id)
+  }, [usePlace])
+
+  const getDate = (availability: Partial<Record<dias, TimeRange>>): string | null => {
+    if (!availability) return null
+    const today = new Date().getDay()
+    const numDias: Record<number, dias> = {
+      0: "sunday",
+      1: "monday",
+      2: "tuesday",
+      3: "wednesday",
+      4: "thursday",
+      5: "friday",
+      6: "saturday",
+    }
+    const availableDays = Object.keys(availability).filter(
+      (d) => availability[d as dias]?.start
+    ) as dias[]
+    if (availableDays.length === 0) return null
+    if (availableDays.includes(numDias[today])) {
+      return new Date().toISOString().split("T")[0]
+    }
+    for (let i = 1; i <= 7; i++) {
+      const nextDayIndex = (today + i) % 7
+      const nextDayName = numDias[nextDayIndex]
+      if (availableDays.includes(nextDayName)) {
+        return addDays(new Date(), i).toISOString().split("T")[0]
       }
     }
-  useEffect(() => {
-    if (!idPlace) return 
-    setStateOpcion(stateOpcion)  
-    if(stateOpcion){    
-    setDays(diaDisponible || null)
-    const date = new Date();
-    const fecha = nextDay(date,1)
-    console.log(fecha)
-    peticionPlace()
-      }
-  }, [idPlace,stateOpcion])
-  const diaDisponible = dias.find((x) => usePlace?.availability[x])
+    return null
+  }
+
+  const diaDisponible = usePlace ?  getDate(usePlace?.availability) : 'Cargando..'  
 
   return (
     <div>
       {
         useStateOpcion ?
         <div className='container_places' onClick={reservar}> 
-            <div className='container_places-info'>
+          <div className='container_places-info'>
             <p className='container_places_namePlace'>{usePlace?.name}</p>
-            <p className='container_places_timeReserved'>{}</p>
-      </div>
-      <div className='container_places-status'>
-        <StateComponent
-          statusComp={false}
-          dataTrue='Completado'
-          dataFalse='Pendiente'
-        />
-        <p className='container_places_price'>${usePlace?.hourlyRate}</p>
-      </div>
-    </div>:
-      <div className='container_places' > 
-            <div className='container_places-info'>
+            <p className='container_places_timeReserved'>{diaDisponible}</p>
+          </div>
+          <div className='container_places-status'>
+            <StateComponent
+              statusComp={statePlace}
+              dataTrue='Tiene costo'
+              dataFalse='Sin costo'
+            />
+            <p className='container_places_price'>${usePlace?.hourlyRate}</p>
+          </div>
+        </div>:
+        <div className='container_places'> 
+          <div className='container_places-info'>
             <p className='container_places_namePlace'>{namePlace || 'Cargando..'}</p>
             <p className='container_places_timeReserved'>{datePlace?.split('T')[0] || 'Cargando..'}</p>
-      </div>
-      <div className='container_places-status'>
-        <StateComponent
-          statusComp={false}
-          dataTrue='Completado'
-          dataFalse='Pendiente'
-        />
-      </div>
-    </div>
-    
+          </div>
+          <div className='container_places-status'>
+            <StateComponent
+              statusComp={statePlace}
+              dataTrue='Completado'
+              dataFalse='Pendiente'
+            />
+          </div>
+        </div>
       }
     </div>
   )

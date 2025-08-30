@@ -1,0 +1,28 @@
+.container_add {
+    display: flex;
+    justify-content: right;
+    height: fit-content;
+    width: 90%;
+    margin: 10px auto 0;
+}
+.container_add_items{
+    display: flex;
+    align-items: center;
+    height: fit-content;
+    gap: 5px;
+    padding: 5px 0;
+}
+.container_add_btn {
+    border: none;
+    color: var(--blueVecii);
+    background-color: transparent;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+}
+
+.container_add_paragraphe{
+    font-size: clamp(12px,3.5vw,16px);
+    color: #aaa;
+
+}

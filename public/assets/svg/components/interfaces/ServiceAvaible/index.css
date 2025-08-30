@@ -1,0 +1,31 @@
+.containerService{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    border-radius: 15px;
+    background-color: var(--background-componets);
+   
+}
+
+.containerService_img{
+    width: 100%;
+    height: 80%;
+    object-fit: cover;
+    border-radius:  15px 15px 0 0;
+
+}
+
+.containerService_paragraph{
+    width: 90%;
+    text-align: center;
+    padding: 3px;
+    color: white;
+    text-wrap: nowrap;
+    overflow: hidden;
+    font-size: 4.5vw;
+    align-self: center;
+    font-weight: 600;
+    
+}

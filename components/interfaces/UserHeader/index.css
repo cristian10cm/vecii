@@ -2,15 +2,17 @@
     height: max-content;
     width: 100%;
     display: grid;
-    grid-template-columns: 30% 70%;
+    grid-template-columns:30% 70% ;
+    backdrop-filter: blur(10px);
     justify-items: center;
     align-content: center;
-    /* background-color: var(--background-componets); */
+    background-color: var(--backgrounColor);
     border-bottom-left-radius: 30px;
     border-bottom-right-radius: 30px;
     padding: 20px 0px;
     /* border-bottom: 1px solid var(--blueVecii); */
     /* box-shadow: 0px 0px 8px 1px var(--aquaMarineBackground); */
+    
 }
 
 .userHeader_component_imgContainer {
@@ -18,33 +20,68 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100%;
+  position: relative;
+    height: fit-content;
+    align-self: center;
 }
 .usename_exclamation{
     color: #fff;
+    /* font-size: clamp(14px,3.8vw,17px); */
 }
 .userHeader_component_imgUser {
-    width: 70%;
+    width: 80%;
     border-radius: 50%;
-    border: solid 2px var(--blueVecii);
+    position: relative;
+    /* border: solid 2px var(--blueVecii); */
 }
 
 .userHeader_component_info {
-    width: 90%;
+    width: 100%;
     display: flex;
     flex-direction: column;
+   padding: 0px 0px 0px 10px;
+
 }
 
 .userHeader_component_userName {
     color: white;
     margin-bottom: 10px;
+    font-size: clamp(28px,4.5vw,3px);
     text-wrap: balance;
 }
 
 .userHeader_component_complexName {
     color: grey;
+    font-size: clamp(16px,3.8vw,20px);
 }
 
 .userHeader_component_detailComplex {
     color: white;
+    font-size: clamp(16px,3.8vw,20px);
 }
+
+.userHeader_component_sign-out {
+    outline: transparent;
+    background-color: #000;
+    border: none;
+    position: absolute;
+    padding: 5px;
+    right: 5;
+    top: 3;
+    border-radius: 50%;
+}
+/* @media (max-width: 320px ) {
+    .userHeader_component_sign-out{
+         right: 1px;
+         top: 10px;
+    }
+} */
+ /* .userHeader_component_imgUser::after,.userHeader_component_imgUser::before{
+    content: '';
+    width: 100%;
+    position: absolute;
+    height: 100%;
+    background-color: red;
+    padding: 10px;
+
+ } */

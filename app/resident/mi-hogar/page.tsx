@@ -3,7 +3,6 @@ import './index.css'
 import UserHeader from "@/components/interfaces/UserHeader/UserHeader";
 import OptionInterface from "@/components/interfaces/OptionInterface/OptionsInterface";
 import OptionPayAdmin from '@/components/interfaces/OptionPayAdmin/OptionPayAdmin';
-import FooterFantasma from '@/components/interfaces/footerFantasma/FooterFantasma';
 import { useRef } from 'react';
 import {gsap} from 'gsap';
 import { useGSAP } from '@gsap/react';
@@ -29,6 +28,12 @@ const MiHogar = () => {
                 <OptionPayAdmin />
             </div>
             <div className="grid_options_homeVecii-miHogar" ref = {divSection}>
+                {/* <OptionInterface
+                    idImg='1'
+                    srcImg="/assets/svg/Mis datos.svg"
+                    name='FALSOO'
+                    pathUrl="/resident/chatfalso/"
+                /> */}
                 <OptionInterface
                     idImg='1'
                     srcImg="/assets/svg/Mis datos.svg"
@@ -56,7 +61,6 @@ const MiHogar = () => {
                     />
                 </div>
             </div>
-            <FooterFantasma/>
         </>
     )
 

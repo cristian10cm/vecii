@@ -4,7 +4,6 @@ import UserHeader  from '@/components/interfaces/UserHeader/UserHeader';
 import VeciiHeader from '@/components/interfaces/VeciiHeader/VeciiHeader';
 import {useServiceAuth} from '@/components/stores/storeServicios';
 import PaymentService from '@/components/interfaces/PaymentService/PaymentService';
-import FooterFantasma from '@/components/interfaces/footerFantasma/FooterFantasma';
 const PagosServicios = ()=>{
     const service = useServiceAuth();
     return(
@@ -12,7 +11,7 @@ const PagosServicios = ()=>{
         <VeciiHeader
                 srcImg={service.services?.imgSrcServices || 'Imagen no encontrada'}
                  name={service.services?.servicio || 'No existe el servicio'}
-
+                    transparent = {false}
         />
         <div className='containerPayServices'>
             <PaymentService
@@ -65,7 +64,7 @@ const PagosServicios = ()=>{
             
             />   
         </div>
-        <FooterFantasma/>
+
         </>
     )
 }

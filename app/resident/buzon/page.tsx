@@ -3,7 +3,6 @@ import './index.css';
 import VeciiHeaderImg from '@/components/interfaces/VeciiHeaderImg/VeciiHeaderImg';
 import LockerPublicService from '@/components/interfaces/LockerPublicService/LockerPublicService';
 import OpcionBox from '@/components/interfaces/OpcionBox/OpcionBox';
-import FooterFantasma from '@/components/interfaces/footerFantasma/FooterFantasma';
 import SearchBar from '@/components/interfaces/SearchBar/SearchBar';
 import { useSearchBar } from '@/components/stores/storeSearch';
 import { useEffect, useState } from 'react';
@@ -160,7 +159,7 @@ const Buzon = () => {
                     <NoApiData message=' ¡No tienes ningun paquete en el buzon! '/>
                 }
             </div>
-            <FooterFantasma/>
+           
         </>
     );
 

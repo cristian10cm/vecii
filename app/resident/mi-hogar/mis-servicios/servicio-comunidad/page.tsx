@@ -1,6 +1,5 @@
 'use client'
 import './index.css'
-import FooterFantasma from '@/components/interfaces/footerFantasma/FooterFantasma'
 import VeciiHeader from '@/components/interfaces/VeciiHeader/VeciiHeader'
 import axios from 'axios'
 import { useEffect, useRef, useState } from 'react'
@@ -87,7 +86,6 @@ const ServicioComunidad = ()=>{
             <button className='container_requestService_btn'  onClick={()=>useBoton?requireService():''}>{useBoton?'Solicitar servicio':'¡Solicitud enviada!'}</button>
             
         </div>
-        <FooterFantasma/>
         </>
     )
 }

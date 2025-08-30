@@ -2,7 +2,6 @@
 import './index.css';
 import VeciiHeaderImg from '@/components/interfaces/VeciiHeaderImg/VeciiHeaderImg';
 import PaymentService from '@/components/interfaces/PaymentService/PaymentService';
-import FooterFantasma from '@/components/interfaces/footerFantasma/FooterFantasma';
 import OpcionBox from '@/components/interfaces/OpcionBox/OpcionBox';
 import SearchBar from '@/components/interfaces/SearchBar/SearchBar';
 const Paqueteria = ()=>{
@@ -19,8 +18,7 @@ const Paqueteria = ()=>{
          <OpcionBox
                     nameBox1='Servicios publicos'
                     nameBox2='Paqueteria'
-                    path1='/resident/buzon/'
-                    path2='/resident/buzon/paqueteria/'
+               
             />
         <div className='container_packages'>
             <PaymentService
@@ -60,7 +58,6 @@ const Paqueteria = ()=>{
                 contentTextTrue =  'Recibido'
             />
         </div>
-        <FooterFantasma/>
        </>
     )
 }

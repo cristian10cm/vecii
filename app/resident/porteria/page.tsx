@@ -3,7 +3,6 @@ import VeciiHeaderImg from '@/components/interfaces/VeciiHeaderImg/VeciiHeaderIm
 import './index.css';
 import DirectoryEmergencyPhone from '@/components/interfaces/DirectoryEmergencyPhone/DirectoryEmergencyPhone';
 import SearchBar from '@/components/interfaces/SearchBar/SearchBar';
-import FooterFantasma from '@/components/interfaces/footerFantasma/FooterFantasma';
 import { useSearchBar } from '@/components/stores/storeSearch';
 import { useEffect } from 'react';
 const Porteria = () => {
@@ -40,7 +39,7 @@ const Porteria = () => {
             number: '125'
         }
     ];
-    const information = directoryNumbers.filter((e)=>e.name.toLocaleLowerCase().includes((resultSearch.information?.inputValue)?.toLowerCase().trim() || ''))
+    const information = directoryNumbers.filter((e)=>e.name.toLocaleLowerCase().includes((resultSearch.barInformation?.inputValue)?.toLowerCase().trim() || ''))
 
     return (
         <>
@@ -72,7 +71,7 @@ const Porteria = () => {
                 }
 
             </div>
-            <FooterFantasma/>
+            
 
         </>
     );

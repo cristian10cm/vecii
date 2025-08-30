@@ -1,0 +1,43 @@
+/* Estados del servicio */
+.containerServiceMailBox_trueState,
+.containerServiceMailBox_falseState {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 2px;
+    border-radius: 12px;
+    font-size: 3.5vw;
+    overflow: hidden;
+    width: 90%;
+}
+
+.containerServiceMailBox_trueState {
+    --paymentTrueBack: #afd8b291; 
+    --fontPaymentTrue: #9bf0a0;
+    background-color: var(--paymentTrueBack);
+    color: var(--fontPaymentTrue);
+}
+
+.containerServiceMailBox_falseState {
+    color: #fff;
+    background-color: #f136;
+    /* border: 1px solid #fff; */
+    /* border: 1px solid #f13 ; */
+}
+
+/* Estado del circulo */
+.containerServiceMailBox_statusTrue,
+.containerServiceMailBox_statusFalse {
+    width: 14px;
+    height: 14px;
+    border-radius: 100%;
+}
+
+.containerServiceMailBox_statusTrue {
+    background-color: var(--fontPaymentTrue);
+}
+
+.containerServiceMailBox_statusFalse {
+    --fontPaymentFalse: #f13;
+    background-color: var(--fontPaymentFalse);
+}

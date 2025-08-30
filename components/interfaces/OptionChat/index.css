@@ -1,18 +1,21 @@
 .container_optionChat{
-    width: 90%;
-    height: auto;
+    width: 100%;
+    height: 12vh;
+    min-height: 70px;
     display: grid;
-    background-color: #000;
+    background-color: var(--background-componets);
+    backdrop-filter: blur(10px);
     grid-template-columns: 20% 70% 10% ;
     margin: 10px auto;
     align-items: center;
     border: 1px solid var(--blueVecii);
     padding: 15px;
     border-radius: 25px;
+    overflow: hidden;
 }
 .container_optionChat_img{
-    width: 12vw;
-    height: 12vw;
+    width: clamp(30px,70%,50px);
+    aspect-ratio: 1/1;
     overflow: hidden;
     border-radius: 50%;
     outline: 2px solid var(--aquaMarineBackground);
@@ -26,14 +29,25 @@
 }
 .container_optionChat_info{
     justify-self: flex-start;
+
+    display: inline-block;
+    width: 100%;
 }
 .container_optionChat_paragraphe{
     color: #fff;
-    font-size: 4vw;
+    font-size: clamp(12px,4vw,18px);
+    width: 100%;
+       overflow: hidden;
+   text-overflow: ellipsis;
 }
 .container_optionChat_description{
     color: #aaa;
-    font-size: 3.8vw;
+   font-size: clamp(11px,3.8vw,16px);
+   overflow: hidden;
+   text-overflow: ellipsis;
+
+   display: inline-block;
+   width: 100%;
 }
 .container_optionChat_btn{
     filter: invert(100%);

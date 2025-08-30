@@ -1,5 +1,5 @@
 .veciiHeaderImg_container{
-    height: 20dvh;
+    height: 20vh;
     min-height: 150px;
     width: 100%;
     display: flex;
@@ -9,6 +9,7 @@
     border-bottom-left-radius: 50px;
     border-bottom-right-radius: 50px;
     overflow: hidden;
+    background-color: #000;
 }
 
 .veciiHeaderImg_container_background{
@@ -17,7 +18,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    opacity: .4;
+    opacity: .3;
     object-fit: cover;
 }
 

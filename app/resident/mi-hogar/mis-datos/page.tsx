@@ -3,7 +3,6 @@ import VeciiHeader from '@/components/interfaces/VeciiHeader/VeciiHeader';
 import './index.css';
 import UserInfo from '@/components/interfaces/UserInfo/UserInfo';
 import VehicleComponent from '@/components/interfaces/VehicleComponent/VehicleComponent';
-import FooterFantasma from '@/components/interfaces/footerFantasma/FooterFantasma';
 import PetsInfo from '@/components/interfaces/PetsInfo/PetsInfo';
 import { useRef } from 'react';
 
@@ -43,7 +42,6 @@ const MisDatos = () => {
             </div>
             <PetsInfo/>
            
-            <FooterFantasma/>
         </>
     )
 };

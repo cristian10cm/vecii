@@ -1,5 +1,6 @@
 .container_objectLocker_info{
-    background-color: var(--background-componets);
+    background-color: var(--backgroundBlur);
+    backdrop-filter: blur(4px);
     width: 90%;
     margin: 20px auto;
     height: fit-content;
@@ -10,8 +11,11 @@
     align-items: center;
 }
 .container_objectLocker_info_object{
-    color: #fff;
-    font-size: 6vw;
+       background:linear-gradient( 90deg, #a141e0ff, #49ebd5ff);
+    background-clip: text;
+    color: transparent;
+    font-size: clamp(26px,5vw,32px);
+    font-weight: bold;
     text-align: center;
 }
 .container_objectLocker_info_img{
@@ -136,4 +140,38 @@
     align-items: center;
     margin-top: 20px;
     gap: 10px;
+}
+.container_objectLocker_info_aprob{
+    width: 90%;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.container_objectLocker_info_items{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+.container_objectLocker_info_items_paragraphe{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    align-items: center;
+    font-size: clamp(14px,4.5vw,22px);
+    color: #fff;
+    width: 100%;
+}
+.container_objectLocker_info_items_paragraphe span{
+    font-size: clamp(14px,4vw,18px);
+    
+    background-color: #fff;
+    color: #000;
+    width: 100%;
+    padding: 3px 8px;
+    border-radius: 10px;
+}
+.container_objectLocker_info_items_paragraphe .item_aprob{
+    font-weight: bolder;
+    color: #45c44e;
 }

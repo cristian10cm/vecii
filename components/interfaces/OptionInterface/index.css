@@ -5,7 +5,8 @@
     justify-items: center;
     align-content: center;
     place-content: center;
-    height: 10dvh;  
+    height: 10vh;
+    min-height: 50px;  
     gap: 12px;
 }
 

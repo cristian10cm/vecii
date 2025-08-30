@@ -1,12 +1,18 @@
 'use client'
 import './index.css'
-
+import useWebSocket from './useWebSocket'
 import IconSvgGradient from '@/components/interfaces/IconSvgGradient/IconSvgGradient'
 import { setHousing } from '@/components/stores/StoreHousing'
 import { use, useEffect, useRef, useState } from 'react'
 import Cookies from 'js-cookie'
 import axios from 'axios'
-import NoApiData from '../NoApiData/NoApiData'
+type Message =  {
+  message: string;
+  id?: string;
+  sender: string,
+  chatId?: string;
+  createdAt?: string;
+}
 type ChatType = {
     createdAt: string,
     id: string,
@@ -15,16 +21,27 @@ type ChatType = {
             id: string,
             email: string
         }
-}
-
-const Chats = ({idChat,nameChat}:{idChat:string,nameChat?:string})=>{
-    const myId = setHousing().information?.id
+} 
+const Chats = ({idChat,nameChat,goToBack}:{idChat:string,nameChat?:string,goToBack?:boolean})=>{
+    const email = setHousing().information?.email
     const [useChat,setChat] = useState<ChatType[]>([])
     const [useIdChat,setIdChat] = useState<string>('') 
     const inputRef= useRef<HTMLInputElement>(null!!)
     const scrollRef = useRef<HTMLDivElement>(null)
+    const  {status,useMessage,useNotification,newMessage} = useWebSocket(useIdChat)
     
+    const name = localStorage.getItem('nameChatService')
     const token = Cookies.get('token')
+    const verifyHistory = () => history.back()
+    const toMessage = (data:ChatType):Message=>{
+            return{
+                id: data.id,
+                message:data.content,
+                sender: data.sender.email, 
+                chatId: undefined, 
+                createdAt: data.createdAt
+            }
+    }
     const getChat = async(id:string)=>{
         try{    
             const peticion = await axios.get(`https://api.vecii.com.co/api/v1/chats/${id}/messages`,{
@@ -35,10 +52,9 @@ const Chats = ({idChat,nameChat}:{idChat:string,nameChat?:string})=>{
             })
             const {data} = await peticion
             setChat(data)
+
         }catch(err){
-            console.log(id)
-            console.log(token)
-            console.log(err)
+                console.log(err)
         }
     }
     const changeTime = (time:string)=>{
@@ -49,60 +65,55 @@ const Chats = ({idChat,nameChat}:{idChat:string,nameChat?:string})=>{
         if(inputRef.current.value  === ''){
             return
         }
-        try{
-                const send = await axios.post(`https://api.vecii.com.co/api/v1/chats/${useIdChat}/messages`,
-                    {
-                          "content":inputRef.current.value
-                    },{
-                        headers:{
-                            Authorization:`Bearer ${token}`
-                        }
-                    }
-                )
-                    getChat(useIdChat)
-                    inputRef.current.value = ''
-
-        }catch(err){
-            console.log(err)
-        }
+            newMessage(inputRef.current.value)
+            inputRef.current.value = ''
     }
+
     useEffect(()=>{
+        if(!idChat) return
+        getChat(idChat)
+        setIdChat(idChat)
+    },[])
+   const chatMessages= useChat.map(toMessage)
+   const currentChat = [...chatMessages,...(useMessage || [])]  
+    useEffect(()=>{
+        
       if (scrollRef.current) {
         scrollRef.current.scrollIntoView({ behavior: "auto" }) 
     }
-    },[useChat])
-    useEffect(()=>{
-        // const idChat = localStorage.getItem('idChatService')
-        if(!idChat) return
-        setIdChat(idChat)
-        getChat(idChat)
-    },[])
+    },[currentChat])
+    const styleHeader = goToBack ? 'container_chats_info_back' :'container_chats_info'
     return(
         <div className='container_chats'>
-                <div className='container_chats_info'>
-                    <div className='container_chats_info_img'>
+                <div className={styleHeader}>
+                    {goToBack ? 
+                        <button onClick={verifyHistory} className='container_chats_info_back_btn'>
+                            <img src="/assets/svg/arrow-left.svg" alt="Regresar" className='container_chats_info_back_img' />
+                        </button> : ''
+                    }                     
+                    <div className={ goToBack ?`container_chats_info_img_back`:'container_chats_info_img'}>
                         <img src="https://img.freepik.com/vector-gratis/vector-monocromo-coleccion-barberia-herramientas_1441-138.jpg"  />
                     </div>
-                  <p className='container_chats_info_paragraphe'>Sin nombre</p>
+                  <p className='container_chats_info_paragraphe'>{name}</p>
                 </div>
                 <div className='container_chats_gridConversation'>
-
-                    {  useChat ? 
+                    
+                    {   currentChat? 
                      
-                        useChat.map((x,k)=>{
-                          if(myId === x.sender.id){
+                        currentChat.map((x,k)=>{
+                          if(x.sender== email){
                             return <div key={k} className='container_chats_messages_mine'>
                                         <div className='container_chats_messages-message_mine'>
-                                            <p className='container_chats_messages-message_text'>{x.content}</p>
+                                            <p className='container_chats_messages-message_text'>{x.message}</p>
                                         </div>
-                                        <p className='container_chats_messages-message_time'>{changeTime(x.createdAt)}</p>
+                                        <p className='container_chats_messages-message_time'>{changeTime(x.createdAt || '')}</p>
                                     </div>
                           }else{
                             return  <div key={k} className='container_chats_messages_transmitter'>
                                         <div className='container_chats_messages-message_transmitter'>
-                                            <p className='container_chats_messages-message_text'>{x.content}</p>
+                                            <p className='container_chats_messages-message_text'>{x.message}</p>
                                         </div>
-                                    <p className='container_chats_messages-message_time'>{changeTime(x.createdAt)}</p>
+                                    <p className='container_chats_messages-message_time'>{changeTime(x.createdAt || '')}</p>
                                     </div>
                           }
                         }):
@@ -118,16 +129,16 @@ const Chats = ({idChat,nameChat}:{idChat:string,nameChat?:string})=>{
                         <div ref={scrollRef}></div>
                 </div>
                 <div className='container_chats_sendMessage'>
-
+                    <div className='container_chats_sendMessage_input' >
+                        <input ref={inputRef} type="text"  placeholder='¡Envia un mensaje!'/>
+                    </div>
+                    
                     <button className='container_chats_sendMessage_btn' onClick={()=>sendMessage()}>
                         <IconSvgGradient
                             urlImage='/assets/svg//plus-circle-fill.svg'
                             widthImg='10vw'
                         />
                     </button>
-                    <div className='container_chats_sendMessage_input' >
-                        <input ref={inputRef} type="text"  placeholder='¡Envia un mensaje!'/>
-                    </div>
                 </div>
             </div>
 

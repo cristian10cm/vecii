@@ -1,7 +1,6 @@
 'use client'
 import './index.css'
 import { useEffect,useState } from 'react'
-import FooterFantasma from '@/components/interfaces/footerFantasma/FooterFantasma';
 import VeciiHeader from '@/components/interfaces/VeciiHeader/VeciiHeader';
 import axios from 'axios';
 import Cookies from 'js-cookie';
@@ -62,6 +61,7 @@ const informationPQR = ()=>{
         <>
         <VeciiHeader
             srcImg='/assets/svg/mis servicios.svg'
+            transparent={false}
             name={useNamePQR}
         />
             <div className='container_grid_PQRSelected'>
@@ -92,7 +92,7 @@ const informationPQR = ()=>{
                 </div>
             </div>
             </div>
-        <FooterFantasma/>
+   
         </>
     )
 

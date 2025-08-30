@@ -1,0 +1,11 @@
+.backArrow_history{
+    position: absolute;
+    left: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.backArrow_history_icon{
+    width: clamp(30px,12vw,50px);
+}

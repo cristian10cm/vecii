@@ -1,40 +1,51 @@
 'use client'
 import VeciiHeaderImg from '@/components/interfaces/VeciiHeaderImg/VeciiHeaderImg';
 import './index.css';
-import FooterFantasma from '@/components/interfaces/footerFantasma/FooterFantasma';
 import SearchBar from '@/components/interfaces/SearchBar/SearchBar';
 import OptionChat from '@/components/interfaces/OptionChat/OptionChat';
 import { useSearchBar } from '@/components/stores/storeSearch';
-import { useEffect } from 'react';
+import { useEffect,useState } from 'react';
+import Cookies from 'js-cookie';
+import { apiDataFilter } from '@/components/stores/apiDataFilter';
+import NoApiData from '@/components/interfaces/NoApiData/NoApiData';
+import BtnSeeMore from '@/components/interfaces/BtnSeeMore/BtnSeeMore';
+import axios from 'axios';
 
+type typeChat = {
+createdAt: string
+description: string
+id: string
+name: (string)
+type: string
+}
 const Chat = () => {
-    const information = useSearchBar(); 
-    const {setInformation} = useSearchBar()
+    const {setInformation,barInformation} = useSearchBar()
+    const [useData,setData] = useState<typeChat[]>([])
+    const [seeMore,setMore] = useState<boolean>(false)
+    const getChats = async()=>{
+        try{
+            const peticion = await axios.get(`https://api.vecii.com.co/api/v1/chats`, {
+                headers:{
+                    Authorization:`Bearer ${Cookies.get('token')}`
+                }
+            })
+            setData(peticion.data)
+        }catch(err){
+          console.log(err)
+        }
+    }
     useEffect(()=>{
           setInformation({
             inputValue: ''
           })
+          getChats()
     },[])
-    const chats = 
-   [
-    {
-      "name": "Secretaria",
-      "imgChat": "https://www.aprender21.com/images/colaboradores/secretaria.webp"
-    },
-    {
-      "name": "Porteria",
-      "imgChat": "https://caracol.com.co/resizer/v2/DL2VAS7H3RBVBK6R5PGRJBWSBQ.jpg?auth=aa8931566e7863085856b3febcca0b54915ec46705ba33b4a8ccba6d5d1161aa&width=650&height=488&quality=70&smart=true"
-    },
-    {
-      "name": "Administración",
-      "imgChat": "https://www.shutterstock.com/image-photo/st-petersburg-russia-july-17-600nw-2492719799.jpg"
-    },
-    {
-      "name": "Tienda de verduras",
-      "imgChat": "https://plazadepaloquemao.com/wp-content/uploads/2021/01/84012-1.jpg"
-    }
-  ]
-    const data = chats.filter((e)=>e.name.toLowerCase().trim().includes((information?.information?.inputValue)?.toLocaleLowerCase().trim() || ''))
+    // function changeName<typeChat>(data:typeChat[], key :keyof typeChat ){
+    //     const nameSplit  = key.toString().split('-')[0]
+    //     const 
+    //     return nameSplit as keyof typeChat
+    // }
+    const dataChat = apiDataFilter(useData,'name',seeMore,barInformation?.inputValue || '' )
     return (
         <>
             <VeciiHeaderImg
@@ -46,27 +57,37 @@ const Chat = () => {
                 placeholder=''
             />
             <div className='container_chat_conversation'> 
-                    { data.length > 0 ? 
-                            data.map((info,k)=>(
-                                    <OptionChat
-                                        imgChat={info.imgChat}
-                                        nameChat={info.name}
-                                        key={k}                                    
-                                    />
-                            )):
-                            <OptionChat
-                                imgChat='https://upload.wikimedia.org/wikipedia/commons/a/a3/Image-not-found.png'
-                                nameChat='No encontrado'
+                    {
+                        useData.length>0 ? 
+                            dataChat.filterData.length >0?
+                            <>
+                                {
+                                    dataChat.filterData.map((x,k)=>(
+                                        <OptionChat
+                                             imgChat ={'https://cdn-icons-png.flaticon.com/512/12225/12225881.png'}
+                                             nameChat ={x.name.split(' -')[0] || 'Cargando'}
+                                             key={k}
+                                             idChat={x.id}
+                                        />
+                                ))
+                                }
+                                { dataChat.stateSeeMore ? <BtnSeeMore  enable={()=>setMore(true)} />:'' }
+                            </>    
                             
+                            :
+                            <OptionChat
+                                             imgChat ={'https://cdn-icons-png.flaticon.com/512/12225/12225881.png'}
+                                             nameChat ={'No encontrado'}
+                                             idChat=''
                             />
-                           
-
-                    } 
+                            
+                            :
+                            <NoApiData message='¡No tienes chats disponibles en este momento Vecii!'/>
+                    }
             </div>
 
 
-        
-            <FooterFantasma/>
+
         </>
     );
 };

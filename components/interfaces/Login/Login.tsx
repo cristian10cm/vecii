@@ -80,6 +80,7 @@ const Login = () => {
       });
       setHousing.getState().setInformation(response.data)
       if (response.status === 200) {
+        localStorage.clear()
         const { data } = response;
         const rolUser = data.roles?.[0]?.slug;
         const id = data.id;

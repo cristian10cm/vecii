@@ -2,7 +2,6 @@
 import VeciiHeader from '@/components/interfaces/VeciiHeader/VeciiHeader';
 import './index.css';
 import SearchBar from '@/components/interfaces/SearchBar/SearchBar';
-import FooterFantasma from '@/components/interfaces/footerFantasma/FooterFantasma';
 import PlacesComponents from '@/components/interfaces/PlacesComponents/PlacesComponents';
 import { useSearchBar } from '@/components/stores/storeSearch';
 import { useEffect, useState } from 'react';
@@ -101,7 +100,6 @@ const MisReservas = () => {
               
                }
             </div>
-            <FooterFantasma/>
         </>
     )
 

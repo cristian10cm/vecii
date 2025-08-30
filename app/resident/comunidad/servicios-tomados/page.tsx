@@ -1,7 +1,6 @@
 'use client'
 import './index.css'
 import VeciiHeaderImg from '@/components/interfaces/VeciiHeaderImg/VeciiHeaderImg'
-import FooterFantasma from '@/components/interfaces/footerFantasma/FooterFantasma'
 import { use, useEffect, useRef, useState } from 'react'
 import Chats from '@/components/interfaces/Chats/Chat'
 
@@ -24,14 +23,15 @@ const ServiciosTomados = () => {
                 detail='Conjunto nombre'
             />
            
-            {   useId? 
+            <div className='container_chat_communuty'>
+                  {   useId? 
                 <Chats
                 // nameChat = {useName || 'Cargando..'}
                 idChat={useId}
                 />:''
                 
             }
-            <FooterFantasma />
+            </div>
         </>
     )
 }
