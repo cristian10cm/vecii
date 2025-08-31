@@ -55,7 +55,7 @@ export const setHousing = create<updateApi>()(
         }),
         {
             name: 'Hounsing data', 
-            storage: createJSONStorage(() => sessionStorage),
+            storage: createJSONStorage(() => localStorage),
             partialize: (state) => ({
             information: {
             id:state.information?.id,

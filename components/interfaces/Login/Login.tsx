@@ -3,7 +3,7 @@ import './index.css';
 import { useEffect, useRef,useState } from 'react';
 import GoTo from '../../logics/GoTo';
 import { ToastContainer, toast } from 'react-toastify';
-import { FaEyeSlash,FaRegEye } from "react-icons/fa";
+import gsap from 'gsap';
 import 'react-toastify/dist/ReactToastify.css';
 import http from '@/components/services/http';
 import IconSvgGradient from '../IconSvgGradient/IconSvgGradient';
@@ -80,7 +80,6 @@ const Login = () => {
       });
       setHousing.getState().setInformation(response.data)
       if (response.status === 200) {
-        localStorage.clear()
         const { data } = response;
         const rolUser = data.roles?.[0]?.slug;
         const id = data.id;

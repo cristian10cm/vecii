@@ -7,9 +7,10 @@
   z-index: 2;
   display: flex;
   animation-fill-mode: forwards;
-  background-color: #000e;
+  background-color: var(--background-componet);
   align-items: center;
   justify-content: center;
+  backdrop-filter: blur(10px);
   flex-direction: column;
 }
 
@@ -17,6 +18,7 @@
   width: 90%;
   height: auto;
   border-radius: 25px;
+  background-color: var(--backgroundModal);
   border: 1px solid var(--blueVecii);
   animation: animationModal 0.5s;
   display: flex;
@@ -29,7 +31,7 @@
 .container_createService_form_label,
 .container_createService_form_input {
   font-size: 4.2vw;
-  border-radius: 25px;
+  border-radius: 10px;
 }
 
 .container_createService_form_label {
@@ -37,10 +39,10 @@
 }
 
 .container_createService_form_input {
-  background-color: var(--background-componets);
+  background-color: #fff;
   padding: 8px;
   border: none;
-  color: #fff;
+  color: #000;
 }
 
 .container_createService_form_input:focus {

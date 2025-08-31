@@ -29,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body>
-        <video className="background_video" src="/assets/video/backgroundVecii.mp4" autoPlay muted loop></video>
+        {/* <video className="background_video" src="/assets/video/backgroundVecii.mp4" autoPlay muted loop></video> */}
         <main className="main_vecii">
           <ToastContainer />
           {children}

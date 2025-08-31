@@ -1,6 +1,6 @@
 "use client";
 import './index.css'
-// import SearchBar from "@/components/interfaces/SearchBar/SearchBar";
+import SearchBar from "@/components/interfaces/SearchBar/SearchBar";
 import VeciiHeader from "@/components/interfaces/VeciiHeader/VeciiHeader";
 import VisitorRegistries from '@/components/interfaces/VisitorRegistries/VisitorRegistries';
 import { useEffect, useState } from "react";
@@ -8,13 +8,14 @@ import Cookies from 'js-cookie';
 import axios from 'axios';
 import { setHousing } from '@/components/stores/StoreHousing';
 import OpcionBox from '@/components/interfaces/OpcionBox/OpcionBox';
-// import { useSearchBar } from '@/components/stores/storeSearch';
+import { useSearchBar } from '@/components/stores/storeSearch';
 import { useFilterDate } from '@/components/stores/storeFilterDate';
 import LockerPublicService from '@/components/interfaces/LockerPublicService/LockerPublicService';
 import BtnSeeMore from '@/components/interfaces/BtnSeeMore/BtnSeeMore';
-import { apiDataFilterDate } from '@/components/stores/apiDataFilter';
+import { apiDataFilterDate,apiDataFilter } from '@/components/stores/apiDataFilter';
 import NoApiData from '@/components/interfaces/NoApiData/NoApiData';
 import FilterDate from '@/components/interfaces/FilterDate/FilterDate';
+import FooterFantasma from '@/components/interfaces/footerFantasma/FooterFantasma';
 type visitor ={
 departureDate: string ,
 entryDate: string,
@@ -37,7 +38,7 @@ type packages ={
 const Registry = () => {
     const [seeMore,setMore ]= useState<boolean>(false) 
      const [seeMoreP,setMoreP ]= useState<boolean>(false) 
-    // const {barInformation,setInformation} = useSearchBar()
+    const {barInformation,setInformation} = useSearchBar()
     const [useCont,setCont] = useState<number>(1)
     const {setMonth,currentMonth} = useFilterDate()
     const {information} = setHousing();
@@ -50,11 +51,13 @@ const Registry = () => {
         setMoreP(false)
         setCont(useCont+1)
     }
-   const visitante =  apiDataFilterDate(useData,'entryDate',currentMonth?.numberMont || 13,seeMore)
-   const paquetes = apiDataFilterDate(usePackages,'entrydate',currentMonth?.numberMont || 13,seeMoreP)
+   const dataVisitante =  apiDataFilterDate(useData,'entryDate',currentMonth?.numberMont || 13,seeMore)
+   const dataPaquetes = apiDataFilterDate(usePackages,'entrydate',currentMonth?.numberMont || 13,seeMoreP)
+   const visitante = apiDataFilter(dataVisitante.filtered,'visitor',seeMore,barInformation?.inputValue || '');
+   const paquetes = apiDataFilter(dataPaquetes.filtered,'description',seeMoreP,barInformation?.inputValue || '') 
     useEffect(() => {
     if (!information) return;
-      // setInformation({inputValue:''})
+      setInformation({inputValue:''})
     const peticion = async () => {
         try {
             const token = Cookies.get('token');
@@ -102,12 +105,16 @@ return (
                 name="Registros"
                 transparent = {false}
             />
+            <SearchBar placeholder=''></SearchBar>
             <OpcionBox
                 nameBox1='Visitante'
                 nameBox2='Objetos'
                 onClickDato={changeOption}
             />
-               <FilterDate onChangeOption={changeMore} key={useCont}  />
+               <div className='containerGrid_registries_filter'>
+          
+                  <FilterDate onChangeOption={changeMore} key={useCont}  />
+               </div>
  
                {
   useBoton ? (
@@ -193,7 +200,7 @@ return (
     </div>
   )
 }
-
+    <FooterFantasma/>
         </>
     )
 

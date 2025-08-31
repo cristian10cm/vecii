@@ -1,6 +1,6 @@
 .veciiHeaderImg_container{
     height: 20vh;
-    min-height: 150px;
+    min-height: 130px;
     width: 100%;
     display: flex;
     justify-content: start;
@@ -47,12 +47,12 @@
 }
 
 .veciiHeaderImg_container_nameComponet{
-    font-size: 7vw;
+    font-size: clamp(18px,6.7vw,28px);
     color: white;
     font-weight: 600;
 }
 
 .veciiHeaderImg_container_detailComponent{
     color: rgb(197, 197, 197);
-    font-weight: 4.5;
+    font-size: clamp(16px,4.3vw,25px);
 }

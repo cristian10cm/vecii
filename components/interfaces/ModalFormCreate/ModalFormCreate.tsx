@@ -90,7 +90,6 @@ return(
             <input
             name="precio"
             type="number"
-
             className="container_createService_form_input"
             placeholder="Precio del servicio"
           />

@@ -1,24 +1,24 @@
 'use client'
-
-import PaymentAdmin from '@/components/interfaces/PaymentAdmin/PaymentAdmin';
 import './index.css';
+import SearchBar from '@/components/interfaces/SearchBar/SearchBar';
 import VeciiHeaderImg from '@/components/interfaces/VeciiHeaderImg/VeciiHeaderImg';
 import OpcionBox from '@/components/interfaces/OpcionBox/OpcionBox';
+import { useSearchBar } from '@/components/stores/storeSearch';
 import PaymentService from '@/components/interfaces/PaymentService/PaymentService';
 import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
-import { adminType } from '.';
+import { adminType,apiDataFilter } from '.';
 import axios from 'axios';
 import BtnSeeMore from '@/components/interfaces/BtnSeeMore/BtnSeeMore';
 import NoApiData from '@/components/interfaces/NoApiData/NoApiData';
 import { apiDataFilterDate } from '@/components/stores/apiDataFilter';
 import FilterDate from '@/components/interfaces/FilterDate/FilterDate';
 import { useFilterDate } from '@/components/stores/storeFilterDate';
-
+import FooterFantasma from '@/components/interfaces/footerFantasma/FooterFantasma';
 const PagosAdministracion = () => {
   const [useData, setData] = useState<adminType[]>([]);
   const { setMonth, currentMonth } = useFilterDate();
-
+  const {setInformation,barInformation} = useSearchBar()
   const [seeMore1, setMore1] = useState<boolean>(false);
   const [seeMore2, setMore2] = useState<boolean>(false);
   const [useCont, setCont] = useState<number>(1);
@@ -42,13 +42,18 @@ const PagosAdministracion = () => {
         },
       });
       setData(peticion.data.results);
+      console.log(peticion.data.results[0].dueDate.toString())
     } catch (err) {
       console.log(err);
     }
   };
 
   useEffect(() => {
+    setInformation({
+      inputValue:''
+    })
     getAdmin();
+    
   }, []);
 
   const changeMore = (data: boolean) => {
@@ -56,19 +61,22 @@ const PagosAdministracion = () => {
     setMore2(data);
   };
 
-  const invoicesPaid = apiDataFilterDate(
+  const dataInvoicesPaid = apiDataFilterDate(
     useData.filter((x) => x.status === 'paid'),
     'dueDate',
     currentMonth?.numberMont || 13,
     seeMore1
   );
 
-  const invoicesNoPaid = apiDataFilterDate(
+  const dataInvoicesNoPaid = apiDataFilterDate(
     useData.filter((x) => x.status === 'pending'),
     'dueDate',
     currentMonth?.numberMont || 13,
     seeMore2
   );
+  const invoicesPaid = apiDataFilter(dataInvoicesPaid.filtered,'dueDate',seeMore1,barInformation?.inputValue || '')
+  const  invoicesNoPaid = apiDataFilter(dataInvoicesNoPaid.filtered,'dueDate',seeMore2,barInformation?.inputValue || '')
+
 
   return (
     <>
@@ -83,8 +91,10 @@ const PagosAdministracion = () => {
         nameBox2='Sin Pagar'
         onClickDato={changeOption}
       />
-
-      <FilterDate onChangeOption={changeMore} key={useCont} />
+      <SearchBar placeholder=''  />
+      <div className='grid_admin_filter'>
+        <FilterDate onChangeOption={changeMore} key={useCont} />
+      </div>
 
       {!useBoton ? (
         <div className='grid_admin_payment'>
@@ -161,7 +171,7 @@ const PagosAdministracion = () => {
           )}
         </div>
       )}
-
+    <FooterFantasma></FooterFantasma>
     </>
   );
 };

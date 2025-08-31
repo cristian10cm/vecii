@@ -10,7 +10,7 @@ import { apiDataFilter } from '@/components/stores/apiDataFilter';
 import NoApiData from '@/components/interfaces/NoApiData/NoApiData';
 import BtnSeeMore from '@/components/interfaces/BtnSeeMore/BtnSeeMore';
 import axios from 'axios';
-
+import FooterFantasma from '@/components/interfaces/footerFantasma/FooterFantasma';
 type typeChat = {
 createdAt: string
 description: string
@@ -86,7 +86,7 @@ const Chat = () => {
                     }
             </div>
 
-
+    <FooterFantasma/>
 
         </>
     );

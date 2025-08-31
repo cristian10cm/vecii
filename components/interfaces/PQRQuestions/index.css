@@ -58,12 +58,16 @@
   color: transparent; */
 /* } */
 .Pqr_question_paragraph{
-    display: flex;
-    align-items: center;
-    font-size: 3.2vw;
-    height: 90%;
-    text-align:start;
-    text-wrap: balance;
-    overflow: hidden;
+    font-size: clamp(10px,3.3vw,18px);
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-wrap: balance;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 

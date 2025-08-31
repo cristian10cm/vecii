@@ -43,7 +43,7 @@ const PaymentService =({month,precie,statePayment,date,contentTextTrue,contentTe
         <div className='ContainerPaymentsServices'>
             <div className='ContainerPaymentServices_items'>
                 <div className='ContainerPaymentServices_info'>
-                        <p className='ContainerPaymentServices_month'>{toMonth(month)}</p>
+                        <p className='ContainerPaymentServices_month'>{toMonth(month) || 'Factura no encontrada'}</p>
                         <p className={statePayment?'ContainerPaymentServices_precie':'ContainerPaymentServices_precieFalse'}>${precie}</p>
                 </div>
                 <div className='ContainerPaymentServices_paymentState'>

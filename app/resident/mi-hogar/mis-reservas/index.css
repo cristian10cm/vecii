@@ -68,3 +68,9 @@
   justify-content: center;
   gap: 5px;
 }
+.container_reservePlaces_filter{
+    display: flex;
+    width: 95%;
+    margin:10px auto;
+    align-items: center;
+}

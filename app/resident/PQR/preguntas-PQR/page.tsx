@@ -20,7 +20,8 @@ interface PreguntaPQR {
 }
 
 const PreguntasVecii = ({nameSection}:{nameSection:string})=>{
-        const [seeMore,setMore ]= useState<boolean>(false) 
+     const nameComplex = setHousing().information?.location.complex.name || ''
+    const [seeMore,setMore ]= useState<boolean>(false) 
     const {setInformation,barInformation} = useSearchBar()
     const [useInfo, setInfo] = useState<PreguntaPQR[]>([])
     const {information} = setHousing() ;
@@ -59,7 +60,7 @@ const PreguntasVecii = ({nameSection}:{nameSection:string})=>{
             <VeciiHeaderImg 
                 srcImg='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTq8AnyLfZx3k_xAlg5BC8mmNdzQl3DlqhPOCDHeEtLN9zIE51pPQtg7xSeTNAkXJUQDN8&usqp=CAU'
                 name='PQR'
-                detail='Conjunto de madelena'
+                detail={nameComplex}
             />
             <SearchBar
                 placeholder=''

@@ -44,8 +44,8 @@ const OptionChat  = ({imgChat,idChat, nameChat}:{imgChat:string, nameChat:string
     }
         const goToChat = ()=>{
             goToPath({path:'/resident/chat/ver-chat/'})
-            localStorage.setItem('idCurrentChat',idChat)
-            localStorage.setItem('nameChatService',nameChat)
+            localStorage.setItem('idChatSelected',idChat)
+            localStorage.setItem('nameChatSelected',nameChat)
         } 
         useEffect(()=>{
             if(!idChat) return
@@ -65,7 +65,7 @@ const OptionChat  = ({imgChat,idChat, nameChat}:{imgChat:string, nameChat:string
                         <p className='container_optionChat_paragraphe'>{nameChat}</p>
                         <p className='container_optionChat_description'>{
                             sender === email ?
-                            content: `Tu: ${content}`
+                            content: `${content}`
                         }</p>
                     </div>
                     <img src='/assets/svg/arrowIcon.svg' className='container_optionChat_btn' onClick={goToChat} />

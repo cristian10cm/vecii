@@ -5,7 +5,7 @@ import UserInfo from '@/components/interfaces/UserInfo/UserInfo';
 import VehicleComponent from '@/components/interfaces/VehicleComponent/VehicleComponent';
 import PetsInfo from '@/components/interfaces/PetsInfo/PetsInfo';
 import { useRef } from 'react';
-
+import FooterFantasma from '@/components/interfaces/footerFantasma/FooterFantasma';
 const MisDatos = () => {
     const PlacaAuto = useRef<HTMLInputElement>(null)
     const bahia = useRef<HTMLInputElement>(null)
@@ -41,7 +41,7 @@ const MisDatos = () => {
                 />
             </div>
             <PetsInfo/>
-           
+           <FooterFantasma/>
         </>
     )
 };

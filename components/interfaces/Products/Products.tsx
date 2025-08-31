@@ -6,7 +6,7 @@ import { useCartStore } from '@/components/stores/storeShoppingCart';
 import { useEffect } from 'react';
 import { IoAddCircleOutline,IoTrashSharp  } from "react-icons/io5";
 import { IoIosRemoveCircleOutline } from "react-icons/io";
-
+import { useOrderFood } from '@/components/stores/storePedido';
 type typeProduct = {
     nameP : string,
     idP : string,
@@ -14,8 +14,9 @@ type typeProduct = {
     price:number
 }
 const Products = ({nameP,idP,imgP,price}:typeProduct)=>{
-    const { buyProduct, addProduct, removeProduct,cont } = useCartStore()
-
+    const store = useOrderFood().information?.nameFoodStore
+    const { buyProduct, addProduct, removeProduct,cont } = useCartStore(store || '')()
+    const formatoMoneda = new Intl.NumberFormat('es-ES', {});
     const addCartS = ()=>{
         addProduct({nameProduct:nameP,priceProduct:price,unid:1})
     }
@@ -28,7 +29,7 @@ const Products = ({nameP,idP,imgP,price}:typeProduct)=>{
            <div className='productStore_container_items'>
                 <div className='productStore_container_items_info'>
                       <p className='productStore_container_nameP'>{nameP}</p>
-                        <p className='productStore_container_price'>{price}</p>
+                        <p className='productStore_container_price'>${formatoMoneda.format(price)}</p>
                 </div>
             {   
                 products && products.unid>0?
@@ -36,12 +37,12 @@ const Products = ({nameP,idP,imgP,price}:typeProduct)=>{
                      <button className='productStore_container_btn' onClick={()=>removeProduct(nameP)}>
                         {
                             products.unid>1 ?
-                               <img src="/assets/svg/minus-circle-bold.svg" alt="Eliminar de la compra" /> :
+                               <img src="/assets/svg/minus-circle.svg" alt="Eliminar de la compra" /> :
                                 <img src="/assets/svg/trash.svg" alt="Eliminar de la compra" />
                         }
 
                      </button>
-                     <p> unid. {products?.unid}</p>
+                     <p><span className='productStore_container_unid'>{products?.unid}</span> unid.</p>
                      <button className='productStore_container_btn' onClick={addCartS}>
                         <img src="/assets/svg/plus-circle.svg" alt="añadir producto" />
                      </button>

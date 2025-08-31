@@ -8,6 +8,7 @@
     border-radius: 25px 25px 10px 10px;
     background-color: var(--background-componets);
     backdrop-filter: blur(4px);
+    animation: animationStore .3s;
 }
 .container_infoStore_food{
   width: 100%;
@@ -70,4 +71,14 @@ overflow: hidden;
 }
 .container_infoStore_items_btn:focus{
     outline:  transparent;
+}
+@keyframes animationStore {
+    0% {
+        opacity: 0;
+        scale: 0.9;
+    }
+    100% {
+        scale: 1;
+        opacity: 1;
+    }
 }

@@ -1,20 +1,25 @@
 .container_grid_filterDate{
     display: flex;   
-    width: 90%;
-    margin: 20px auto 0;
-    gap: 10px;
-    
-    justify-content: end;
+    width: 100%;
+    /* margin: 15px auto 0; */
+    gap: 2vw;
+    height: fit-content;
+    /* justify-content: end; */
+
+    align-items: center;
 }
 .container_grid_filterDate_paragraphe{
-    color: #fff;
-    font-weight: bold;
-    font-size: 3.8vw;
+    color: #aaa;
+    font-size: clamp(12px, 3.5vw, 16px);
 }
 .container_grid_filterDate_option {
-    font-size: 3.5vw;
+    color: #000;
+    font-size: clamp(11px, 3.3vw, 16px);
     border-radius: 7px;
 }
 .container_grid_filterDate_option:focus{
     outline: none;
+}
+.left_date{
+     justify-content: start;
 }

@@ -5,13 +5,16 @@ import { useEffect,useState } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { setHousing } from '@/components/stores/StoreHousing';
-import { apiDataFilterDate } from '@/components/stores/apiDataFilter';
+import { apiDataFilterDate,apiDataFilter } from '@/components/stores/apiDataFilter';
 import NoApiData from '@/components/interfaces/NoApiData/NoApiData';
 import BtnSeeMore from '@/components/interfaces/BtnSeeMore/BtnSeeMore';
 import VisitorRegistries from '@/components/interfaces/VisitorRegistries/VisitorRegistries';
 import { useFilterDate } from '@/components/stores/storeFilterDate';
 import FilterDate from '@/components/interfaces/FilterDate/FilterDate';
-
+import FooterFantasma from '@/components/interfaces/footerFantasma/FooterFantasma';
+import { useSearchBar } from '@/components/stores/storeSearch';
+import SearchBar from '@/components/interfaces/SearchBar/SearchBar';
+import BtnAdd from '@/components/interfaces/BtnAdd/BtnAdd';
 type visitor ={
   departureDate: string ,
   entryDate: string,
@@ -27,7 +30,7 @@ const MisVisitas =()=>{
   const [useData,setData] = useState<visitor[]>([])
   const { currentMonth } = useFilterDate() 
   const [useCont,setCont] = useState<number>(1)
-
+  const {setInformation,barInformation} = useSearchBar()
   const peticion = async () => {
     try {
       const token = Cookies.get('token');
@@ -48,18 +51,21 @@ const MisVisitas =()=>{
   };
    
   useEffect(()=>{
+    setInformation({
+      inputValue : ''
+    })
     if(!information.information?.location.housing.id) return
     peticion()
   },[information])
 
 
-  const datosVisitante = apiDataFilterDate(
+  const datos = apiDataFilterDate(
     useData,
     'entryDate',
     currentMonth?.numberMont || 13,
     seeMore
   )
-
+  const datosVisitante = apiDataFilter(datos.filtered,'visitor',seeMore,barInformation?.inputValue || '')
   const changeMore =(data:boolean)=>{
     setMore(data)
     
@@ -72,8 +78,11 @@ const MisVisitas =()=>{
         name= 'Mis visitas'
         transparent={false}
       />
-
-      <FilterDate onChangeOption={changeMore} key={useCont} />
+      <SearchBar placeholder=''/>
+      <div className='container_myVisitors_filter'>
+        <FilterDate onChangeOption={changeMore} key={useCont} />
+        <BtnAdd urlPage='/resident/ingreso/nuevo-visitante' nameAdd='Agregar visitante'/>
+      </div>
 
       <div className='container_myVisitors'>
         {
@@ -108,7 +117,7 @@ const MisVisitas =()=>{
           )
         }
       </div>
-
+    <FooterFantasma/>
 
     </>
   )

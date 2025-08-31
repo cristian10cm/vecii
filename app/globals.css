@@ -7,7 +7,7 @@
   --fontColorGradient : linear-gradient(275deg, blueViolet, cyan, blueViolet,cyan);
   --backgroundBlur: #ebf3ff10;
   --backgroundBlurComps: #1b202b7c;
-
+  --backgroundModal:#1E2229dd
 }
 
 * {
@@ -19,7 +19,11 @@
 
 body {
   width: 100%;
-
+ background-image: 
+    linear-gradient(#0008, #0008),
+    url('/assets/video/backgroundVeciiGif.gif');
+  background-size: cover;
+  background-attachment: fixed;
   height: 100dvh;
   display: flex;
   justify-content: center;
@@ -36,8 +40,8 @@ body {
   height: 100dvh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  /* justify-content: center;
+  align-items: center; */
   position: relative;
   
 }
@@ -65,7 +69,7 @@ body {
   width: 100%;
   height: 10vh;
   background-color: var(--backgrounColor);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(20px);
   border-radius: 10px 10px 0 0;
   /* border-top:1.5px  solid var(--blueVecii); */
    /* border-top:2px  solid #fff; */

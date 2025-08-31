@@ -15,11 +15,14 @@ import { useStateForm } from '@/components/stores/storeFormUpdate';
 import BtnSeeMore from '@/components/interfaces/BtnSeeMore/BtnSeeMore';
 import { apiDataFilter } from '@/components/stores/apiDataFilter';
 import NoApiData from '@/components/interfaces/NoApiData/NoApiData';
+import FooterFantasma from '@/components/interfaces/footerFantasma/FooterFantasma';
 import IconSvgGradient from '@/components/interfaces/IconSvgGradient/IconSvgGradient';
+
 const quejasReclamos = () => {
   const { setInformation,barInformation } = useSearchBar();
   const [useInfo, setInfo] = useState<typesPQ[]>([]);
-      const [seeMore,setMore ]= useState<boolean>(false) 
+  const [seeMore,setMore ]= useState<boolean>(false) 
+  const nameComplex = setHousing().information?.location.complex.name || ''
   const { information } = setHousing();
   const [idPQR, setIdPQR] = useState('');
   const [nombreType, setNombreType] = useState('');
@@ -41,8 +44,10 @@ const quejasReclamos = () => {
 
     const storedId = localStorage.getItem('idPQR');
     const storedName = localStorage.getItem('idNamePQR');
-    if (storedId) setIdPQR(storedId);
-    if (storedName) setNombreType(storedName);
+    if (!storedId) return
+      setIdPQR(storedId);
+    if (!storedName)  return
+      setNombreType(storedName);
     console.log(localStorage.getItem('idType'));
 
     const peticionQR = async () => {
@@ -76,7 +81,7 @@ const quejasReclamos = () => {
       <VeciiHeaderImg
         srcImg="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTq8AnyLfZx3k_xAlg5BC8mmNdzQl3DlqhPOCDHeEtLN9zIE51pPQtg7xSeTNAkXJUQDN8&usqp=CAU"
         name="PQR"
-        detail="Conjunto de madelena"
+        detail={nameComplex}
       />
         <SearchBar placeholder="" />
     
@@ -96,7 +101,7 @@ const quejasReclamos = () => {
               <button className="container_quejasReclamos_add" onClick={openForm}>
                 <IconSvgGradient 
                   urlImage='/assets/svg/plus-circle-fill.svg'
-                  widthImg='7vw'
+                  widthImg='clamp(22px,7vw,32px)'
                 />
               </button>
            </div>
@@ -136,7 +141,7 @@ const quejasReclamos = () => {
           <FormModal typePQR={idPQR} nameType={nombreType} />
         )}
       </div>
-   
+   <FooterFantasma/>
     </>
   );
 };

@@ -1,3 +1,4 @@
+import IconSvgGradient from '../IconSvgGradient/IconSvgGradient';
 import './index.css';
 
 type DirectoryEmergencyPhoneProps = {
@@ -12,6 +13,7 @@ const DirectoryEmergencyPhone = ({ srcImg, name, number }: DirectoryEmergencyPho
         <div className='container_directoryNumber'>
             <div className='container_directoryNumber_icons'>
                 <img src={srcImg} className='container_directoryNumber_img'></img>
+                {/* <IconSvgGradient urlImage={srcImg} widthImg=''/> */}
                 <p className='container_directoryNumber_namedirectory'>{name}</p>
             </div>
             <a className='container_directoryNumber_number' href="tel:">

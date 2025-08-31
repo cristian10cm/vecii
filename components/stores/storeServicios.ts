@@ -2,12 +2,11 @@ import {create} from 'zustand';
 import { persist,createJSONStorage } from 'zustand/middleware';
 
 export interface PayServices{
-    userName?: string,
     servicio: string,
-    pagado:boolean,
+    state:boolean,
     imgSrcServices: string,
-
-    precieService?:string
+    date:string;
+    pickUp:boolean
 }
 type AuthService = {
     services: PayServices | null

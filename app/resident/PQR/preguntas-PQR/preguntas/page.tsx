@@ -5,10 +5,11 @@ import FooterFantasma from '@/components/interfaces/footerFantasma/FooterFantasm
 import { BsPatchQuestion } from "react-icons/bs";
 import axios from 'axios';
 import { useEffect,useState } from 'react';
-
+import { setHousing } from '@/components/stores/StoreHousing';
 const Preguntas = ()=>{
     const [useAnswer,setAnswer] = useState<string>()
     const [useQuestion,setQuestion] = useState<string>()
+     const nameComplex = setHousing().information?.location.complex.name || ''
     useEffect(()=>{
            const answer = localStorage.getItem('answerPQR')
            const question = localStorage.getItem('questionPQR')
@@ -21,7 +22,7 @@ const Preguntas = ()=>{
           <VeciiHeaderImg 
                 srcImg='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTq8AnyLfZx3k_xAlg5BC8mmNdzQl3DlqhPOCDHeEtLN9zIE51pPQtg7xSeTNAkXJUQDN8&usqp=CAU'
                 name='PQR (Preguntas Vecii)'
-                detail='Conjunto de madelena'
+                detail={nameComplex}
             />
 
             <div className='container_questionPQR'>

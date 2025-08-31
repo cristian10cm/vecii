@@ -3,7 +3,7 @@ import './index.css'
 import VeciiHeaderImg from '@/components/interfaces/VeciiHeaderImg/VeciiHeaderImg'
 import { use, useEffect, useRef, useState } from 'react'
 import Chats from '@/components/interfaces/Chats/Chat'
-
+import FooterFantasma from '@/components/interfaces/footerFantasma/FooterFantasma';
 const ServiciosTomados = () => {
     const [useId,setId] = useState<string>()
     const [useName,setName] = useState<string>()
@@ -32,6 +32,7 @@ const ServiciosTomados = () => {
                 
             }
             </div>
+            <FooterFantasma/>
         </>
     )
 }

@@ -14,6 +14,7 @@ const ComunityService = ({imgServicio,nameServicio,precioServicio,idChat,pathSer
         localStorage.setItem('nameChatService',nameChatService)
         goToPath({path:pathService})
     }
+    const formatoMoneda = new Intl.NumberFormat('es-ES', {});
     return(
         <div className='container_servicio' >
             <div className='container_servicio_img'>
@@ -21,7 +22,7 @@ const ComunityService = ({imgServicio,nameServicio,precioServicio,idChat,pathSer
             </div>
             <div className='container_servicio_info'>
                 <p className='container_servicio_paragraphe'>{nameServicio}</p>
-                <p className='container_servicio_precio'>Desde COOP $ {precioServicio}</p>
+                <p className='container_servicio_precio'>Desde ${formatoMoneda.format(Number(precioServicio))}</p>
             </div>
 
             {

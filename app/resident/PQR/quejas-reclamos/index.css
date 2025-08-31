@@ -19,10 +19,13 @@
 }
 .container_quejasReclamos_sectionTitle_title{
     padding: 5px 30px;
-    border: 1px solid var(--blueVecii);
-    font-size: 5vw;
+    border: 1px solid #fff;
+    background:linear-gradient( 90deg, #a141e0ff, #49ebd5ff);
+    background-clip: text;
+    color: transparent;
+    font-size:clamp(18px,5vw,28px);
     border-radius: 25px;
-    color: var(--blueVecii);
+  
 }
 .container_quejasReclamos_items{
     width: 100%;
@@ -52,7 +55,7 @@
 }
 .container_quejasReclamos_add {
     border: none;
-    font-size: 7vw;
+    font-size:clamp(22px,7vw,32px);
     color: var(--blueVecii);
     background-color: transparent;
     height: fit-content;
@@ -61,15 +64,9 @@
 }
 
 .container_quejasReclamos_paragraphe{
-    font-size: 3.5vw;
+  font-size: clamp(12px, 3.5vw, 16px);
     color: #aaa;
 
 }
 
-.grid_quejasReclamos_void {
-    width: 100%;
-    color: #fff;
-    padding: 20px;
-    font-size: 5vw;
-    text-align: center;
-}
+

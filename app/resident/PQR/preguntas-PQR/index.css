@@ -17,14 +17,17 @@
 .container_pqr_sectionTitle-line{
     height: 1px;
     width: 40%;
-    background-color: #aaa;
+    background-color: #fff;
 }
 .container_pqr_sectionTitle_title{
-    padding: 5px 10px;
-    border: 1px solid var(--blueVecii);
-    font-size: 5vw;
+     padding: 5px 30px;
+    border: 1px solid #fff;
+    background:linear-gradient( 90deg, #a141e0ff, #49ebd5ff);
+    background-clip: text;
+    color: transparent;
+    font-size:clamp(18px,5vw,28px);
     border-radius: 25px;
-    color: var(--blueVecii);
+    
 }
 .container_pqr_questions{
     width: 100%;

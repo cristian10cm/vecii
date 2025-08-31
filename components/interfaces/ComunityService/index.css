@@ -61,7 +61,7 @@
 .container_servicio_precio,
 .container_servicio_description {
     color: #aaa;
-    font-size: 3.5vw;
+    font-size: clamp(12px,4vw,18px);
       overflow: hidden;
     text-overflow: ellipsis;
 }   
@@ -77,7 +77,7 @@
 
 .container_servicio_paragraphe {
     color: #fff;
-    font-weight: bold;
+
     font-size: clamp(12px,4vw,18px);
     overflow: hidden;
     text-overflow: ellipsis;

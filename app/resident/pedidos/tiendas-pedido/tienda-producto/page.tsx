@@ -15,6 +15,8 @@ import { apiDataFilter } from '@/components/stores/apiDataFilter';
 import NoApiData from '@/components/interfaces/NoApiData/NoApiData';
 import BtnSeeMore from '@/components/interfaces/BtnSeeMore/BtnSeeMore';
 import { useCartStore } from '@/components/stores/storeShoppingCart';
+import FooterFantasma from '@/components/interfaces/footerFantasma/FooterFantasma';
+import ShoppingCar from '@/components/interfaces/ShoppingCar/ShoppingCar';
 interface producto{
     createdAt:string ,
     id:string ,
@@ -26,7 +28,8 @@ const productos = ()=>{
     const [useProduct,setProduct] = useState<producto []>([]);
     const dataStore = useOrderFood()
     const [useNameC,setNameC] = useState<string>('')
-      const { buyProduct,cont,resetCart  } = useCartStore()
+    const myStore = useCartStore(dataStore.information?.nameFoodStore || '')
+    const { buyProduct,cont,resetCart  } = myStore()
     const [seeMore,setMore] = useState<boolean>(false)
     const [useId,setId] = useState<string>()
     const [useCont,setCont] = useState<number>(0)
@@ -53,7 +56,6 @@ const productos = ()=>{
 
 
     useEffect(()=>{
-        resetCart()
         setInformation({
             inputValue:''
         })
@@ -63,7 +65,7 @@ const productos = ()=>{
          if(!nameCatalogo) return
          setNameC(nameCatalogo)
          setId(idCatalogo)
-        miPeticion(idCatalogo)
+         miPeticion(idCatalogo)
         
     },[useId])
     const closeModal = (data:boolean)=>{
@@ -83,7 +85,6 @@ const productos = ()=>{
             />
             <div className='products_container_main'>
                 <p className='products_list_container_title'>Productos</p>
-                {/* <p className='products_list_container_name-catalog'>{useNameC || 'Cargando..'}:</p> */}
             </div>
             <div className='products_list_container'>
                 {   useProduct.length>0 ? 
@@ -116,23 +117,14 @@ const productos = ()=>{
                     <NoApiData message='No hay productos disponibles'/>
                 }
             </div>
-            <div className='shopping_cart'>
-                <button onClick={()=>setModal(true)}>
-                    {/* <IconSvgGradient
-                        urlImage='/assets/svg/shopping-cart-bold.svg'
-                        widthImg='clamp(35px,15vw,50px)' 
-                    /> */}
-                    <img src="/assets/svg/shopping-cart-simple-bold.svg" alt="Icono carro de mercado" />
-                </button>
-                {cont>0?
-                    <div className='shopping_cart_cont'>{cont}</div>:''    
-            }
+            <div className='product_shopping_cart'>
+                 <ShoppingCar nameStore={dataStore.information?.nameFoodStore || ''} activeModal={closeModal}/>
             </div>
             {
                 useModal ? 
-                <ModalShoppingCart onClose={closeModal}></ModalShoppingCart>:''
+                <ModalShoppingCart nameStore={dataStore.information?.nameFoodStore || ''} onClose={closeModal}></ModalShoppingCart>:''
             }
-            
+            <FooterFantasma/>
         </>
     )
 }

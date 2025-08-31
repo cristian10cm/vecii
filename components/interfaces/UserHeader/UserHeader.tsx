@@ -7,9 +7,9 @@ import GoTo from '@/components/logics/GoTo';
 import Cookies from 'js-cookie';
 const UserHeader = ({srcImg, userName , complexName , deatilsComplex}: {
         srcImg:string, 
-        userName:string , 
-        complexName:string , 
-        deatilsComplex:string
+        userName?:string , 
+        complexName?:string , 
+        deatilsComplex?:string
 }) =>{  
     const goToPath = GoTo()
     const {information} = setHousing()

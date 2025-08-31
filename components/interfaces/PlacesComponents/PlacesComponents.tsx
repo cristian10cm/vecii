@@ -38,6 +38,7 @@ const PlacesComponents = ({idPlace,pathPlace,stateOpcion,namePlace,datePlace,sta
         }
       )
       setPlace(peticion.data)
+     
     } catch (error) {
       console.log(error)
     }
@@ -55,14 +56,12 @@ const PlacesComponents = ({idPlace,pathPlace,stateOpcion,namePlace,datePlace,sta
   useEffect(() => {
    
     if (!usePlace) return
-    // resetTimes()
-    // setTimesReserved({ timesReserved: {} })
     localStorage.setItem("namePlaceReserved", usePlace.name)
     console.log(usePlace.name)
     console.log(usePlace.availability)
     localStorage.setItem("idZonaComun", usePlace.id)
   }, [usePlace])
-
+const formatoMoneda = new Intl.NumberFormat('es-ES', {});
   const getDate = (availability: Partial<Record<dias, TimeRange>>): string | null => {
     if (!availability) return null
     const today = new Date().getDay()
@@ -109,7 +108,7 @@ const PlacesComponents = ({idPlace,pathPlace,stateOpcion,namePlace,datePlace,sta
               dataTrue='Tiene costo'
               dataFalse='Sin costo'
             />
-            <p className='container_places_price'>${usePlace?.hourlyRate}</p>
+            <p className='container_places_price'>${formatoMoneda.format(Number(usePlace?.hourlyRate))}</p>
           </div>
         </div>:
         <div className='container_places'> 
@@ -120,8 +119,8 @@ const PlacesComponents = ({idPlace,pathPlace,stateOpcion,namePlace,datePlace,sta
           <div className='container_places-status'>
             <StateComponent
               statusComp={statePlace}
-              dataTrue='Completado'
-              dataFalse='Pendiente'
+              dataTrue='Aprobado'
+              dataFalse='No aprobado'
             />
           </div>
         </div>

@@ -6,8 +6,11 @@ import RestaurantStore from '@/components/interfaces/RestaurantStore/RestaurantS
 import { useSearchBar } from '@/components/stores/storeSearch';
 import BackArrow from '@/components/interfaces/VeciiHeader/subComponents/BackArrow/BackArrow';
 import { useEffect, useState } from 'react';
+import ModalShoppingCart from '@/components/interfaces/ModalShoppingCart/ModalShoppingCart';
 import SearchBar from '@/components/interfaces/SearchBar/SearchBar';
 import Cookies from 'js-cookie';
+import ShoppingCar from '@/components/interfaces/ShoppingCar/ShoppingCar';
+import FooterFantasma from '@/components/interfaces/footerFantasma/FooterFantasma';
 import axios from 'axios';
 import NoApiData from '@/components/interfaces/NoApiData/NoApiData';
 interface catalogo{
@@ -19,10 +22,11 @@ interface catalogo{
 const tiendasPedido =()=>{
     const [useCatalogo,setCatalogo]  = useState<catalogo[]>([])
     const store = useOrderFood()
+    const [useModal,setModal] = useState<boolean>(false)
     const searchBar = useSearchBar().barInformation?.inputValue
     const {setInformation} = useSearchBar()
     const id = store.information?.id
-    
+    const nameStore = store.information?.nameFoodStore || ''
      const peticion = async ()=>{
             try{
                 const peticion = await axios.get('https://api.vecii.com.co/api/v1/catalogs',
@@ -50,16 +54,21 @@ const tiendasPedido =()=>{
         if(!id) return
         peticion()
     },[id])
+    const closeModal = (data:boolean)=>{
+            setModal(data)
+    }
     const data = useCatalogo.filter((x)=>x.name.toLowerCase().includes(searchBar?.toLowerCase().trim() || ''))
     return(
         <>
-
 
             <div className='container_shopping'>
                 
                     <div className='container_shopping_head'>
                         <BackArrow></BackArrow>
                         <h2 className='container_shopping_title'>{store.information?.nameFoodStore}</h2>
+                        <div className='container_shopping_car'>
+                            <ShoppingCar activeModal={closeModal} nameStore={nameStore} />
+                        </div>
                     </div>
                     <div className='container_shopping_line'></div>
                     <img className='container_shopping_logo' src={store.information?.imgStoreFood} alt="Logo de la tienda" />
@@ -100,13 +109,14 @@ const tiendasPedido =()=>{
                         />
                     :<NoApiData message='La tienda aun no tiene catalogos creados por el momento Vecii'/>
                }
-            </div>    
-                </div>
+                </div>    
+             </div>
+                {
+                 useModal ? 
+                  <ModalShoppingCart nameStore={nameStore} onClose={closeModal}></ModalShoppingCart>:''
+                 }
             </div>
-            
-
-      
-        
+            <FooterFantasma></FooterFantasma>
         </>
     )
 }

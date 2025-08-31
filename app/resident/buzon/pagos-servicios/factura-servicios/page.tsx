@@ -4,6 +4,7 @@ import VeciiHeader from '@/components/interfaces/VeciiHeader/VeciiHeader';
 import {useServiceAuth} from '@/components/stores/storeServicios';
 import { useInvoiceStore } from '@/components/stores/storeFactura';
 import StateComponent from '@/components/interfaces/StateComponent/StateComponent';
+import FooterFantasma from '@/components/interfaces/footerFantasma/FooterFantasma';
 const facturaServicios = ()=>{
     const service = useServiceAuth()
     const invoices = useInvoiceStore()
@@ -37,6 +38,7 @@ const facturaServicios = ()=>{
                    </div>
             </div>
             </div>
+            <FooterFantasma/>
         </>
     )
 }

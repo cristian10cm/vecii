@@ -5,6 +5,8 @@ import PQROption from '@/components/interfaces/PQROption/PQROption';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import FooterFantasma from '@/components/interfaces/footerFantasma/FooterFantasma';
+import { setHousing } from '@/components/stores/StoreHousing';
 type types = {
     createdAt: string,
     id: string,
@@ -12,6 +14,7 @@ type types = {
     slug: string
 }
 const PQR = () =>{
+    const nameComplex = setHousing().information?.location.complex.name || ''
     const [useTypes,setType] = useState<types[]>([])
     useEffect(()=>{
         const peticionTypeQpr= async()=>{
@@ -32,7 +35,7 @@ const PQR = () =>{
             <VeciiHeaderImg 
                 srcImg='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTq8AnyLfZx3k_xAlg5BC8mmNdzQl3DlqhPOCDHeEtLN9zIE51pPQtg7xSeTNAkXJUQDN8&usqp=CAU'
                 name='PQR'
-                detail='Conjunto de madelena'
+                detail={nameComplex}
             />
             <div className='PQR_section'>
                 
@@ -58,6 +61,7 @@ const PQR = () =>{
                     pathUrl='/resident/PQR/quejas-reclamos/'
                 />
             </div>
+            <FooterFantasma/>
         </>
     )
 

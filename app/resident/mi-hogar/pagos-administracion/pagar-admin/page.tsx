@@ -3,6 +3,7 @@ import VeciiHeader from '@/components/interfaces/VeciiHeader/VeciiHeader';
 import './index.css';
 import { useInvoiceStore } from '@/components/stores/storeFactura';
 import StateComponent from '@/components/interfaces/StateComponent/StateComponent';
+import FooterFantasma from '@/components/interfaces/footerFantasma/FooterFantasma';
 interface months  {
     meses: Partial<Record <number,string>>
 }
@@ -61,6 +62,7 @@ const PagarAdministracion = () => {
                    </div>
                 </div>
             </div>
+            <FooterFantasma/>
         </>
     )
 

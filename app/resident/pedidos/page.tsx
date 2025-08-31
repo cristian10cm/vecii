@@ -5,6 +5,7 @@ import OpcionBox from '@/components/interfaces/OpcionBox/OpcionBox';
 import SectionShopping from '@/components/interfaces/SectionShopping/SectionShopping';
 import SearchBar from '@/components/interfaces/SearchBar/SearchBar';
 import { setHousing } from '@/components/stores/StoreHousing';
+import FooterFantasma from '@/components/interfaces/footerFantasma/FooterFantasma';
 const Pedidos = () =>{
           const compleName = setHousing().information?.location.complex.name 
       
@@ -19,7 +20,7 @@ const Pedidos = () =>{
             placeholder=''/>
             <OpcionBox
               nameBox1 =  'Tiendas'
-              nameBox2 =  'Paquetes'
+              nameBox2 =  'Pedidos'
               onClickDato={()=>true}
 
             />
@@ -36,7 +37,7 @@ const Pedidos = () =>{
                   />
             </div>
         
-           
+            <FooterFantasma></FooterFantasma>
         </>
     )
 

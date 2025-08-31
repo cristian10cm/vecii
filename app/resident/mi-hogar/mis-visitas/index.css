@@ -9,3 +9,9 @@
 .containerGrid_message_anyVisitor{
     color: #fff;
 }
+.container_myVisitors_filter{
+    display: flex;
+    width: 95%;
+    margin:10px auto;
+    align-items: center;
+}

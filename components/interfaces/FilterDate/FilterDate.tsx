@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import './index.css'
 import { useFilterDate } from '@/components/stores/storeFilterDate';
-const FilterDate =({onChangeOption}:{onChangeOption:(dato:boolean)=>void})=>{
+const FilterDate =({onChangeOption,positionLeft}:{onChangeOption:(dato:boolean)=>void,positionLeft?:Boolean})=>{
     const {setMonth} = useFilterDate()
     const changeMonth =(e:number)=>{
         setMonth({
@@ -17,6 +17,7 @@ const FilterDate =({onChangeOption}:{onChangeOption:(dato:boolean)=>void})=>{
         })
 
     },[])
+const styleContainer = positionLeft ? `container_grid_filterDate left_date` :'container_grid_filterDate'
 const meses = [
     { mes: 'Enero', value: 1},
     { mes: 'Febrero', value: 2 },
@@ -34,8 +35,8 @@ const meses = [
 
 
     return(
-        <div className='container_grid_filterDate'>
-            <p className='container_grid_filterDate_paragraphe'>Ordenar por mes: </p>
+        <div className={styleContainer}>
+            <p className='container_grid_filterDate_paragraphe'>Ordenar </p>
             <select  className='container_grid_filterDate_option' name="" id="" onChange={(e)=>changeMonth(Number(e.target.value))}>
                 <option  value={13}>Sin seleccionar</option>
                 {

@@ -34,3 +34,13 @@
     /* background-color: var(--backgroundBlur); */
     border-radius: 30px;
 }
+.grid_admin_filter{
+    justify-content: right;
+    width: 95%;
+    margin: 20px auto 10px;
+    display: flex
+;
+}
+.grid_admin_filter div{
+    width: fit-content;
+}

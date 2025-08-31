@@ -6,7 +6,7 @@
     align-items: center;
     padding: 2px;
     border-radius: 12px;
-    font-size: 3.5vw;
+    font-size: clamp(10px,3.5vw,14px);
     overflow: hidden;
     width: 90%;
 }

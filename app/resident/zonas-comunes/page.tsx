@@ -13,6 +13,7 @@ import { places,reservedAreas } from '.';
 import { apiDataFilter } from '@/components/stores/apiDataFilter';
 import NoApiData from '@/components/interfaces/NoApiData/NoApiData';
 import BtnSeeMore from '@/components/interfaces/BtnSeeMore/BtnSeeMore';
+import FooterFantasma from '@/components/interfaces/footerFantasma/FooterFantasma';
 const ZonaComun = () =>{
     const {setInformation,barInformation} = useSearchBar();
     const [seeMore1,setMore1 ]= useState<boolean>(false) 
@@ -78,13 +79,13 @@ const ZonaComun = () =>{
             
             <SearchBar placeholder=''></SearchBar>
             <OpcionBox
-                nameBox1='Registros'
-                nameBox2='Reservar'
+                nameBox1='Reservar'
+                nameBox2='Registros'
                 onClickDato = {viewOpcion}
             />
             <div className='container_places-main'>
                {
-                useStateOpcion ? 
+                !useStateOpcion ? 
                 usePlaces.length>0?
                 places.filterData.length>0 ?
                 <>
@@ -148,7 +149,7 @@ const ZonaComun = () =>{
                }
                
             </div>
-        
+               <FooterFantasma/>
         </>
     )
 

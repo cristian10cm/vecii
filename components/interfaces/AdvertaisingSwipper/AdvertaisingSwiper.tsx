@@ -2,7 +2,7 @@
 
 import './index.css';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination } from 'swiper/modules';
+import { Autoplay, Pagination } from 'swiper/modules';
 import 'swiper/swiper-bundle.css' 
 
 const AdvertaisingSwipper = () =>{
@@ -11,10 +11,12 @@ const AdvertaisingSwipper = () =>{
         <div className='advertaising_vecii'>
             <Swiper
                 direction='horizontal'
+                
                 spaceBetween={50} 
                 slidesPerView={1} 
                 pagination={true}
-                modules={[Pagination]}
+                autoplay = {{delay:3000,disableOnInteraction:false}}
+                modules={[Autoplay,Pagination]}
                 loop={true} 
                 className='swiperAdvertaising'
             >

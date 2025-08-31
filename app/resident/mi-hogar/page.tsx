@@ -1,9 +1,10 @@
 'use client'
 import './index.css'
-import UserHeader from "@/components/interfaces/UserHeader/UserHeader";
+import VeciiHeader from '@/components/interfaces/VeciiHeader/VeciiHeader';
 import OptionInterface from "@/components/interfaces/OptionInterface/OptionsInterface";
 import OptionPayAdmin from '@/components/interfaces/OptionPayAdmin/OptionPayAdmin';
 import { useRef } from 'react';
+import FooterFantasma from '@/components/interfaces/footerFantasma/FooterFantasma';
 import {gsap} from 'gsap';
 import { useGSAP } from '@gsap/react';
 const MiHogar = () => {
@@ -18,22 +19,16 @@ const MiHogar = () => {
     return (
         <>
 
-            <UserHeader
-                srcImg="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dXNlciUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D"
-                userName="Jose Manuel Rodriguez"
-                complexName="Pimentos de madelena"
-                deatilsComplex="Casa 38"
+            <VeciiHeader 
+                srcImg='/assets/svg/home.svg'
+                name='Mi hogar'
+                transparent = {false}
             />
             <div className='homeVecii_option_payAdmin' >
                 <OptionPayAdmin />
             </div>
             <div className="grid_options_homeVecii-miHogar" ref = {divSection}>
-                {/* <OptionInterface
-                    idImg='1'
-                    srcImg="/assets/svg/Mis datos.svg"
-                    name='FALSOO'
-                    pathUrl="/resident/chatfalso/"
-                /> */}
+
                 <OptionInterface
                     idImg='1'
                     srcImg="/assets/svg/Mis datos.svg"
@@ -59,8 +54,15 @@ const MiHogar = () => {
                         name='Mis visitas'
                         pathUrl="/resident/mi-hogar/mis-visitas"
                     />
+                        <OptionInterface
+                        idImg='4'
+                         srcImg="/assets/svg/Pedidos.svg"
+                        name='Mis pedidos'
+                        pathUrl=""
+                    />
                 </div>
             </div>
+            <FooterFantasma></FooterFantasma>
         </>
     )
 

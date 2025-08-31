@@ -1,8 +1,101 @@
 .containerPayServices{
+    background-color: var(--background-componets);
+    border-radius: 25px;
+    backdrop-filter: blur(10px);
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 90%;
+    height: auto;
+    margin: 20px auto;
+    padding: 20px;
+    display: flex
+}
+.containerPayServices_title{
+        color: #fff;
+    text-transform: uppercase;
+    text-align: center;
+    text-wrap: balance;
+    width: 80%;
+    font-size: clamp(18px,5.2vw,28px);
+    font-weight: bold;
+}
+.containerPayServices_line{
+        background-color: #fff;
     width: 100%;
-    height: fit-content;
+    height: 1px;
+}
+.containerPayServices_img{
+    border-radius: 25px;
+    width: clamp(105px,35vw,180px);
+    margin: 10px auto;
+}
+.containerPayServices_info{
+    width: 100%;
     display: flex;
     flex-direction: column;
-    margin: 20px auto;
-
+    gap: 1vw;
+}
+.containerPayServices_info div{
+    width: 30%;
+}
+.containerPayServices_info_date{
+    color: #fff;
+    font-size: clamp(11px,3.5vw,18px);
+}
+.containerPayServices_info_date span{
+    color: #aaa;
+}
+.containerPayServices_state_true{
+    color: #0f0;
+}
+.containerPayServices_state_false{
+    color: rgb(175, 1, 1);
+    font-weight: bold;
+}
+.containerPayServices_state{
+    width: 100%;
+}
+.containerPayServices_state p{
+    color: #fff;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 2vw;
+}
+.containerPayServices_btn{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 3vw;
+}
+.containerPayServices_option{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    gap: 2vw;
+}
+.containerPayServices_btn button{
+    background-color: var(--aquaMarineBackground);
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    border-radius: 20px;
+    width: 55%;
+    max-width: 250px;
+    height: auto;
+    padding: 10px ;
+    font-size: clamp(12px,4.2vw,25px);
+}
+.containerPayServices_btn button a{
+    color: #fff;
+    text-decoration: none;
+}
+.containerPayServices_option:nth-child(2) button{
+    background-color: rgb(41, 206, 41);
+}
+.containerPayServices_state{
+    font-size: clamp(14px,3.8vw,18px);
 }

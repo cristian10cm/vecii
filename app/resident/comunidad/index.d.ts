@@ -32,6 +32,7 @@ export interface datosComunidad {
   title: string;
   description: string;
   backgroundImage: string;
+  price:string
   author: {
     id: string;
     firstName: string;

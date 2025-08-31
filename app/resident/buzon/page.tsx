@@ -9,12 +9,14 @@ import { useEffect, useState } from 'react';
 import { setHousing } from '@/components/stores/StoreHousing';
 import axios from 'axios';
 import { servicesType,packageItem } from '.';
+import FooterFantasma from '@/components/interfaces/footerFantasma/FooterFantasma';
 import Cookies from 'js-cookie';
 import { apiDataFilter } from '@/components/stores/apiDataFilter';
 import NoApiData from '@/components/interfaces/NoApiData/NoApiData';
 import BtnSeeMore from '@/components/interfaces/BtnSeeMore/BtnSeeMore';
 const Buzon = () => {
   const housingId = setHousing().information?.location.housing.id
+  const housingName = setHousing().information?.location
   const {setInformation,barInformation } = useSearchBar()
   const [seeMore1,setMore1 ]= useState<boolean>(false)  
    const [seeMore2,setMore2 ]= useState<boolean>(false)  
@@ -90,7 +92,7 @@ const Buzon = () => {
             <VeciiHeaderImg
                 srcImg='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvNZVE68kVo2kW_kB5LIeZyRFGUneucdFPCg&s'
                 name='Buzón'
-                detail='Casa 38'
+                detail={`${housingName?.unit.name} ${housingName?.housing.name}`}
             />
               <SearchBar
                   placeholder=''
@@ -114,7 +116,9 @@ const Buzon = () => {
                           fechaServicio={x.createdAt.split('T')[0]}
                           imgServicio='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSryvVofo68EvMAaGepDFtzmuJ49qDUZ54Kgw&s'
                           stateServicio={x.status == 'pending' ? false: true}
+                          url='/resident/buzon/pagos-servicios/'
                           key={k}
+                          pick={x.pickedUpAt == null ? false : true}
                     />
                     ))}
                     {services.stateSeeMore ? <BtnSeeMore enable={()=>setMore1(true)}/> :''}
@@ -159,7 +163,7 @@ const Buzon = () => {
                     <NoApiData message=' ¡No tienes ningun paquete en el buzon! '/>
                 }
             </div>
-           
+              <FooterFantasma/>
         </>
     );
 

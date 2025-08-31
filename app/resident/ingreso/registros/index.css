@@ -39,3 +39,12 @@
     justify-content: center;
     width: 95%;
 }
+.containerGrid_registries_filter{
+    margin:20px auto 10px;
+    display: flex;
+    width: 95%;
+    justify-content: right;
+}
+.containerGrid_registries_filter div{
+    width: fit-content;
+}

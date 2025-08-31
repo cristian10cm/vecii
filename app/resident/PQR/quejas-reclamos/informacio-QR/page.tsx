@@ -5,7 +5,7 @@ import VeciiHeader from '@/components/interfaces/VeciiHeader/VeciiHeader';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { dataPQR,logs } from '.';
-
+import FooterFantasma from '@/components/interfaces/footerFantasma/FooterFantasma';
 const informationPQR = ()=>{
     const [useNamePQR,setNamePQR] = useState<string>("")
     const [useIdPQR,setIdPQR] = useState<string>("")
@@ -92,7 +92,7 @@ const informationPQR = ()=>{
                 </div>
             </div>
             </div>
-   
+   <FooterFantasma/>
         </>
     )
 

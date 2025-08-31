@@ -23,7 +23,7 @@
 .container_directoryNumber_namedirectory {
     color: white;
     font-weight: 600;
-    font-size: 4.5vw;
+    font-size: clamp(14px,4vw,22px);
 }
 
 .container_directoryNumber_number {
@@ -45,6 +45,6 @@
     border: solid black 1px;
     padding: 1px 5px;
     border-radius: 50%;
-    background-color: var(--background-componets);
-    color: white;
+    background-color: var(--backgroundModal);
+    color: #000;
 }

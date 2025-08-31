@@ -1,6 +1,6 @@
 .container_optionChat{
     width: 100%;
-    height: 12vh;
+    height: 10vh;
     min-height: 70px;
     display: grid;
     background-color: var(--background-componets);
@@ -12,6 +12,7 @@
     padding: 15px;
     border-radius: 25px;
     overflow: hidden;
+    animation: animationChatOption .3s;
 }
 .container_optionChat_img{
     width: clamp(30px,70%,50px);
@@ -53,4 +54,13 @@
     filter: invert(100%);
     scale: .8;
     align-self: flex-end;
+}
+@keyframes animationChatOption {
+    0%{
+        opacity: .9;
+        scale: .9;
+    }100%{
+        opacity: 1;
+        scale: 1;
+    }
 }

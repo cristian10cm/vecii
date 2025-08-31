@@ -30,7 +30,7 @@ const Chats = ({idChat,nameChat,goToBack}:{idChat:string,nameChat?:string,goToBa
     const scrollRef = useRef<HTMLDivElement>(null)
     const  {status,useMessage,useNotification,newMessage} = useWebSocket(useIdChat)
     
-    const name = localStorage.getItem('nameChatService')
+    // const name = localStorage.getItem('nameChatService')
     const token = Cookies.get('token')
     const verifyHistory = () => history.back()
     const toMessage = (data:ChatType):Message=>{
@@ -94,7 +94,7 @@ const Chats = ({idChat,nameChat,goToBack}:{idChat:string,nameChat?:string,goToBa
                     <div className={ goToBack ?`container_chats_info_img_back`:'container_chats_info_img'}>
                         <img src="https://img.freepik.com/vector-gratis/vector-monocromo-coleccion-barberia-herramientas_1441-138.jpg"  />
                     </div>
-                  <p className='container_chats_info_paragraphe'>{name}</p>
+                  <p className='container_chats_info_paragraphe'>{nameChat}</p>
                 </div>
                 <div className='container_chats_gridConversation'>
                     
@@ -130,13 +130,13 @@ const Chats = ({idChat,nameChat,goToBack}:{idChat:string,nameChat?:string,goToBa
                 </div>
                 <div className='container_chats_sendMessage'>
                     <div className='container_chats_sendMessage_input' >
-                        <input ref={inputRef} type="text"  placeholder='¡Envia un mensaje!'/>
+                        <input ref={inputRef} type="text"  placeholder='Envia un mensaje'/>
                     </div>
                     
                     <button className='container_chats_sendMessage_btn' onClick={()=>sendMessage()}>
                         <IconSvgGradient
-                            urlImage='/assets/svg//plus-circle-fill.svg'
-                            widthImg='10vw'
+                            urlImage='/assets/svg/paper-plane-right.svg'
+                            widthImg='clamp(22px,8vw,30px)'
                         />
                     </button>
                 </div>

@@ -7,6 +7,7 @@ import NoApiData from '@/components/interfaces/NoApiData/NoApiData'
 import { useBtnEdit } from '@/components/stores/storeEditInput'
 import { useEffect, useRef, useState } from 'react'
 import { toast } from 'react-toastify'
+import FooterFantasma from '@/components/interfaces/footerFantasma/FooterFantasma'
 import axios from 'axios'
 import Cookies from 'js-cookie'
 import { getDate } from 'date-fns'
@@ -213,6 +214,7 @@ const EditObjectMovement = () => {
          
             }
         </div>
+        <FooterFantasma/>
       </>
     )
 }

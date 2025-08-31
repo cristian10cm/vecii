@@ -10,10 +10,12 @@ const VeciiHeader = ({srcImg, name,transparent}:{srcImg:string, name:string,tran
             <div className='container_identity_component'>
                 {
                     transparent?
-                    <IconSvgGradient
-                    urlImage={srcImg}
-                    widthImg={'70px'}
-                />
+                        <div className='container_identity_componentImg'>
+                                                <IconSvgGradient
+                            urlImage={srcImg}
+                            widthImg='clamp(25px,16vw,80px)'
+                        />
+                        </div>
                 :
                 <img className='container_identity_componentImg' src={srcImg}></img>
                 }

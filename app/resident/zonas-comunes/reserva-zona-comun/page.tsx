@@ -13,7 +13,7 @@ import Cookies from 'js-cookie';
 import ReservedAreaModal from '@/components/interfaces/ReservedAreaModal/ReservedAreaModal';
 import { startDate,endDate,numberRegex,regexFecha,today,stringRegex,Reservation,AxiosBadRequestError } from './index';
 import IconSvgGradient from '@/components/interfaces/IconSvgGradient/IconSvgGradient';
-
+import FooterFantasma from '@/components/interfaces/footerFantasma/FooterFantasma';
 const ReserveArea = () => {
   console.log('ok')
   const timeStartHour = useTimeReservedStart()
@@ -201,7 +201,7 @@ const ReserveArea = () => {
         date = {useDataArea?.startTime || 'Cargando..'}
         />:''
       }
-
+    <FooterFantasma/>
     </>
   );
 };

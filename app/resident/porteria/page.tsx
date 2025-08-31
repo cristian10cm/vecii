@@ -4,6 +4,7 @@ import './index.css';
 import DirectoryEmergencyPhone from '@/components/interfaces/DirectoryEmergencyPhone/DirectoryEmergencyPhone';
 import SearchBar from '@/components/interfaces/SearchBar/SearchBar';
 import { useSearchBar } from '@/components/stores/storeSearch';
+import FooterFantasma from '@/components/interfaces/footerFantasma/FooterFantasma';
 import { useEffect } from 'react';
 const Porteria = () => {
     const resultSearch = useSearchBar()
@@ -72,7 +73,7 @@ const Porteria = () => {
 
             </div>
             
-
+        <FooterFantasma/>
         </>
     );
 

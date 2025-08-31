@@ -35,7 +35,7 @@ const Inicio = () =>{
                 /> */}
                 <OptionInterface
                     idImg = '1'
-                    srcImg="/assets/svg/Buzon.svg"
+                    srcImg="/assets/svg/home.svg"
                     name='Mi Hogar'
                     pathUrl="/resident/mi-hogar"
                 />

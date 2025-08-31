@@ -7,12 +7,24 @@
     z-index: 2;
     display: flex;
     animation-fill-mode: forwards;
-    background-color: #000d;
+    background-color: var(--background-componet);
+    backdrop-filter: blur(10px);
 }
-
+.container_modalReserved_close{
+    position:absolute;
+    right: 20px;
+    top: 20px;
+    height: fit-content;
+    width: fit-content;
+    border: none;
+    background-color: transparent;
+    font-size: 30px;
+    color: var(--blueVecii);
+}
 .container_modalReserved_ad {
     background-color: #1E2229dd;
     height: 50dvh;
+    position: relative;
     width: 80%;
     animation: animationModal 0.3s;
     border: 1px solid var(--blueVecii);
@@ -27,7 +39,7 @@
 }
 
 .container_modalReserved_title {
-    font-size: 6vw;
+    font-size: clamp(20px,6vw,35px);
     font-weight: bold;
     color: var(--blueVecii);
     text-align: center;
@@ -44,10 +56,11 @@
 
 .container_modalReserved_date-paragraphe{
     font-weight: bold;
-    font-size: 5vw;
+    font-size: clamp(18px,5.5vw,30px);
 }
 .container_modalReserved_info{
-    font-size: 4vw;
+    font-size:clamp(14px,4vw,25px);
+    margin-top: 10px;
     color: #aaa;
 }
 .container_modalReserved_date-reserved {
@@ -59,9 +72,10 @@
 }
 
 .container_modalReserved_closeModal {
-    width: 15vw;
+    width: clamp(60px,15vw,80px);
     filter: drop-shadow(0px 0px 6px var(--aquaMarineBackground));
-    margin: auto;
+    margin:30px auto 10px;
+
 }
 
 @keyframes animationModal {

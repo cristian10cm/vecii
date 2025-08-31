@@ -10,6 +10,7 @@ import NoApiData from '@/components/interfaces/NoApiData/NoApiData';
 import BtnSeeMore from '@/components/interfaces/BtnSeeMore/BtnSeeMore';
 import VeciiHeaderImg from '@/components/interfaces/VeciiHeaderImg/VeciiHeaderImg';
 import SearchBar from '@/components/interfaces/SearchBar/SearchBar';
+import { setHousing } from '@/components/stores/StoreHousing';
 export interface typeStore {
     
             createdAt: string | Date,
@@ -26,6 +27,7 @@ export interface typeStore {
 }
 const ordenPedido = ()=>{
     const [useStore,setStore] = useState<typeStore[]>([])
+     const nameComplex = setHousing().information?.location.complex.name || ''
     const {setInformation,barInformation} = useSearchBar()
     const [seeMore,setMore] = useState<boolean>(false)
       const getStores = async()=>{
@@ -53,7 +55,7 @@ const ordenPedido = ()=>{
             <VeciiHeaderImg
                 srcImg='https://totalfood.com/wp-content/uploads/2023/04/Restaurant-Online-Food-Delivery-1.webp'
                 name='Pedidos'
-                detail='Conjunto pimientos de madelena'
+                detail={nameComplex}
             />
             <SearchBar 
             placeholder=''/>

@@ -2,7 +2,7 @@
 .container_searchBar{
     display: grid;
     grid-template-columns: 10% 80% 10%;
-    width: 90%;
+    width: 95%;
     margin: 10px auto 0;
     height: fit-content;
     background: #fff;

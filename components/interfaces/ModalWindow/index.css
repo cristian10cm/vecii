@@ -10,7 +10,8 @@
     z-index: 2;
     display: flex;
     animation-fill-mode: forwards;
-    background-color: #000d;
+    background-color: var(--background-componets);
+    backdrop-filter: blur(10px);
 }
 .container_modalWindow_icon{
     width: 15vw;
@@ -24,7 +25,7 @@
     margin:  auto;
 }
 .container_modalWindow_ad{
-    background-color: #1E2229dd;
+    background-color: #1e2229dd;
     height: 75dvh;
     width: 80%;
     animation: animationModal 0.3s;

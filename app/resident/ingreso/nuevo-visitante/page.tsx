@@ -9,6 +9,7 @@ import axios from 'axios';
 import ModalWindow from '@/components/interfaces/ModalWindow/ModalWindow';
 import { setHousing } from '@/components/stores/StoreHousing';
 import Cookies from 'js-cookie';
+import FooterFantasma from '@/components/interfaces/footerFantasma/FooterFantasma';
 import InputDate from '@/components/interfaces/InputDate/InputDate';
 import { cleanForm } from './index';
 const NewVisitor = () => {
@@ -173,6 +174,7 @@ const NewVisitor = () => {
                         {useLoading?'Registrar visita':'Realizar otro registro'}
                     </button>
             </form>
+            <FooterFantasma/>
         </>
     )
     }

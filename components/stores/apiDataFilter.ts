@@ -40,9 +40,9 @@ export function apiDataFilterDate<T>(
       const dateB = new Date(String(b[date])).getTime();
       return dateB - dateA;     });
 
-  const filterData = !state && filtered.length > 10 ? filtered.slice(0, 10) : filtered;
-  const stateSeeMore = !state && filtered.length > 10;
+  // const filterData = !state && filtered.length > 10 ? filtered.slice(0, 10) : filtered;
+  // const stateSeeMore = !state && filtered.length > 10;
 
-  return { filterData, stateSeeMore };
+  return { filtered };
 }
 

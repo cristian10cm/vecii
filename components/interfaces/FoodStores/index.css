@@ -28,7 +28,7 @@
 .container_section_stores_infoStore{
     display: flex;
     flex-direction: column;
-
+    border-radius: 0;
     padding: 1vw ;
 
 }

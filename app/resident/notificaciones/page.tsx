@@ -5,6 +5,7 @@ import Notification from '@/components/interfaces/Notification/Notification'
 import Sockets from '@/components/stores/Sockets'
 import Cookies from 'js-cookie'
 import { useEffect } from 'react'
+import FooterFantasma from '@/components/interfaces/footerFantasma/FooterFantasma'
 const Notificaciones = ()=>{
         useEffect(()=>{
       Sockets.connect();
@@ -25,7 +26,7 @@ const Notificaciones = ()=>{
                 <Notification></Notification>
 
             </div>
-        
+        <FooterFantasma></FooterFantasma>
         </>
 
     )

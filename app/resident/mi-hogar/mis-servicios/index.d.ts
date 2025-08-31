@@ -48,3 +48,34 @@ export interface datosComunidad {
     email: string;
   };
 }
+export type servicioTomadoType = {
+  createdAt: string;
+  id: string;
+  isConfirmed: boolean;
+  rating: number | null;
+  service: {
+    createdAt: string;
+    id: string;
+    title: string;
+    description: string;
+    price: string;
+  };
+  user: {
+    createdAt: string;
+    id: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    identificationNumber: string;
+    phoneNumber: string;
+    cellPhoneNumber: string;
+    isActive: boolean;
+  };
+  chat: {
+    createdAt: string;
+    id: string;
+    name: string;
+    description: string;
+    type: string; 
+  };
+};

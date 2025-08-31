@@ -1,7 +1,6 @@
 .PQR_vecii{
     width: 90%;
     height: 130px;
-    
     display: grid;
     grid-template-rows: 30% 40% 30%;
     border-radius: 25px;
@@ -10,7 +9,7 @@
     margin: 10px auto 0;
     position: relative;
     justify-items: center;
-    background-color: #000;
+    background-color: #001;
 }
 .PQR_vecii::before,.PQR_vecii::after{
     content: '';
@@ -33,12 +32,12 @@
     font-size: clamp(16px,4.5vw,18px);
     justify-self: self-start;
     color: white;
-    font-weight: 800;
+  
 }
 
 .PQR_vecii_details{
     font-size: clamp(9px,3vw,16px);
-    color: #fff;
+    color: #aaa;
      justify-self: self-start;
 }
 
@@ -46,8 +45,8 @@
     width: 80px;
     margin: 10px 0px 10px auto;
     background-color: transparent;
-    border: solid 1px white;
-    color: #fff;
+    border: solid 1px #fff;
+    color: #aaa;
     padding: 5px 0px;
     border-radius: 30px;
     outline: none;

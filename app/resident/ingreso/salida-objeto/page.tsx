@@ -2,7 +2,7 @@
 import VeciiHeader from '@/components/interfaces/VeciiHeader/VeciiHeader';
 import './index.css';
 import ObjectEntryExit from '@/components/interfaces/ObjectEntryExit/ObjectEntryExit';
-
+import FooterFantasma from '@/components/interfaces/footerFantasma/FooterFantasma';
 const outObjetc = () => {
 
 
@@ -17,7 +17,7 @@ const outObjetc = () => {
                 typeRegister='Salida'
             
             />
-
+        <FooterFantasma/>
         </>
     )
 
